@@ -48,7 +48,7 @@ const infoCards = [
 
 export function InfoCards() {
   return (
-    <section className="bg-emerald-800/5 py-16 lg:py-24">
+    <section className="bg-emerald-800/5s py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 text-center">
@@ -103,7 +103,7 @@ export function InfoCards() {
                   ¿Tienes dudas? Contáctanos
                 </h3>
                 <p className="text-white/80">
-                  Estamos disponibles de lunes a sábado para ayudarte
+                  Estamos disponibles de lunes a viernes para ayudarte
                 </p>
               </div>
             </div>
@@ -111,7 +111,7 @@ export function InfoCards() {
               <a href="tel:+56212345678">
                 <Button className="bg-primary-foreground hover:bg-primary-foreground/90 gap-2">
                   <Phone className="h-4 w-4" />
-                  +56 2 1234 5678
+                  +56 9 7135 7976
                 </Button>
               </a>
             </div>

@@ -13,9 +13,9 @@ const geistSans = Geist({
 // });
 
 export const metadata: Metadata = {
-  title: 'Veterinaria Municipal | Algarrobo',
+  title: 'Acción Mascota - Municipalidad de Algarrobo',
   description:
-    'Servicio de atención veterinaria municipal. Agenda citas, registra tus mascotas y accede a información sobre tenencia responsable, vacunaciones y servicios gratuitos para la comunidad.',
+    'Servicio de atención de mascotas. Agenda citas, registra tus mascotas y accede a información sobre tenencia responsable, vacunaciones y servicios gratuitos para la comunidad.',
   icons: {
     icon: [
       {

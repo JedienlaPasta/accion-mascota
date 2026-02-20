@@ -41,13 +41,13 @@ export function CTASection() {
   }
 
   return (
-    <section className="py-16 lg:py-24">
+    <section className="bg-emerald-800/5 py-16 lg:py-36">
       <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <div className="bg-primary/20 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full">
           <PawPrint className="h-8 w-8 text-emerald-800" />
         </div>
         <h2 className="text-foreground mb-4 text-3xl font-bold sm:text-4xl">
-          Únete al Portal Ciudadano
+          Únete al Portal Mascota
         </h2>
         <p className="text-muted-foreground mx-auto mb-8 max-w-xl text-lg text-pretty">
           Registra a tus mascotas, agenda citas en línea, revisa su historial

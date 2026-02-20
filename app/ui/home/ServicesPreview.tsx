@@ -38,7 +38,7 @@ const serviciosDestacados = [
     titulo: 'Esterilización',
     descripcion:
       'Cirugía de esterilización con anestesia y medicamentos incluidos',
-    precio: 'Desde $20.000',
+    precio: 'Desde $10.000',
     color: 'bg-amber-50 text-amber-600',
   },
   {
@@ -46,14 +46,14 @@ const serviciosDestacados = [
     titulo: 'Microchip',
     descripcion:
       'Identificación permanente con registro en base de datos nacional',
-    precio: '$10.000',
+    precio: 'Desde $5.000',
     color: 'bg-purple-50 text-purple-600',
   },
 ];
 
 export function ServicesPreview() {
   return (
-    <section className="bg-emerald-800/5 py-16 lg:py-24">
+    <section className="bg-emerald-800/5s py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 text-center">
@@ -62,8 +62,9 @@ export function ServicesPreview() {
           </h2>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg text-pretty">
             Ofrecemos atención veterinaria integral a precios accesibles para
-            toda la comunidad. Muchos servicios son gratuitos o tienen precios
-            preferenciales.
+            toda la comunidad. Algunos servicios son gratuitos, mientras que
+            otros tienen precios preferenciales según su Registro Social de
+            Hogares.
           </p>
         </div>
 

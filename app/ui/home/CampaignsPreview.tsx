@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from './Card';
 import { campanas } from '../../_lib/mock-data';
-import { Calendar, Users, ArrowRight, Sparkles } from 'lucide-react';
+import { Calendar, Users, ArrowRight, Sparkles, FileUser } from 'lucide-react';
 import Badge from '../components/Badge';
 import { Button, RoundMutedButton } from '../components/Button';
 import { capitalize } from '../../_lib/utils/format';
@@ -23,7 +23,7 @@ export function CampaignsPreview() {
   const campanasActivas = campanas.slice(0, 2);
 
   return (
-    <section className="py-16 lg:py-24">
+    <section className="bg-emerald-800/5 py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 text-center">
@@ -72,6 +72,11 @@ export function CampaignsPreview() {
                 </CardDescription>
 
                 <div className="space-y-6">
+                  <div className="text-muted-foreground mb-4 flex items-center gap-1 text-sm leading-relaxed">
+                    <FileUser className="h-4 w-4" />
+                    Recuerda traer tu ficha del registro social de hogares.
+                  </div>
+
                   <div className="text-muted-foreground flex flex-wrap gap-4 text-sm">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-4 w-4" />
