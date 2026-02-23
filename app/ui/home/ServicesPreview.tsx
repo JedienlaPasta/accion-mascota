@@ -63,7 +63,7 @@ export function ServicesPreview() {
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg text-pretty">
             Ofrecemos atención veterinaria integral a precios accesibles para
             toda la comunidad. Algunos servicios son gratuitos, mientras que
-            otros tienen precios preferenciales según su Registro Social de
+            otros tienen precios preferenciales según tu Registro Social de
             Hogares.
           </p>
         </div>

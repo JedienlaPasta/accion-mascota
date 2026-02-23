@@ -4,10 +4,10 @@ import Link from 'next/link';
 import {
   Calendar,
   Heart,
-  Shield,
   ArrowRight,
   PawPrint,
-  BookHeart,
+  Syringe,
+  Scissors,
 } from 'lucide-react';
 import { useAuth } from '@/app/_lib/AuthContext';
 import { CTAButton, RoundMutedButton } from '../components/Button';
@@ -63,11 +63,11 @@ export function HeroSection() {
               método TNR y velamos por el bienestar de mascotas con y sin dueño.
             </p>
             <p className="text-muted-foreground mx-auto mt-3 max-w-xl text-sm leading-relaxed text-pretty lg:mx-0">
-              También educamos a la comunidad sobre tenencia responsable según
-              la Ley 21.020 y la Ordenanza Municipal D.A N°0411. Articulamos
-              redes de cooperación con organizaciones públicas y privadas.
-              Adicionalmente, apoyamos el registro e identificación de mascotas
-              a través del{' '}
+              Además, educamos a la comunidad sobre tenencia responsable de
+              acuerdo con la Ley 21.020 y la Ordenanza Municipal D.A N°0411,
+              generando redes de cooperación con organizaciones públicas y
+              privadas. También apoyamos al registro e identificación de
+              mascotas a través del{' '}
               <a
                 href="https://registratumascota.cl"
                 target="_blank"
@@ -140,11 +140,12 @@ export function HeroSection() {
               <div className="bg-card border-border absolute -top-4 -left-4 rounded-xl border p-4 shadow-lg">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
-                    <Heart className="h-5 w-5 text-green-600" />
+                    {/* <Heart className="h-5 w-5 text-green-600" /> */}
+                    <Syringe className="h-5 w-5 text-green-600" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium">Vacuna Gratuita</p>
-                    <p className="text-muted-foreground text-xs">Antirrábica</p>
+                    <p className="text-sm font-medium">Operativos Sanitarios</p>
+                    <p className="text-muted-foreground text-xs">Vacunación</p>
                   </div>
                 </div>
               </div>
@@ -152,12 +153,13 @@ export function HeroSection() {
               <div className="bg-card border-border absolute -right-4 -bottom-4 rounded-xl border p-4 shadow-lg">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
-                    <Calendar className="h-5 w-5 text-amber-600" />
+                    {/* <Calendar className="h-5 w-5 text-amber-600" /> */}
+                    <Scissors className="h-5 w-5 text-amber-600" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium">Próxima Cita</p>
+                    <p className="text-sm font-medium">Control Reproductivo</p>
                     <p className="text-muted-foreground text-xs">
-                      Lunes 10:30 hrs
+                      Perros y gatos
                     </p>
                   </div>
                 </div>
