@@ -3,12 +3,12 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { funcionarioActual, Usuario, usuarioActual } from './mock-data';
 
-interface AuthContextType {
+type AuthContextType = {
   usuario: Usuario | null;
   isLoggedIn: boolean;
   login: (rol: 'ciudadano' | 'funcionario') => void;
   logout: () => void;
-}
+};
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
