@@ -11,6 +11,7 @@ import {
   Home,
 } from 'lucide-react';
 import { useAuth } from '@/app/_lib/AuthContext';
+import { Button } from '../components/Button';
 
 const navItems = [
   {
@@ -72,13 +73,12 @@ export function PortalSidebar() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                // className={cn(
-                //   "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
-                //   pathname === item.href ||
-                //     (pathname?.startsWith(item.href) && item.href !== "/portal")
-                //     ? "bg-primary/10 text-primary font-medium"
-                //     : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                // )}
+                className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
+                  pathname === item.href ||
+                  (pathname?.startsWith(item.href) && item.href !== '/portal')
+                    ? 'bg-primary/10 text-primary font-medium'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+                }`}
               >
                 <item.icon className="h-4 w-4" />
                 {item.label}
@@ -89,12 +89,11 @@ export function PortalSidebar() {
       </nav>
 
       <div className="border-border border-t p-4">
-        <Link
-          href="/portal/citas/nueva"
-          className="bg-primary text-primary-foreground hover:bg-primary/90 flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors"
-        >
-          <Plus className="h-4 w-4" />
-          Nueva Cita
+        <Link href="/portal/citas/nueva">
+          <Button className="flex w-full justify-center gap-2 !rounded-md">
+            <Plus className="h-4 w-4" />
+            Nueva Cita
+          </Button>
         </Link>
       </div>
     </aside>

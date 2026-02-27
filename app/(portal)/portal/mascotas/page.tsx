@@ -13,10 +13,15 @@ import {
   CheckCircle,
   AlertCircle,
   ChevronRight,
+  ClipboardClock,
+  AlarmClock,
+  AlarmClockMinus,
+  AlarmClockOff,
 } from 'lucide-react';
 import { useAuth } from '@/app/_lib/AuthContext';
-import { Button } from '@/app/ui/components/Button';
+import { Button, SecondaryButton } from '@/app/ui/components/Button';
 import { citas, historialClinico, mascotas } from '@/app/_lib/mock-data';
+import { capitalize } from '@/app/_lib/utils/format';
 
 const especieIcons: Record<
   string,
@@ -92,85 +97,138 @@ export default function MascotasPage() {
           return (
             <div
               key={mascota.id}
-              className="flex flex-col gap-6 rounded-xl border border-slate-200 bg-white py-6 text-gray-600 shadow-md"
+              className="flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all hover:shadow-md"
             >
-              <span className="grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-card border-card flex h-14 w-14 items-center justify-center rounded-full border-2 shadow">
-                      <Icon className="text-primary h-7 w-7" />
+              {/* Header con estado */}
+              <div className="border-b border-gray-50 bg-gray-50/50 px-6 py-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {citasPendientes.length > 0 ? (
+                      <div className="flex items-center gap-1.5 text-emerald-600">
+                        <CheckCircle className="h-4 w-4 fill-emerald-600 text-white" />
+                        <span className="text-xs font-semibold">
+                          Cita agendada
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-1.5 text-gray-400">
+                        <CheckCircle className="h-4 w-4 fill-gray-400 text-white" />
+                        <span className="text-xs font-medium">
+                          Sin pendientes
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  {/* Badges */}
+                  <div className="flex gap-1.5">
+                    {mascota.esterilizado ? (
+                      <span className="h-5s inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700 ring-1 ring-emerald-600/10 ring-inset">
+                        Esterilizado
+                      </span>
+                    ) : (
+                      <span className="h-5s inline-flex items-center rounded-full bg-gray-50 px-2 text-[10px] font-medium text-gray-700 ring-1 ring-gray-600/10 ring-inset">
+                        Sin Esterilizar
+                      </span>
+                    )}
+                    {mascota.chip ? (
+                      <span className="py-0.5s inline-flex h-5 items-center rounded-full bg-blue-50 px-2 text-[10px] font-medium text-blue-700 ring-1 ring-blue-600/10 ring-inset">
+                        Con Chip
+                      </span>
+                    ) : (
+                      <span className="inline-flex h-5 items-center rounded-full bg-gray-50 px-2 text-[10px] font-medium text-gray-700 ring-1 ring-gray-600/10 ring-inset">
+                        Sin Chip
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Contenido Principal */}
+              <div className="flex flex-1 flex-col justify-between px-6 pt-6 pb-6">
+                <div>
+                  <div className="mb-6 flex items-start gap-4">
+                    {/* Avatar */}
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gray-50 ring-1 ring-gray-100">
+                      <Icon className="h-8 w-8 text-gray-600" />
                     </div>
+
+                    {/* Info Principal */}
                     <div>
-                      <h3 className="font-semibold text-gray-800">
+                      <h3 className="text-xl font-bold text-gray-900">
                         {mascota.nombre}
                       </h3>
-                      <p>
-                        {mascota.raza} - {calcularEdad(mascota.fechaNacimiento)}
+                      <p className="text-sm font-medium text-gray-500">
+                        {mascota.raza}
+                      </p>
+                      <p className="text-xs text-gray-400">
+                        {calcularEdad(mascota.fechaNacimiento)}
                       </p>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-1">
-                    {mascota.esterilizado ? (
-                      <div className="bg-green-100 text-xs text-green-700 hover:bg-green-100">
-                        Esterilizado
+
+                  {/* Detalles Grid */}
+                  <div className="mb-6 grid grid-cols-2 gap-y-4 rounded-xl bg-gray-50 p-4">
+                    <div>
+                      <p className="text-[10px] font-semibold tracking-wider text-gray-400 uppercase">
+                        SEXO
+                      </p>
+                      <p className="mt-0.5 text-sm font-medium text-gray-700 capitalize">
+                        {mascota.sexo}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-semibold tracking-wider text-gray-400 uppercase">
+                        COLOR
+                      </p>
+                      <p className="mt-0.5 text-sm font-medium text-gray-700">
+                        {mascota.color}
+                      </p>
+                    </div>
+                    {citasPendientes.length > 0 ? (
+                      <div className="col-span-2 border-t border-gray-200 pt-3">
+                        <div className="flex items-start gap-3">
+                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-100/60 text-blue-600">
+                            <AlarmClock className="h-4 w-4" />
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-semibold tracking-wider text-gray-400 uppercase">
+                              PRÓXIMA CITA
+                            </p>
+                            <p className="text-sm font-medium text-gray-900">
+                              {capitalize(
+                                new Date(
+                                  citasPendientes[0].fecha
+                                ).toLocaleDateString('es-CL', {
+                                  weekday: 'long',
+                                  day: 'numeric',
+                                  month: 'long',
+                                })
+                              )}
+                            </p>
+                            <p className="text-xs text-gray-500">
+                              {citasPendientes[0].hora} hrs
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     ) : (
-                      <div className="bg-amber-100 text-xs text-amber-700 hover:bg-amber-100">
-                        Sin esterilizar
+                      <div className="col-span-2 border-t border-gray-200 pt-3">
+                        <div className="flex items-start gap-3">
+                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100/60 text-slate-600">
+                            <AlarmClockOff className="h-4 w-4" />
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-semibold tracking-wider text-gray-400 uppercase">
+                              SIN PENDIENTES
+                            </p>
+                            <p className="text-sm font-medium text-gray-900">
+                              Sin citas pendientes
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     )}
-                    {mascota.chip ? (
-                      <div className="bg-transparent text-xs">Con chip</div>
-                    ) : (
-                      <div className="text-muted-foreground bg-transparent text-xs">
-                        Sin chip
-                      </div>
-                    )}
                   </div>
-                </div>
-              </span>
-
-              <div className="pt-4">
-                {/* Info básica */}
-                <div className="mb-4 grid grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="text-muted-foreground">Sexo</p>
-                    <p className="font-medium capitalize">{mascota.sexo}</p>
-                  </div>
-                  <div>
-                    <p className="text-muted-foreground">Color</p>
-                    <p className="font-medium">{mascota.color}</p>
-                  </div>
-                </div>
-
-                {/* Estado rápido */}
-                <div className="mb-4 space-y-2">
-                  {citasPendientes.length > 0 ? (
-                    <div className="flex items-center gap-2 rounded-md bg-blue-50 p-2 text-sm">
-                      <Calendar className="h-4 w-4 text-blue-600" />
-                      <span className="text-blue-700">
-                        {citasPendientes.length} cita
-                        {citasPendientes.length > 1 ? 's' : ''} pendiente
-                        {citasPendientes.length > 1 ? 's' : ''}
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="bg-muted flex items-center gap-2 rounded-md p-2 text-sm">
-                      <CheckCircle className="text-muted-foreground h-4 w-4" />
-                      <span className="text-muted-foreground">
-                        Sin citas pendientes
-                      </span>
-                    </div>
-                  )}
-
-                  {ultimoHistorial?.tratamiento && (
-                    <div className="flex items-center gap-2 rounded-md bg-amber-50 p-2 text-sm">
-                      <Syringe className="h-4 w-4 text-amber-600" />
-                      <span className="line-clamp-1 text-amber-700">
-                        Tratamiento activo
-                      </span>
-                    </div>
-                  )}
                 </div>
 
                 {/* Actions */}
@@ -179,19 +237,20 @@ export default function MascotasPage() {
                     href={`/portal/mascotas/${mascota.id}`}
                     className="flex-1"
                   >
-                    <Button className="w-full gap-2 bg-transparent">
+                    <SecondaryButton className="w-full gap-2">
                       Ver perfil
                       <ChevronRight className="h-4 w-4" />
-                    </Button>
+                    </SecondaryButton>
                   </Link>
                   <Link href={`/portal/citas/nueva?mascota=${mascota.id}`}>
-                    <Button className="bg-transparent">
+                    <SecondaryButton className="aspect-square">
                       <Calendar className="h-4 w-4" />
-                    </Button>
+                    </SecondaryButton>
                   </Link>
                 </div>
               </div>
             </div>
+            // </div>
           );
         })}
       </div>
