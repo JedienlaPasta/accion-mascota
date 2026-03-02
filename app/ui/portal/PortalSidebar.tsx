@@ -45,8 +45,8 @@ export function PortalSidebar() {
   }
 
   return (
-    <aside className="border-border bg-card hidden w-64 flex-col border-r lg:flex">
-      <div className="border-border border-b p-4">
+    <aside className="bg-card hidden w-64 flex-col border-r border-gray-200/60 shadow-lg shadow-gray-200/80 lg:flex">
+      <div className="border-b border-gray-200/60 p-4">
         <p className="text-foreground text-sm font-medium">Portal Ciudadano</p>
         <p className="text-muted-foreground truncate text-xs">
           {usuario?.nombre || 'Nombre Usuario'}
@@ -58,7 +58,7 @@ export function PortalSidebar() {
           <li>
             <Link
               href="/"
-              className="text-muted-foreground hover:text-foreground hover:bg-secondary flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors"
+              className="text-muted-foreground hover:text-foreground flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors hover:bg-gray-100/80"
             >
               <Home className="h-4 w-4" />
               Volver al inicio
@@ -76,8 +76,8 @@ export function PortalSidebar() {
                 className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
                   pathname === item.href ||
                   (pathname?.startsWith(item.href) && item.href !== '/portal')
-                    ? 'bg-primary/10 text-primary font-medium'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+                    ? 'bg-emerald-700/5 font-medium text-emerald-700'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-gray-100/80'
                 }`}
               >
                 <item.icon className="h-4 w-4" />
@@ -88,9 +88,9 @@ export function PortalSidebar() {
         </ul>
       </nav>
 
-      <div className="border-border border-t p-4">
+      <div className="border-t border-gray-200/60 p-4">
         <Link href="/portal/citas/nueva">
-          <Button className="flex w-full justify-center gap-2 !rounded-md">
+          <Button className="flex w-full justify-center gap-2 rounded-lg">
             <Plus className="h-4 w-4" />
             Nueva Cita
           </Button>

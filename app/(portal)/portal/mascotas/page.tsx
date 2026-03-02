@@ -9,13 +9,9 @@ import {
   Dog,
   Cat,
   Calendar,
-  Syringe,
   CheckCircle,
-  AlertCircle,
   ChevronRight,
-  ClipboardClock,
   AlarmClock,
-  AlarmClockMinus,
   AlarmClockOff,
 } from 'lucide-react';
 import { useAuth } from '@/app/_lib/AuthContext';
@@ -224,6 +220,7 @@ export default function MascotasPage() {
                             <p className="text-sm font-medium text-gray-900">
                               Sin citas pendientes
                             </p>
+                            <p className="text-xs text-gray-500">--:--</p>
                           </div>
                         </div>
                       </div>

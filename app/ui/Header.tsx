@@ -29,7 +29,7 @@ export function Header() {
   const { usuario, isLoggedIn, logout } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200/60 bg-white shadow-xs shadow-gray-200/40">
+    <header className="sticky top-0 z-50 border-b border-gray-200/60 bg-white shadow-md shadow-gray-200/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
