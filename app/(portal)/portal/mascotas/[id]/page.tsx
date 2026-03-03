@@ -156,7 +156,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
   const totalCirugias = historial.filter((h) => h.tipo === 'cirugia').length;
 
   return (
-    <div className="p-6 lg:p-8">
+    <div className="h-full bg-green-950/4 p-6 lg:p-8">
       {/* Back button */}
       <Link
         href="/portal/mascotas"

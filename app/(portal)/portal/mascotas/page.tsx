@@ -57,7 +57,7 @@ export default function MascotasPage() {
   }
 
   return (
-    <div className="p-6 lg:p-8">
+    <div className="h-full bg-green-950/4 p-6 lg:p-8">
       {/* Header */}
       <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>

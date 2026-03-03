@@ -45,7 +45,7 @@ export function PortalSidebar() {
   }
 
   return (
-    <aside className="bg-card hidden w-64 flex-col border-r border-gray-200/60 shadow-lg shadow-gray-200/80 lg:flex">
+    <aside className="hidden w-64 flex-col border-r border-gray-200/60 bg-white shadow-lg shadow-gray-200/80 lg:flex">
       <div className="border-b border-gray-200/60 p-4">
         <p className="text-foreground text-sm font-medium">Portal Ciudadano</p>
         <p className="text-muted-foreground truncate text-xs">
