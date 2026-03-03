@@ -1,5 +1,9 @@
 packages:
   - .
+
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
+
+overrides:
+  'ajv@<6.14.0': '>=6.14.0'
