@@ -66,7 +66,7 @@ export default function MascotasPage() {
             Gestiona el perfil de tus mascotas registradas
           </p>
         </div>
-        <Link href="/portal/mascotas/nueva">
+        <Link href="/portal/mascotas/registro">
           <Button className="gap-2">
             <Plus className="h-4 w-4" />
             Registrar Mascota
@@ -239,7 +239,7 @@ export default function MascotasPage() {
                       <ChevronRight className="h-4 w-4" />
                     </SecondaryButton>
                   </Link>
-                  <Link href={`/portal/citas/nueva?mascota=${mascota.id}`}>
+                  <Link href={`/portal/citas/nueva/${mascota.id}`}>
                     <SecondaryButton className="aspect-square">
                       <Calendar className="h-4 w-4" />
                     </SecondaryButton>
@@ -265,7 +265,7 @@ export default function MascotasPage() {
             Registra a tu primera mascota para comenzar a gestionar sus citas y
             historial médico.
           </p>
-          <Link href="/portal/mascotas/nueva">
+          <Link href="/portal/mascotas/registro">
             <Button className="gap-2">
               <Plus className="h-4 w-4" />
               Registrar mi primera mascota

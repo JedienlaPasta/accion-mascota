@@ -396,7 +396,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
                 Sin citas pendientes
               </div>
             )}
-            <Link href={'/portal/citas/nueva?mascota=' + mascota.id}>
+            <Link href={'/portal/citas/nueva/' + mascota.id}>
               <Button className="mt-4 w-full gap-2 bg-emerald-600 text-white hover:bg-emerald-700">
                 <Calendar className="h-4 w-4" />
                 Agendar Cita

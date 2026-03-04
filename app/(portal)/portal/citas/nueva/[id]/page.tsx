@@ -1,0 +1,48 @@
+import { Button, SecondaryButton } from '@/app/ui/components/Button';
+import AppointmentForm from '@/app/ui/portal/citas/nueva/[id]/AppointmentForm';
+import { ArrowLeft, Check, X } from 'lucide-react';
+import Link from 'next/link';
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function NuevaCitaMascotaPage({ params }: PageProps) {
+  const { id } = await params;
+  return (
+    <div className="min-h-full bg-gray-50/50 p-6 lg:p-8">
+      {/* Header */}
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <div className="mb-2 flex items-center gap-2">
+            <Link
+              href="/portal/mascotas"
+              className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1 text-sm transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Volver
+            </Link>
+          </div>
+          <h1 className="text-foreground text-3xl font-bold">
+            Agendar Cita para - <span className="uppercase">{id}</span>
+          </h1>
+          <p className="text-muted-foreground mt-1 text-sm">
+            Rellena los siguientes campos para agendar una cita para tu mascota.
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          <Link href="/portal/mascotas">
+            <SecondaryButton className="h-10 gap-2 border-gray-200 bg-white px-4 text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+              <X className="h-4 w-4" />
+              Cancelar
+            </SecondaryButton>
+          </Link>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-4xl">
+        <AppointmentForm />
+      </div>
+    </div>
+  );
+}

@@ -1,74 +1,18 @@
 'use client';
 
 import { Button, SecondaryButton } from '@/app/ui/components/Button';
+import MascotaSelect from '@/app/ui/components/Dropdown';
 import Input, { SafeNumberInput } from '@/app/ui/components/Input';
 import {
   ArrowLeft,
   Camera,
+  Check,
   FileText,
   UploadCloud,
   X,
-  Check,
 } from 'lucide-react';
 import Link from 'next/link';
-import React, { useState } from 'react';
-
-// Componente Select reutilizable con el mismo estilo que el Input
-const Select = ({
-  label,
-  value,
-  onChange,
-  options,
-  required,
-}: {
-  label: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  options: { value: string; label: string }[];
-  required?: boolean;
-}) => (
-  <div className="flex grow flex-col gap-1">
-    <label className="ml-1 flex justify-between text-[10px] font-bold text-slate-500 uppercase">
-      <span>
-        {label}
-        {required ? (
-          <span className="text-xs font-normal text-red-500"> *</span>
-        ) : (
-          <span className="text-[10px] font-normal text-slate-400">
-            {' '}
-            (opcional)
-          </span>
-        )}
-      </span>
-    </label>
-    <div className="relative">
-      <select
-        value={value}
-        onChange={onChange}
-        required={required}
-        className="h-10 w-full appearance-none rounded-lg border border-slate-200 bg-white px-4 text-sm text-gray-700 shadow-sm transition-all outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
-      >
-        <option value="" disabled>
-          Seleccionar {label.toLowerCase()}
-        </option>
-        {options.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-        <svg
-          className="h-4 w-4 fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-        >
-          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-        </svg>
-      </div>
-    </div>
-  </div>
-);
+import { useState } from 'react';
 
 export default function NuevaMascotaPage() {
   const [formData, setFormData] = useState({
@@ -116,7 +60,7 @@ export default function NuevaMascotaPage() {
           </Link>
           <Button className="h-10 gap-2 bg-emerald-600 hover:bg-emerald-700">
             <Check className="h-4 w-4" />
-            Guardar Mascota
+            Guardar
           </Button>
         </div>
       </div>
@@ -138,10 +82,10 @@ export default function NuevaMascotaPage() {
                 setData={(val) => handleChange('nombre', val)}
                 required
               />
-              <Select
+              <MascotaSelect
                 label="Especie"
                 value={formData.especie}
-                onChange={(e) => handleChange('especie', e.target.value)}
+                onChange={(val) => handleChange('especie', val)}
                 options={[
                   { value: 'perro', label: 'Perro' },
                   { value: 'gato', label: 'Gato' },
@@ -173,10 +117,10 @@ export default function NuevaMascotaPage() {
               Detalles Físicos
             </h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <Select
+              <MascotaSelect
                 label="Sexo"
                 value={formData.sexo}
-                onChange={(e) => handleChange('sexo', e.target.value)}
+                onChange={(val) => handleChange('sexo', val)}
                 options={[
                   { value: 'macho', label: 'Macho' },
                   { value: 'hembra', label: 'Hembra' },
@@ -215,10 +159,10 @@ export default function NuevaMascotaPage() {
                 value={formData.chip}
                 setData={(val) => handleChange('chip', val)}
               />
-              <Select
+              <MascotaSelect
                 label="Esterilizado"
                 value={formData.esterilizado}
-                onChange={(e) => handleChange('esterilizado', e.target.value)}
+                onChange={(val) => handleChange('esterilizado', val)}
                 options={[
                   { value: 'si', label: 'Sí' },
                   { value: 'no', label: 'No' },
