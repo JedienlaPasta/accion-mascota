@@ -87,7 +87,19 @@ export default function AppointmentForm() {
 
   const changeMonth = (offset: number) => {
     const newDate = new Date(selectedDate);
+    const currentDay = newDate.getDate();
+
+    // Primer dia del mes para evitar saltar meses (e.g. Ene 31 -> Feb)
+    newDate.setDate(1);
     newDate.setMonth(newDate.getMonth() + offset);
+
+    const year = newDate.getFullYear();
+    const month = newDate.getMonth();
+    const daysInTargetMonth = getDaysInMonth(year, month);
+
+    // Ajustar dia al maximo del mes objetivo (e.g. Ene 31 -> Feb 28)
+    newDate.setDate(Math.min(currentDay, daysInTargetMonth));
+
     setSelectedDate(newDate);
   };
 
@@ -144,10 +156,10 @@ export default function AppointmentForm() {
                 }`}
               >
                 <div
-                  className={`flex size-6 items-center justify-center rounded-full border-2 ${
+                  className={`flex size-6 items-center justify-center rounded-full border-2 transition-colors ${
                     selectedService === service.id
                       ? 'border-emerald-600 bg-emerald-600 text-white'
-                      : 'border-gray-400/80 bg-white text-gray-400/80'
+                      : 'border-gray-300/80 bg-white text-white'
                   }`}
                 >
                   <svg
@@ -203,7 +215,7 @@ export default function AppointmentForm() {
               <div className="mb-4 flex items-center justify-between px-2">
                 <button
                   onClick={() => changeMonth(-1)}
-                  className="rounded-full p-1 hover:bg-gray-100"
+                  className="cursor-pointer rounded-full p-1 hover:bg-gray-100"
                 >
                   <ChevronLeft className="h-5 w-5 text-gray-500" />
                 </button>
@@ -212,7 +224,7 @@ export default function AppointmentForm() {
                 </h3>
                 <button
                   onClick={() => changeMonth(1)}
-                  className="rounded-full p-1 hover:bg-gray-100"
+                  className="cursor-pointer rounded-full p-1 hover:bg-gray-100"
                 >
                   <ChevronRight className="h-5 w-5 text-gray-500" />
                 </button>
@@ -244,7 +256,7 @@ export default function AppointmentForm() {
                       <div
                         className={`flex h-9 w-9 items-center justify-center rounded-full transition-all ${
                           isSelected
-                            ? 'bg-emerald-500 font-semibold text-white shadow-md'
+                            ? 'bg-emerald-600 font-semibold text-white shadow-md'
                             : today
                               ? 'bg-emerald-50 font-semibold text-emerald-600'
                               : 'text-gray-700 hover:bg-gray-100'
@@ -268,10 +280,10 @@ export default function AppointmentForm() {
                   <button
                     key={time}
                     onClick={() => setSelectedTime(time)}
-                    className={`rounded-lg border px-2 py-2.5 text-xs font-medium transition-all ${
+                    className={`cursor-pointer rounded-lg border px-2 py-2.5 text-xs font-medium transition-all ${
                       selectedTime === time
-                        ? 'border-emerald-500 bg-emerald-500 text-white shadow-md'
-                        : 'border-gray-200 bg-white text-gray-700 hover:border-emerald-200 hover:bg-gray-50'
+                        ? 'border-emerald-600 bg-emerald-600 text-white shadow-md'
+                        : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50'
                     }`}
                   >
                     {time}
@@ -284,7 +296,7 @@ export default function AppointmentForm() {
           <div className="flex items-center justify-between border-t border-gray-100 pt-6">
             <button
               onClick={() => setStep(1)}
-              className="text-sm font-medium text-gray-500 hover:text-gray-900"
+              className="cursor-pointer text-sm font-medium text-gray-500 hover:text-gray-900"
             >
               Volver
             </button>
