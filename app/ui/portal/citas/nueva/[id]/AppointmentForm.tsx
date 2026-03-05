@@ -1,4 +1,5 @@
 'use client';
+import { capitalize } from '@/app/_lib/utils/format';
 import { Button } from '@/app/ui/components/Button';
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { useState } from 'react';
@@ -8,26 +9,26 @@ const SERVICES = [
     id: '1',
     name: 'Consulta General',
     description: 'Examen de rutina para evaluar el estado general de salud.',
-    price: 100,
+    price: '$5.000',
   },
   {
     id: '2',
     name: 'Vacunación',
     description:
       'Administración de vacunas esenciales para prevenir enfermedades.',
-    price: 80,
+    price: '$8.000',
   },
   {
     id: '3',
     name: 'Limpieza Dental',
     description: 'Limpieza profunda para eliminar placa y sarro.',
-    price: 120,
+    price: '$12.000',
   },
   {
     id: '4',
     name: 'Desparasitación',
     description: 'Tratamiento interno y externo contra parásitos.',
-    price: 50,
+    price: 'Gratis',
   },
 ];
 
@@ -62,11 +63,13 @@ const MONTHS = [
   'Diciembre',
 ];
 
-export default function AppointmentForm() {
-  const [step, setStep] = useState(1); // 1: Service, 2: Date & Time
+export default function AppointmentForm({ petId }: { petId: string }) {
+  const [step, setStep] = useState(1); // 1: Service, 2: Date & Time, 3: Confirmation
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
+
+  const selectedServiceDetails = SERVICES.find((s) => s.id === selectedService);
 
   // Calendar Logic
   const currentYear = selectedDate.getFullYear();
@@ -122,16 +125,22 @@ export default function AppointmentForm() {
       <div className="mb-8">
         <div className="mb-2 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-900">
-            {step === 1 ? 'Selecciona un Servicio' : 'Fecha y Hora'}
+            {step === 1
+              ? 'Selecciona un Servicio'
+              : step === 2
+                ? 'Fecha y Hora'
+                : 'Confirmar Cita'}
           </h2>
           <span className="text-sm font-medium text-emerald-600">
-            Paso {step} de 2
+            Paso {step} de 3
           </span>
         </div>
         <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100">
           <div
             className="h-full bg-emerald-500 transition-all duration-500 ease-out"
-            style={{ width: step === 1 ? '50%' : '100%' }}
+            style={{
+              width: step === 1 ? '33%' : step === 2 ? '66%' : '100%',
+            }}
           />
         </div>
       </div>
@@ -149,43 +158,50 @@ export default function AppointmentForm() {
               <div
                 key={service.id}
                 onClick={() => setSelectedService(service.id)}
-                className={`group flex cursor-pointer items-center gap-4 rounded-xl border px-5 py-4 transition-all hover:shadow-md ${
+                className={`group flex cursor-pointer items-center justify-between gap-4 rounded-xl border px-5 py-4 transition-all hover:shadow-md ${
                   selectedService === service.id
                     ? 'border-emerald-500 bg-emerald-50/30 ring-1 ring-emerald-500'
                     : 'border-gray-200 bg-white hover:border-emerald-200'
                 }`}
               >
-                <div
-                  className={`flex size-6 items-center justify-center rounded-full border-2 transition-colors ${
-                    selectedService === service.id
-                      ? 'border-emerald-600 bg-emerald-600 text-white'
-                      : 'border-gray-300/80 bg-white text-white'
-                  }`}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="size-4"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h3
-                    className={`font-semibold ${
+                <div className="flex items-center gap-4">
+                  <div
+                    className={`flex size-6 items-center justify-center rounded-full border-2 transition-colors ${
                       selectedService === service.id
-                        ? 'text-emerald-900'
-                        : 'text-gray-900'
+                        ? 'border-emerald-600 bg-emerald-600 text-white'
+                        : 'border-gray-300/80 bg-white text-white'
                     }`}
                   >
-                    {service.name}
-                  </h3>
-                  <p className="text-sm text-gray-500">{service.description}</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="size-4"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3
+                      className={`font-semibold ${
+                        selectedService === service.id
+                          ? 'text-emerald-900'
+                          : 'text-gray-900'
+                      }`}
+                    >
+                      {service.name}
+                    </h3>
+                    <p className="text-sm text-gray-500">
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+                <div className="text-sm font-medium text-emerald-600">
+                  {service.price}
                 </div>
               </div>
             ))}
@@ -200,7 +216,7 @@ export default function AppointmentForm() {
             </Button>
           </div>
         </div>
-      ) : (
+      ) : step === 2 ? (
         /* Step 2: Date & Time Selection */
         <div className="space-y-8">
           <div className="text-center">
@@ -302,10 +318,126 @@ export default function AppointmentForm() {
             </button>
             <Button
               disabled={!selectedTime}
+              onClick={() => setStep(3)}
               className="h-11 gap-2 rounded-full bg-emerald-600 px-8 hover:bg-emerald-700 disabled:opacity-50"
             >
+              Siguiente
+            </Button>
+          </div>
+        </div>
+      ) : (
+        /* Step 3: Confirmation */
+        <div className="space-y-8">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900">
+              Está todo correcto?
+            </h1>
+            <p className="mt-2 text-gray-500">
+              Por favor revisa los detalles antes de confirmar.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-gray-100 bg-gray-50/50 p-6">
+            <div className="space-y-4">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gray-500">Servicio</p>
+                  <p className="font-semibold text-gray-900">
+                    {selectedServiceDetails?.name}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    {selectedServiceDetails?.price}
+                  </p>
+                </div>
+              </div>
+
+              <div className="h-px w-full bg-gray-200" />
+
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gray-500">Fecha</p>
+                  <p className="font-semibold text-gray-900">
+                    {capitalize(
+                      selectedDate.toLocaleDateString('es-ES', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })
+                    )}
+                  </p>
+                  <p className="text-sm text-gray-500">{selectedTime}</p>
+                </div>
+              </div>
+
+              <div className="h-px w-full bg-gray-200" />
+
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50 text-rose-600">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className=""
+                  >
+                    <circle cx="11" cy="4" r="2" />
+                    <circle cx="18" cy="8" r="2" />
+                    <circle cx="20" cy="16" r="2" />
+                    <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gray-500">Mascota</p>
+                  <p className="font-semibold text-gray-900 uppercase">
+                    {petId}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between border-t border-gray-100 pt-6">
+            <button
+              onClick={() => setStep(2)}
+              className="cursor-pointer text-sm font-medium text-gray-500 hover:text-gray-900"
+            >
+              Volver
+            </button>
+            <Button className="h-11 gap-2 rounded-full bg-emerald-600 px-8 hover:bg-emerald-700">
               <Check className="h-4 w-4" />
-              Confirmar Cita
+              Agendar Cita
             </Button>
           </div>
         </div>

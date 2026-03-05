@@ -1,6 +1,6 @@
-import { Button, SecondaryButton } from '@/app/ui/components/Button';
+import { SecondaryButton } from '@/app/ui/components/Button';
 import AppointmentForm from '@/app/ui/portal/citas/nueva/[id]/AppointmentForm';
-import { ArrowLeft, Check, X } from 'lucide-react';
+import { ArrowLeft, X } from 'lucide-react';
 import Link from 'next/link';
 
 type PageProps = {
@@ -12,7 +12,7 @@ export default async function NuevaCitaMascotaPage({ params }: PageProps) {
   return (
     <div className="min-h-full bg-gray-50/50 p-6 lg:p-8">
       {/* Header */}
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto mb-8 flex max-w-4xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="mb-2 flex items-center gap-2">
             <Link
@@ -41,7 +41,7 @@ export default async function NuevaCitaMascotaPage({ params }: PageProps) {
       </div>
 
       <div className="mx-auto max-w-4xl">
-        <AppointmentForm />
+        <AppointmentForm petId={id} />
       </div>
     </div>
   );

@@ -26,6 +26,7 @@ import {
 import { citas, historialClinico, mascotas } from '@/app/_lib/mock-data';
 import Badge from '@/app/ui/components/Badge';
 import MascotaHistorial from '@/app/ui/portal/mascotas/[id]/Historial';
+import { capitalize } from '@/app/_lib/utils/format';
 
 type IconComponent = React.ComponentType<{ className?: string }>;
 
@@ -58,9 +59,9 @@ export const tipoColors: Record<
     dot: 'bg-green-500',
   },
   cirugia: {
-    bg: 'bg-amber-50 text-amber-600',
-    text: 'text-amber-600',
-    dot: 'bg-amber-500',
+    bg: 'bg-rose-50 text-rose-600',
+    text: 'text-rose-600',
+    dot: 'bg-rose-500',
   },
   control: {
     bg: 'bg-violet-50 text-violet-600',
@@ -76,8 +77,8 @@ export const tipoColors: Record<
 
 export const tipoLabels: Record<string, string> = {
   consulta: 'Consulta',
-  vacuna: 'Vacunacion',
-  cirugia: 'Cirugia',
+  vacuna: 'Vacunación',
+  cirugia: 'Cirugía',
   control: 'Control',
   emergencia: 'Emergencia',
 };
@@ -156,7 +157,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
   const totalCirugias = historial.filter((h) => h.tipo === 'cirugia').length;
 
   return (
-    <div className="h-full bg-green-950/4 p-6 lg:p-8">
+    <div className="h-full bg-gray-50/50 p-6 lg:p-8">
       {/* Back button */}
       <Link
         href="/portal/mascotas"
@@ -192,11 +193,11 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
 
               <div className="mt-4 flex flex-wrap gap-2">
                 {mascota.esterilizado ? (
-                  <Badge className="border-emerald-700/10 bg-green-100 text-green-700 hover:bg-green-100">
+                  <Badge className="border-emerald-700/10 bg-emerald-50 text-emerald-700">
                     Esterilizado
                   </Badge>
                 ) : (
-                  <Badge className="border-gray-200 bg-amber-100 text-amber-700 hover:bg-amber-100">
+                  <Badge className="border-rose-200 bg-rose-50 text-rose-700">
                     Sin esterilizar
                   </Badge>
                 )}
@@ -218,7 +219,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
 
           {/* Quick Info Grid */}
           <div className="border-border mt-6 grid grid-cols-2 gap-4 border-t pt-6 sm:grid-cols-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
               <div className="bg-muted flex h-9 w-9 items-center justify-center rounded-lg">
                 <PawPrint className="text-muted-foreground h-4 w-4" />
               </div>
@@ -229,7 +230,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
               <div className="bg-muted flex h-9 w-9 items-center justify-center rounded-lg">
                 <Palette className="text-muted-foreground h-4 w-4" />
               </div>
@@ -238,7 +239,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
                 <p className="text-sm font-medium">{mascota.color}</p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
               <div className="bg-muted flex h-9 w-9 items-center justify-center rounded-lg">
                 <Calendar className="text-muted-foreground h-4 w-4" />
               </div>
@@ -249,7 +250,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
               <div className="bg-muted flex h-9 w-9 items-center justify-center rounded-lg">
                 <HeartPulse className="text-muted-foreground h-4 w-4" />
               </div>
@@ -290,8 +291,8 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
 
         {/* Cirugías */}
         <div className="flex items-center gap-4 rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-all hover:shadow-md">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-50">
-            <Scissors className="h-6 w-6 text-amber-600" />
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rose-50">
+            <Scissors className="h-6 w-6 text-rose-600" />
           </div>
           <div>
             <p className="text-2xl font-bold text-gray-900">{totalCirugias}</p>
@@ -306,30 +307,30 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
         <div className="space-y-4 lg:col-span-2">
           {/* Active Treatment */}
           {tratamientoActivo && (
-            <div className="flex flex-col items-start gap-4 rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-all hover:shadow-md">
-              <div className="pb-3">
-                <h3 className="flex items-center gap-2 text-amber-800">
-                  <Syringe className="h-5 w-5" />
+            <div className="flex flex-col items-start gap-3 rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-all hover:shadow-md">
+              <div className="pb-2">
+                <h3 className="text-lg font-bold text-gray-900">
                   Tratamiento Vigente
                 </h3>
-                <p className="text-amber-700">
+                <p className="text-rose-700">
                   {'Indicado el ' +
                     formatDate(tratamientoActivo.fecha) +
                     ' por ' +
                     tratamientoActivo.veterinario}
+                  .
                 </p>
               </div>
               <span className="w-full">
-                <p className="text-foreground mb-2 font-medium">
+                <p className="text-foreground font-medium">
                   {tratamientoActivo.diagnostico}
                 </p>
                 <p className="text-muted-foreground text-sm">
                   {tratamientoActivo.tratamiento}
                 </p>
                 {tratamientoActivo.proximaVisita && (
-                  <div className="mt-4 flex items-center gap-2 rounded-md bg-amber-100/50 p-2 text-sm text-amber-700">
+                  <div className="mt-2 flex items-center gap-2 rounded-md bg-rose-100/50 p-2 text-sm text-rose-700">
                     <Calendar className="h-4 w-4" />
-                    {'Proximo control: ' +
+                    {'Próximo control: ' +
                       formatDate(tratamientoActivo.proximaVisita)}
                   </div>
                 )}
@@ -342,17 +343,17 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
             <div className="mb-4 flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-bold text-gray-900">
-                  Historial Clinico
+                  Historial Clínico
                 </h3>
                 <p className="text-sm text-gray-500">
                   {'Registro de atenciones de ' + mascota.nombre}
                 </p>
               </div>
               <Link href="/portal/historial">
-                <Button className="gap-1.5 border-gray-200 bg-transparent text-xs text-gray-600 hover:bg-gray-50">
+                <SecondaryButton className="gap-1.5 px-3.5 text-xs text-gray-600 hover:bg-gray-50">
                   Ver todo
                   <ChevronRight className="h-3 w-3" />
-                </Button>
+                </SecondaryButton>
               </Link>
             </div>
 
@@ -365,7 +366,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
           {/* Upcoming Appointments */}
           <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md">
             <h3 className="mb-4 text-lg font-bold text-gray-900">
-              Proximas Citas
+              Próximas Citas
             </h3>
             {citasMascota.length > 0 ? (
               <div className="space-y-3">
@@ -375,14 +376,25 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
                     className="rounded-xl border border-gray-100 bg-gray-50/50 p-4 transition-colors hover:bg-gray-50"
                   >
                     <div className="mb-2 flex items-center justify-between">
-                      <Badge className="capitalize">{cita.estado}</Badge>
+                      {/* <Badge className="border-gray-200">
+                        {capitalize(cita.estado)}
+                      </Badge> */}
                       <span className="text-xs font-medium text-gray-500 capitalize">
                         {cita.tipo}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 text-sm font-medium text-gray-900">
                       <Calendar className="h-4 w-4 text-gray-400" />
-                      <span>{formatDate(cita.fecha)}</span>
+                      <span>
+                        {capitalize(
+                          new Date(cita.fecha).toLocaleDateString('es-CL', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric',
+                          })
+                        )}
+                      </span>
                     </div>
                     <div className="mt-1 flex items-center gap-2 text-sm text-gray-500">
                       <Clock className="h-4 w-4" />
@@ -407,9 +419,9 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
           {/* Quick Actions */}
           <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md">
             <h3 className="mb-4 text-lg font-bold text-gray-900">
-              Acciones Rapidas
+              Acciones Rápidas
             </h3>
-            <div className="space-y-2">
+            <div className="flex flex-col space-y-2">
               <Link href="/portal/historial">
                 <SecondaryButton className="w-full justify-start gap-2 border-gray-200 px-3 hover:bg-gray-50 hover:text-gray-900">
                   <Stethoscope className="h-4 w-4 text-gray-500" />

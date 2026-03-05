@@ -19,7 +19,7 @@ import { Button, SecondaryButton } from '@/app/ui/components/Button';
 import { citas, historialClinico, mascotas } from '@/app/_lib/mock-data';
 import { capitalize } from '@/app/_lib/utils/format';
 
-const especieIcons: Record<
+export const especieIcons: Record<
   string,
   React.ComponentType<{ className?: string }>
 > = {
@@ -28,7 +28,7 @@ const especieIcons: Record<
   otro: PawPrint,
 };
 
-function calcularEdad(fechaNacimiento: string) {
+export function calcularEdad(fechaNacimiento: string) {
   const nacimiento = new Date(fechaNacimiento);
   const hoy = new Date();
   const diff = hoy.getTime() - nacimiento.getTime();
@@ -57,7 +57,7 @@ export default function MascotasPage() {
   }
 
   return (
-    <div className="h-full bg-green-950/4 p-6 lg:p-8">
+    <div className="h-full bg-gray-50/50 p-6 lg:p-8">
       {/* Header */}
       <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
