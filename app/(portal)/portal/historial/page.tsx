@@ -5,6 +5,7 @@ import {
   Calendar,
   Cat,
   CheckCircle,
+  ChevronDown,
   Dog,
   Info,
   PawPrint,
@@ -14,6 +15,7 @@ import {
 } from 'lucide-react';
 import { capitalize } from '@/app/_lib/utils/format';
 import { useState } from 'react';
+import AccordionItem from '@/app/ui/portal/historial/AccordionItem';
 
 const especieIcons: Record<
   string,
@@ -76,23 +78,23 @@ const tipoLabels: Record<string, string> = {
   emergencia: 'Emergencia',
 };
 
+export const getPetName = (id: string) => {
+  return mascotas.find((mascota) => mascota.id === id)?.nombre || 'Mascota';
+};
+
+const getPetEspecie = (id: string) => {
+  return mascotas.find((mascota) => mascota.id === id)?.especie;
+};
+
+function getMonthYear(dateString: string) {
+  return new Date(dateString).toLocaleDateString('es-CL', {
+    month: 'long',
+    year: 'numeric',
+  });
+}
+
 export default function HistorialClinicMascotas() {
   const [selectedPetId, setSelectedPetId] = useState('');
-
-  const getPetName = (id: string) => {
-    return mascotas.find((mascota) => mascota.id === id)?.nombre || 'Mascota';
-  };
-
-  const getPetEspecie = (id: string) => {
-    return mascotas.find((mascota) => mascota.id === id)?.especie;
-  };
-
-  function getMonthYear(dateString: string) {
-    return new Date(dateString).toLocaleDateString('es-CL', {
-      month: 'long',
-      year: 'numeric',
-    });
-  }
 
   const filteredHistory = selectedPetId
     ? historialClinico.filter(
@@ -251,47 +253,14 @@ export default function HistorialClinicMascotas() {
                   const label = tipoLabels[registro.tipo] || registro.tipo;
 
                   return (
-                    <div
+                    <AccordionItem
                       key={registro.id}
-                      className="flex items-center gap-3 overflow-hidden rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all hover:shadow-md"
-                    >
-                      <div
-                        className={`flex size-10 shrink-0 items-center justify-center rounded-xl ring-1 ${colors.bg} ${colors.text} ${colors.ring}`}
-                      >
-                        <TipoIcon className="size-5" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold">
-                          {registro.descripcion}
-                        </p>
-
-                        <div className="flex gap-3">
-                          <span className="text-sm text-gray-500 capitalize">
-                            <div className="flex items-center gap-1">
-                              <Icon className="size-3" />
-                              {getPetName(registro.mascotaId)}
-                            </div>
-                          </span>
-
-                          <span className="text-sm text-gray-500 capitalize">
-                            <div className="flex items-center gap-1">
-                              <Calendar className="size-3" />
-                              {new Date(registro.fecha).toLocaleDateString(
-                                'es-CL',
-                                {
-                                  day: 'numeric',
-                                  month: 'short',
-                                }
-                              )}
-                            </div>
-                          </span>
-
-                          <span className="flex items-center rounded-full border border-gray-200 px-2 text-xs font-medium text-gray-700 capitalize">
-                            {label}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
+                      registro={registro}
+                      label={label}
+                      Icon={Icon}
+                      TipoIcon={TipoIcon}
+                      colors={colors}
+                    />
                   );
                 })}
               </div>
