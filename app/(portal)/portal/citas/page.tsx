@@ -65,7 +65,7 @@ export default function Citas() {
             Revisa tus próximas visitas y el historial de atenciones.
           </p>
         </div>
-        <Link href="/portal/mascotas">
+        <Link href="/portal/citas/nueva">
           <Button className="gap-2">
             <Plus className="h-4 w-4" />
             Nueva Cita

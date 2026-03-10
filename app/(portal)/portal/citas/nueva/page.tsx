@@ -7,8 +7,8 @@ type PageProps = {
   params: Promise<{ id: string }>;
 };
 
-// En esta pagina ya se especifica la mascota a la cual se le va a agendar la cita por el id.
-export default async function NuevaCitaMascotaPage({ params }: PageProps) {
+// En esta pagina se agendará la cita para una mascota especificando su id.
+export default async function NuevaCitaPage({ params }: PageProps) {
   const { id } = await params;
   return (
     <div className="min-h-full bg-gray-50/50 p-6 lg:p-8">
@@ -24,9 +24,7 @@ export default async function NuevaCitaMascotaPage({ params }: PageProps) {
               Volver
             </Link>
           </div>
-          <h1 className="text-foreground text-3xl font-bold">
-            Agendar Cita para - <span className="uppercase">{id}</span>
-          </h1>
+          <h1 className="text-foreground text-3xl font-bold">Agendar Cita</h1>
           <p className="text-muted-foreground mt-1 text-sm">
             Rellena los siguientes campos para agendar una cita para tu mascota.
           </p>
