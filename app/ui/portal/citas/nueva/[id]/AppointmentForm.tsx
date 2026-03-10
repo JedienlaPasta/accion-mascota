@@ -38,18 +38,24 @@ const SERVICES = [
 ];
 
 const TIME_SLOTS = [
-  '09:00 AM',
-  '09:30 AM',
-  '10:00 AM',
-  '10:30 AM',
-  '11:00 AM',
-  '11:30 AM',
-  '01:00 PM',
-  '01:30 PM',
+  '08:30',
+  '09:00',
+  '09:30',
+  '10:00',
+  '10:30',
+  '11:00',
+  '11:30',
+  '12:00',
+  '12:30',
+  '13:00',
+  '13:30',
   // '02:00 PM',
   // '02:30 PM',
-  '03:00 PM',
-  '03:30 PM',
+  '15:00',
+  '15:30',
+  '16:00',
+  '16:30',
+  '17:00',
 ];
 
 const DAYS_OF_WEEK = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
@@ -482,10 +488,10 @@ function DateSelection({
             {TIME_SLOTS.map((time) => (
               <button
                 key={time}
-                disabled={time.includes(':30 AM')}
+                disabled={!time.includes('1')}
                 onClick={() => setSelectedTime(time)}
                 className={`rounded-lg border px-2 py-2.5 text-xs font-medium transition-all ${
-                  time.includes(':30 AM')
+                  !time.includes('1')
                     ? 'cursor-not-allowed border-gray-200 bg-white text-gray-300'
                     : selectedTime === time
                       ? 'cursor-pointer border-emerald-600 bg-emerald-600 text-white shadow-md'
