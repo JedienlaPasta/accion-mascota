@@ -5,7 +5,6 @@ import {
   Calendar,
   Cat,
   CheckCircle,
-  ChevronDown,
   Dog,
   Info,
   PawPrint,
@@ -15,7 +14,8 @@ import {
 } from 'lucide-react';
 import { capitalize } from '@/app/_lib/utils/format';
 import { useState } from 'react';
-import AccordionItem from '@/app/ui/portal/historial/AccordionItem';
+import HistoryListItem from '@/app/ui/portal/historial/HistoryListItem';
+import HistoryDetail from '@/app/ui/portal/historial/HistoryDetail';
 
 const especieIcons: Record<
   string,
@@ -95,6 +95,9 @@ function getMonthYear(dateString: string) {
 
 export default function HistorialClinicMascotas() {
   const [selectedPetId, setSelectedPetId] = useState('');
+  const [activeRecord, setActiveRecord] = useState<
+    (typeof historialClinico)[0] | null
+  >(null);
 
   const filteredHistory = selectedPetId
     ? historialClinico.filter(
@@ -113,7 +116,7 @@ export default function HistorialClinicMascotas() {
   );
 
   return (
-    <div className="h-full bg-gray-50/50 p-6 lg:p-8">
+    <div className="relative h-full bg-gray-50/50 p-6 lg:p-8">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-foreground text-2xl font-bold">
@@ -253,13 +256,15 @@ export default function HistorialClinicMascotas() {
                   const label = tipoLabels[registro.tipo] || registro.tipo;
 
                   return (
-                    <AccordionItem
+                    <HistoryListItem
                       key={registro.id}
                       registro={registro}
                       label={label}
                       Icon={Icon}
                       TipoIcon={TipoIcon}
                       colors={colors}
+                      petName={getPetName(registro.mascotaId)}
+                      onClick={() => setActiveRecord(registro)}
                     />
                   );
                 })}
@@ -268,6 +273,31 @@ export default function HistorialClinicMascotas() {
           );
         })}
       </div>
+
+      {activeRecord && (
+        <>
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 z-40 bg-gray-800/70 transition-all"
+            onClick={() => setActiveRecord(null)}
+          />
+          <HistoryDetail
+            registro={activeRecord}
+            label={tipoLabels[activeRecord.tipo] || activeRecord.tipo}
+            Icon={
+              especieIcons[
+                mascotas.find((m) => m.id === activeRecord.mascotaId)
+                  ?.especie || 'otro'
+              ]
+            }
+            TipoIcon={tipoIcons[activeRecord.tipo]}
+            colors={tipoColors[activeRecord.tipo]}
+            petName={getPetName(activeRecord.mascotaId)}
+            // isOpen={!!activeRecord}
+            closeModal={() => setActiveRecord(null)}
+          />
+        </>
+      )}
     </div>
   );
 }
