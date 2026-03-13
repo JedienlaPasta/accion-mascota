@@ -1,11 +1,5 @@
 import Link from 'next/link';
-import {
-  Card,
-  // CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from './Card';
+import { Card, CardDescription, CardTitle } from './Card';
 import {
   Stethoscope,
   Syringe,
@@ -13,8 +7,7 @@ import {
   Shield,
   ArrowRight,
 } from 'lucide-react';
-import { Button, RoundMutedButton } from '../components/Button';
-import { Fragment } from 'react/jsx-runtime';
+import { RoundMutedButton } from '../components/Button';
 
 const serviciosDestacados = [
   {
@@ -53,7 +46,7 @@ const serviciosDestacados = [
 
 export function ServicesPreview() {
   return (
-    <section className="bg-emerald-800/5s py-16 lg:py-24">
+    <section className="bg-secondary-background py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 text-center">
@@ -68,7 +61,7 @@ export function ServicesPreview() {
           </p>
         </div>
 
-        {/* Services Grid */}
+        {/* Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {serviciosDestacados.map((servicio) => (
             <Card

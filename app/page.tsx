@@ -6,6 +6,7 @@ import { Header } from './ui/Header';
 import { HeroSection } from './ui/home/HeroSection';
 import { ServicesPreview } from './ui/home/ServicesPreview';
 import { InfoCards } from './ui/home/InfoCards';
+import AdoptionSection from './ui/home/AdoptionSection';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
           <HeroSection />
           <ServicesPreview />
           <CampaignsPreview />
+          <AdoptionSection />
           <InfoCards />
           <CTASection />
         </main>

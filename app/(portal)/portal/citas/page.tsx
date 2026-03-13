@@ -3,14 +3,7 @@ import { citas, mascotas } from '@/app/_lib/mock-data';
 import { capitalize } from '@/app/_lib/utils/format';
 import Badge from '@/app/ui/components/Badge';
 import { Button, SecondaryButton } from '@/app/ui/components/Button';
-import {
-  Calendar,
-  CheckCircle,
-  Clock,
-  MapPin,
-  Plus,
-  Stethoscope,
-} from 'lucide-react';
+import { Calendar, CheckCircle, Clock, Plus, Stethoscope } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { especieIcons } from '../mascotas/page';

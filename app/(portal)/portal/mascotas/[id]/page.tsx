@@ -118,7 +118,6 @@ type MascotaDetalleProps = {
 export default async function MascotaDetallePage(props: MascotaDetalleProps) {
   const { id } = await props.params;
   const mascota = mascotas.find((mascota) => mascota.id === id);
-  console.log(id);
 
   if (!mascota) {
     return (
@@ -158,7 +157,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
 
   return (
     <div className="h-full bg-gray-50/50 p-6 lg:p-8">
-      {/* Back button */}
+      {/* Volver btn */}
       <Link
         href="/portal/mascotas"
         className="text-muted-foreground hover:text-foreground mb-6 inline-flex items-center gap-2 text-sm"
@@ -171,7 +170,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
       <div className="flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all hover:shadow-md">
         <div className="p-6">
           <div className="flex flex-col items-start gap-6 sm:flex-row">
-            <div className="from-primary/20 to-primary/5 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br">
+            <div className="from-primary/10 to-primary/3 flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-linear-to-br">
               <EspecieIcon className="text-primary h-10 w-10" />
             </div>
 
@@ -217,7 +216,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
             </div>
           </div>
 
-          {/* Quick Info Grid */}
+          {/* Info Grid */}
           <div className="border-border mt-6 grid grid-cols-2 gap-4 border-t pt-6 sm:grid-cols-4">
             <div className="flex items-center gap-1.5">
               <div className="bg-muted flex h-9 w-9 items-center justify-center rounded-lg">
@@ -265,7 +264,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
         </div>
       </div>
 
-      {/* Stats Row */}
+      {/* Stats */}
       <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {/* Vacunas */}
         <div className="flex items-center gap-4 rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-all hover:shadow-md">
@@ -301,11 +300,10 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
         </div>
       </div>
 
-      {/* ACA EMPIEZA */}
       <div className="mt-4 grid gap-4 lg:grid-cols-3">
-        {/* Main Content - Medical History */}
+        {/* Historial medico */}
         <div className="space-y-4 lg:col-span-2">
-          {/* Active Treatment */}
+          {/* Tratamiento activo */}
           {tratamientoActivo && (
             <div className="flex flex-col items-start gap-3 rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-all hover:shadow-md">
               <div className="pb-2">
@@ -338,7 +336,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
             </div>
           )}
 
-          {/* Medical History Timeline */}
+          {/* Historial clínico (todos los registros) */}
           <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md">
             <div className="mb-4 flex items-center justify-between">
               <div>
@@ -363,7 +361,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
 
         {/* Sidebar */}
         <div className="space-y-4">
-          {/* Upcoming Appointments */}
+          {/* Proximas citas */}
           <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md">
             <h3 className="mb-4 text-lg font-bold text-gray-900">
               Próximas Citas
@@ -376,9 +374,9 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
                     className="rounded-xl border border-gray-100 bg-gray-50/50 p-4 transition-colors hover:bg-gray-50"
                   >
                     <div className="mb-2 flex items-center justify-between">
-                      {/* <Badge className="border-gray-200">
+                      <Badge className="border-gray-200">
                         {capitalize(cita.estado)}
-                      </Badge> */}
+                      </Badge>
                       <span className="text-xs font-medium text-gray-500 capitalize">
                         {cita.tipo}
                       </span>
@@ -416,7 +414,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
             </Link>
           </div>
 
-          {/* Quick Actions */}
+          {/* Acciones rapidas */}
           <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md">
             <h3 className="mb-4 text-lg font-bold text-gray-900">
               Acciones Rápidas

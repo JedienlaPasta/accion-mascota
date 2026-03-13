@@ -9,9 +9,9 @@ import Image from 'next/image';
 export function CTASection() {
   const { isLoggedIn } = useAuth();
 
-  if (isLoggedIn) {
+  if (!isLoggedIn) {
     return (
-      <section className="from-primary/10 via-background to-accent/10 bg-gradient-to-br py-16 lg:py-24">
+      <section className="bg-secondary-background py-16 lg:py-36">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <div className="bg-primary/20 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full">
             <PawPrint className="text-primary h-8 w-8" />
@@ -31,9 +31,9 @@ export function CTASection() {
               </Button>
             </Link>
             <Link href="/portal/citas/nueva">
-              <Button className="w-full gap-2 bg-transparent sm:w-auto">
+              <RoundMutedButton className="w-full gap-2 bg-transparent sm:w-auto">
                 Agendar una cita
-              </Button>
+              </RoundMutedButton>
             </Link>
           </div>
         </div>

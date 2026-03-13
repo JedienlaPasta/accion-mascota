@@ -1,11 +1,5 @@
 import Link from 'next/link';
-import {
-  Card,
-  // CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from './Card';
+import { Card, CardDescription, CardHeader, CardTitle } from './Card';
 import { campanas } from '../../_lib/mock-data';
 import { Calendar, Users, ArrowRight, Sparkles, FileUser } from 'lucide-react';
 import Badge from '../components/Badge';
@@ -23,7 +17,7 @@ export function CampaignsPreview() {
   const campanasActivas = campanas.slice(0, 2);
 
   return (
-    <section className="bg-emerald-800/5 py-16 lg:py-24">
+    <section className="bg-white py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 text-center">
@@ -47,7 +41,7 @@ export function CampaignsPreview() {
               key={campana.id}
               className="hover:border-primary/30 overflow-hidden border-2 transition-colors"
             >
-              <CardHeader className="from-primary/10 to-accent/10 bg-gradient-to-r">
+              <CardHeader>
                 <div className="flex items-start justify-between">
                   <div>
                     <CardTitle className="mb-2 text-xl">

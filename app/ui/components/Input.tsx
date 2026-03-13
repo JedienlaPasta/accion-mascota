@@ -8,9 +8,12 @@ type InputProps = {
   type?: string;
   pattern?: string;
   value?: string;
+  min?: string;
   readonly?: boolean;
   required?: boolean;
+  showIsRequired?: boolean;
   placeHolder?: string;
+  labelStyle?: string;
   maxLength?: number;
   setData?: (prevState: string) => void;
 };
@@ -23,8 +26,10 @@ export default function Input({
   value,
   readonly,
   placeHolder,
+  labelStyle = 'ml-1 mb-1 flex justify-between text-[10px] font-bold text-slate-500 uppercase',
   maxLength,
   required,
+  showIsRequired = true,
   setData,
 }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,19 +39,20 @@ export default function Input({
   };
 
   return (
-    <div className="flex grow flex-col gap-1">
+    <div className="flex grow flex-col">
       {label && (
-        <label className="ml-1 flex justify-between text-[10px] font-bold text-slate-500 uppercase">
+        <label className={labelStyle}>
           <span>
             {label}
-            {required ? (
-              <span className="text-xs font-normal text-red-500"> *</span>
-            ) : (
-              <span className="text-[10px] font-normal text-slate-400">
-                {' '}
-                (opcional)
-              </span>
-            )}
+            {showIsRequired &&
+              (required ? (
+                <span className="text-xs font-normal text-red-500"> *</span>
+              ) : (
+                <span className="text-[10px] font-normal text-slate-400">
+                  {' '}
+                  (opcional)
+                </span>
+              ))}
           </span>
           {type === 'password' && (
             <Link href="#" className="text-primary text-[10px] hover:underline">
@@ -70,7 +76,7 @@ export default function Input({
         maxLength={
           maxLength ? maxLength : label === 'Código Campaña' ? 2 : undefined
         }
-        className="h-10 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm text-gray-700 shadow-sm transition-all outline-none placeholder:text-[13px] placeholder:text-gray-400 focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-100"
+        className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-gray-700 shadow-sm transition-all outline-none placeholder:text-[13px] placeholder:text-gray-400 focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-100"
       />
     </div>
   );
@@ -81,10 +87,13 @@ export function SafeNumberInput({
   nombre,
   pattern,
   value,
+  min,
   readonly,
   placeHolder,
+  labelStyle = 'ml-1 mb-1 flex justify-between text-[10px] font-bold text-slate-500 uppercase',
   maxLength,
   required,
+  showIsRequired = true,
   setData,
 }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -117,19 +126,20 @@ export function SafeNumberInput({
   };
 
   return (
-    <div className="flex grow flex-col gap-1">
+    <div className="flex grow flex-col">
       {label && (
-        <label className="ml-1 flex justify-between text-[10px] font-bold text-slate-500 uppercase">
+        <label className={labelStyle}>
           <span>
             {label}
-            {required ? (
-              <span className="text-xs font-normal text-red-500"> *</span>
-            ) : (
-              <span className="text-[10px] font-normal text-slate-400">
-                {' '}
-                (opcional)
-              </span>
-            )}
+            {showIsRequired &&
+              (required ? (
+                <span className="text-xs font-normal text-red-500"> *</span>
+              ) : (
+                <span className="text-[10px] font-normal text-slate-400">
+                  {' '}
+                  (opcional)
+                </span>
+              ))}
           </span>
         </label>
       )}
@@ -145,11 +155,67 @@ export function SafeNumberInput({
         placeholder={placeHolder}
         value={value}
         onChange={handleChange}
+        min={min}
         // onWheel={(e) => e.preventDefault()}
         maxLength={
           maxLength ? maxLength : label === 'Código Campaña' ? 2 : undefined
         }
-        className="h-10 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm text-gray-700 shadow-sm transition-all outline-none placeholder:text-[13px] placeholder:text-gray-400 focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-100"
+        className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-gray-700 shadow-sm transition-all outline-none placeholder:text-[13px] placeholder:text-gray-400 focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-100"
+      />
+    </div>
+  );
+}
+
+export function TextArea({
+  label,
+  nombre,
+  value,
+  readonly,
+  placeHolder,
+  labelStyle = 'ml-1 mb-1 flex justify-between text-[10px] font-bold text-slate-500 uppercase',
+  maxLength,
+  required,
+  showIsRequired = true,
+  setData,
+}: InputProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (setData) {
+      setData(e.target.value);
+    }
+  };
+
+  return (
+    <div className="flex grow flex-col">
+      {label && (
+        <label className={labelStyle}>
+          <span>
+            {label}
+            {showIsRequired &&
+              (required ? (
+                <span className="text-xs font-normal text-red-500"> *</span>
+              ) : (
+                <span className="text-[10px] font-normal text-slate-400">
+                  {' '}
+                  (opcional)
+                </span>
+              ))}
+          </span>
+        </label>
+      )}
+      <textarea
+        required={required}
+        id={label}
+        name={nombre}
+        readOnly={readonly}
+        autoComplete="off"
+        placeholder={placeHolder}
+        value={value}
+        onChange={handleChange}
+        onWheel={(e) => e.preventDefault()}
+        maxLength={
+          maxLength ? maxLength : label === 'Código Campaña' ? 2 : undefined
+        }
+        className="h-20 w-full rounded-xl border border-slate-200 bg-white pt-2 pr-10 pl-4 text-sm text-gray-700 shadow-sm transition-all outline-none placeholder:text-gray-400"
       />
     </div>
   );

@@ -2,16 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import DropdownMenu from './components/DropdownMenu';
-import {
-  Menu,
-  X,
-  User,
-  LogOut,
-  PawPrint,
-  Calendar,
-  Settings,
-} from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 import { useAuth } from '../_lib/AuthContext';
 import { Button } from './components/Button';
 import Image from 'next/image';
@@ -19,8 +10,9 @@ import Image from 'next/image';
 const navLinks = [
   { href: '/', label: 'Inicio' },
   { href: '/servicios', label: 'Servicios' },
-  { href: '/informacion', label: 'Información' },
+  { href: '/adopcion', label: 'Adopción' },
   { href: '/campanas', label: 'Campañas' },
+  { href: '/informacion', label: 'Información' },
   { href: '/emergencias', label: 'Emergencias' },
 ];
 
@@ -29,17 +21,17 @@ export function Header() {
   const { usuario, isLoggedIn, logout } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200/60 bg-white shadow-md shadow-gray-200/40">
+    <header className="bg-secondary-backgrounds sticky top-0 z-50 border-b border-gray-200/60 bg-white shadow-sm shadow-gray-200/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-2.5">
             <Image
               src="/logo.png"
               alt="Acción Mascota - Municipalidad de Algarrobo"
               width={140}
               height={60}
-              className="h-8 w-auto sm:h-20"
+              className="h-8 w-auto sm:h-24"
               priority
             />
             <div className="hidden flex-col leading-tight sm:flex">

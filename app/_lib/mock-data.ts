@@ -24,6 +24,20 @@ export interface Mascota {
   propietarioId: string;
 }
 
+export interface MascotaAdopcion {
+  id: string;
+  nombre: string;
+  especie: 'perro' | 'gato';
+  edadAprox: string; // ej: "Cachorro (3 meses)"
+  sexo: 'macho' | 'hembra';
+  tamaño: 'pequeño' | 'mediano' | 'grande';
+  historia: string;
+  salud: string[]; // ej: ["Vacunado", "Desparasitado", "Microchip"]
+  imagenes: string[]; // Un array de imágenes para el perfil detallado
+  estado: 'disponible' | 'en_proceso' | 'adoptado';
+  fechaIngreso: string;
+}
+
 export interface HistorialClinico {
   id: string;
   mascotaId: string;
@@ -434,5 +448,65 @@ export const todasLasCitas: (Cita & { propietarioNombre: string })[] = [
     tipo: 'vacuna',
     estado: 'pendiente',
     notas: 'Primera vacuna triple felina',
+  },
+];
+
+// Mascotas disponibles para adopción
+export const mascotasAdopcion: MascotaAdopcion[] = [
+  {
+    id: 'adop-001',
+    nombre: 'Milo',
+    especie: 'perro',
+    edadAprox: 'Adulto (2 años)',
+    sexo: 'macho',
+    tamaño: 'grande',
+    historia:
+      'Un perro muy leal y protector. Le encanta salir a correr, ideal para una familia con patio grande y tiempo para paseos largos.',
+    salud: ['Primera vacuna', 'Desparasitado'],
+    imagenes: ['/dog_07.jpg'],
+    estado: 'disponible',
+    fechaIngreso: '2026-03-01',
+  },
+  {
+    id: 'adop-002',
+    nombre: 'Atom',
+    especie: 'gato',
+    edadAprox: 'Adulto (1 años)',
+    sexo: 'macho',
+    tamaño: 'pequeño',
+    historia:
+      'Atom es un gato muy tranquilo que disfruta dormir al sol. Fue rescatado de un techo donde no podía bajar.',
+    salud: ['Vacuna Triple', 'Esterilizado', 'Microchip'],
+    imagenes: ['/cat_09.jpg'],
+    estado: 'disponible',
+    fechaIngreso: '2026-02-15',
+  },
+  {
+    id: 'adop-003',
+    nombre: 'Rocky',
+    especie: 'perro',
+    edadAprox: 'Adulto (4 años)',
+    sexo: 'macho',
+    tamaño: 'mediano',
+    historia:
+      'Fue encontrado junto a sus hermanos en una caja cerca de la plaza. Es muy juguetón y le encanta morder zapatos.',
+    salud: ['Vacuna Óctuple', 'Antirrábica', 'Esterilizado', 'Microchip'],
+    imagenes: ['/dog_09.jpg', '/dog_09.jpg', '/dog_09.jpg', '/dog_09.jpg'],
+    estado: 'disponible',
+    fechaIngreso: '2025-12-10',
+  },
+  {
+    id: 'adop-004',
+    nombre: 'Mochi',
+    especie: 'gato',
+    edadAprox: 'Cachorro (4 meses)',
+    sexo: 'hembra',
+    tamaño: 'pequeño',
+    historia:
+      'Una gatita curiosa y exploradora. Todavía está aprendiendo a usar el rascador, pero es muy cariñosa.',
+    salud: ['Desparasitada'],
+    imagenes: ['/cat_04.jpg'],
+    estado: 'en_proceso',
+    fechaIngreso: '2026-03-05',
   },
 ];

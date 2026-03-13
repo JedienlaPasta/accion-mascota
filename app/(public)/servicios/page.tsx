@@ -1,7 +1,5 @@
-import Link from 'next/link';
 import type { ComponentType } from 'react';
 import {
-  ArrowRight,
   CheckCircle,
   Clock,
   MapPin,
@@ -13,43 +11,7 @@ import {
 } from 'lucide-react';
 import { servicios, horariosAtencion } from '@/app/_lib/mock-data';
 import Badge from '@/app/ui/components/Badge';
-import { RoundMutedButton } from '@/app/ui/components/Button';
 import Image from 'next/image';
-
-const serviciosDestacados = [
-  {
-    icon: Stethoscope,
-    titulo: 'Consulta General',
-    descripcion:
-      'Evaluación médica completa, diagnóstico y tratamiento para tu mascota',
-    precio: '$5.000',
-    color: 'bg-blue-50 text-blue-600',
-  },
-  {
-    icon: Syringe,
-    titulo: 'Vacunación',
-    descripcion:
-      'Vacunas obligatorias y opcionales para perros y gatos, algunas gratuitas',
-    precio: 'Desde $0',
-    color: 'bg-green-50 text-green-600',
-  },
-  {
-    icon: Scissors,
-    titulo: 'Esterilización',
-    descripcion:
-      'Cirugía de esterilización con anestesia y medicamentos incluidos',
-    precio: 'Desde $10.000',
-    color: 'bg-amber-50 text-amber-600',
-  },
-  {
-    icon: Shield,
-    titulo: 'Microchip',
-    descripcion:
-      'Identificación permanente con registro en base de datos nacional',
-    precio: 'Desde $5.000',
-    color: 'bg-purple-50 text-purple-600',
-  },
-];
 
 function formatPrice(precio: number | 'gratuito') {
   if (precio === 'gratuito') return 'Gratuito';

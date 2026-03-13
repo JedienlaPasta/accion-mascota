@@ -30,6 +30,11 @@ const navItems = [
     icon: ClipboardList,
   },
   {
+    href: '/portal/solicitudes',
+    label: 'Mis Solicitudes',
+    icon: ClipboardList,
+  },
+  {
     href: '/portal/perfil',
     label: 'Mi Perfil',
     icon: User,

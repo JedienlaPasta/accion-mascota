@@ -7,24 +7,25 @@ type Option = {
   label: string;
 };
 
-type MascotaSelectProps = {
+type DropdownProps = {
   label: string;
   value: string;
   onChange: (value: string) => void;
   options: Option[];
   required?: boolean;
   placeholder?: string;
-  name?: string;
+  labelStyle?: string;
 };
 
-export default function MascotaSelect({
+export default function Dropdown({
   label,
   value,
   onChange,
   options,
   required,
   placeholder = 'Seleccionar o escribir...',
-}: MascotaSelectProps) {
+  labelStyle = 'ml-1 mb-1 flex justify-between text-[10px] font-bold text-slate-500 uppercase',
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -62,17 +63,20 @@ export default function MascotaSelect({
   }, []);
 
   return (
-    <div className="flex grow flex-col gap-1" ref={dropdownRef}>
-      <label className="ml-1 flex justify-between text-[10px] font-bold text-slate-500 uppercase">
+    <div className="flex grow flex-col" ref={dropdownRef}>
+      <label className={labelStyle}>
         <span>
           {label}
-          {required ? (
+          {/* {required ? (
             <span className="text-xs font-normal text-red-500"> *</span>
           ) : (
             <span className="text-[10px] font-normal text-slate-400">
               {' '}
               (opcional)
             </span>
+          )} */}
+          {required && (
+            <span className="text-xs font-normal text-red-500"> *</span>
           )}
         </span>
       </label>
@@ -84,7 +88,7 @@ export default function MascotaSelect({
             onChange={handleInputChange}
             onClick={() => setIsOpen(true)}
             placeholder={placeholder}
-            className={`h-10 w-full rounded-lg border bg-white pr-10 pl-4 text-sm text-gray-700 shadow-sm transition-all outline-none placeholder:text-gray-400 ${
+            className={`h-11 w-full rounded-xl border bg-white pr-10 pl-4 text-sm text-gray-700 shadow-sm transition-all outline-none placeholder:text-gray-400 ${
               isOpen
                 ? 'border-blue-400 ring-2 ring-blue-100'
                 : 'border-slate-200'
@@ -111,13 +115,13 @@ export default function MascotaSelect({
                   onClick={() => handleSelect(option.value)}
                   className={`flex cursor-pointer items-center justify-between rounded-md px-4 py-2.5 text-sm transition-colors hover:bg-gray-50 ${
                     value === option.value
-                      ? 'bg-emerald-50 font-medium text-emerald-700'
+                      ? 'bg-blue-50 font-medium text-blue-700/90'
                       : 'text-gray-700'
                   }`}
                 >
                   {option.label}
                   {value === option.value && (
-                    <Check className="h-4 w-4 text-emerald-600" />
+                    <Check className="h-4 w-4 text-blue-500" />
                   )}
                 </li>
               ))}

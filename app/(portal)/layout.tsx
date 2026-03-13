@@ -17,7 +17,7 @@ export default function PortalLayout({
         <Header />
         <div className="flex flex-1">
           <PortalSidebar />
-          <main className="min-h-[calc(90svh)] flex-1">{children}</main>
+          <main className="min-h-[90svh] flex-1">{children}</main>
         </div>
         <Footer />
       </div>

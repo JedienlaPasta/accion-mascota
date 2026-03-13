@@ -9,7 +9,7 @@ type ButtonProps = React.ComponentProps<'button'> & {
 export function CTAButton({ className, ...props }: ButtonProps) {
   return (
     <button
-      className={`flex h-10 cursor-pointer items-center rounded-full bg-emerald-800 px-7 text-white shadow-emerald-950/20 transition-shadow duration-300 hover:shadow-lg ${className}`}
+      className={`flex h-10 cursor-pointer items-center rounded-full bg-emerald-800/90 px-7 text-white shadow-emerald-950/20 transition-shadow duration-300 hover:shadow-lg ${className}`}
       {...props}
     />
   );
@@ -27,7 +27,7 @@ export function RoundMutedButton({ className, ...props }: ButtonProps) {
 export function Button({ className, ...props }: ButtonProps) {
   return (
     <button
-      className={`flex h-10 cursor-pointer items-center rounded-full bg-emerald-800 px-7 text-white shadow-emerald-950/30 transition-shadow duration-300 hover:shadow-lg ${className}`}
+      className={`flex h-10 cursor-pointer items-center rounded-full bg-emerald-800/90 px-7 text-white shadow-emerald-950/30 transition-shadow duration-300 hover:shadow-lg ${className}`}
       {...props}
     />
   );
@@ -52,7 +52,7 @@ export function RedirectButton({ className, ...props }: RedirectButtonProps) {
   return (
     <button
       onClick={() => router.push(props.to)}
-      className={`flex h-10 cursor-pointer items-center rounded-full bg-emerald-800 px-7 text-white shadow-emerald-950/30 transition-shadow duration-300 hover:shadow-lg ${className}`}
+      className={`flex h-10 cursor-pointer items-center rounded-full bg-emerald-800/90 px-7 text-white shadow-emerald-950/30 transition-shadow duration-300 hover:shadow-lg ${className}`}
       {...props}
     />
   );

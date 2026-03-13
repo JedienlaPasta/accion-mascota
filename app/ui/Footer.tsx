@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Bird, Facebook, Rabbit, Squirrel, Turtle } from 'lucide-react';
+import { Bird, Rabbit, Squirrel, Turtle } from 'lucide-react';
 import Image from 'next/image';
 
 export function Footer() {
@@ -7,17 +7,16 @@ export function Footer() {
     <footer className="bg-emerald-900 font-sans text-white/80">
       <div className="h-10 w-full bg-emerald-950"></div>
       <div className="mx-auto max-w-7xl px-6 py-18">
-        {/* Grilla Principal */}
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Logo y Descripción */}
-          <div className="space-y-6">
-            <div className="flex w-fit items-center gap-2 rounded-xl bg-emerald-50">
+          <div className="space-y-4">
+            <div className="flex w-fit rounded-xl bg-emerald-950">
               <Image
                 src="/logo.png"
                 alt="cuidapet logo"
-                width={200}
+                width={100}
                 height={40}
-                className="h-22 w-40 object-cover p-3"
+                className="h-22 w-40 object-cover p-3 brightness-0 invert"
               />
             </div>
             <p className="max-w-[240px] text-[15px] leading-relaxed">
@@ -26,7 +25,7 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Enlaces Rápidos - Estilo Limpio */}
+          {/* Enlaces Rápidos */}
           <div>
             <h3 className="mb-6 text-sm font-bold tracking-wider text-white uppercase">
               Enlaces
@@ -67,7 +66,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contacto - Agrupado como Cuidapet */}
+          {/* Contacto */}
           <div>
             <h3 className="mb-6 text-sm font-bold tracking-wider text-white uppercase">
               ¿Necesitas ayuda?
@@ -123,7 +122,6 @@ export function Footer() {
 
       {/* Barra Inferior */}
       <div className="relative bg-emerald-950 py-6">
-        {/* <div className="absolute -top-[2px] left-0 w-full border-t-2 border-emerald-950"></div> */}
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
           <div className="flex flex-col items-center gap-3 md:flex-row md:gap-6">
             <Image
@@ -149,7 +147,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Redes Sociales a la derecha */}
+          {/* Redes Sociales */}
           <div className="flex items-center gap-4">
             <Bird className="hover:text-teal-500" />
             <Rabbit className="hover:text-slate-400" />

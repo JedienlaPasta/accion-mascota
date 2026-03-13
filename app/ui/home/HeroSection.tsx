@@ -17,7 +17,7 @@ export function HeroSection() {
   const { isLoggedIn } = useAuth();
 
   return (
-    <section className="relative overflow-hidden bg-emerald-800/5">
+    <section className="bg-emerald-800/5s bg-secondary-backgrounds relative overflow-hidden bg-white">
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="-mt-10 grid items-center gap-12 sm:-mt-4 lg:grid-cols-2">
           {/* Content */}
@@ -82,7 +82,7 @@ export function HeroSection() {
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
               {isLoggedIn ? (
                 <Link href="/portal/citas/nueva">
-                  <CTAButton className="w-full gap-2 bg-emerald-800 sm:w-auto">
+                  <CTAButton className="w-full gap-2 sm:w-auto">
                     <Calendar className="h-5 w-5" />
                     Agendar Cita
                   </CTAButton>
