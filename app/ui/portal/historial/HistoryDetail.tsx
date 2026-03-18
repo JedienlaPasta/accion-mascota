@@ -30,16 +30,18 @@ export default function HistoryDetail({
 }: HistoryDetailProps) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = '15px';
 
     return () => {
       document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     };
   }, []);
 
   return (
     <div
       key={registro.id}
-      className="fixed top-1/2 left-1/2 z-50 w-[80%] -translate-x-1/2 -translate-y-[80%] overflow-hidden rounded-2xl border border-gray-100 bg-white px-6 py-8 shadow-sm transition-all hover:shadow-md"
+      className="fixed top-1/2 left-1/2 z-50 w-full max-w-5xl -translate-x-1/2 -translate-y-[80%] overflow-hidden rounded-3xl border border-gray-100 bg-white px-4 py-6 shadow-sm transition-all hover:shadow-md sm:w-[80%] sm:px-4 sm:py-6 lg:px-8 lg:py-10"
     >
       <div className="relative z-50 flex items-start justify-between gap-3 bg-white">
         {/* Left */}
@@ -82,7 +84,7 @@ export default function HistoryDetail({
           className="size-5 cursor-pointer text-gray-400 transition-transform duration-300"
         />
       </div>
-      <div className="mt-4 ml-13 duration-500">
+      <div className="mt-4 duration-500 sm:ml-13">
         <div className="flex flex-col gap-4 rounded-xl bg-gray-50 px-5 py-4">
           {/* Diagnóstico */}
           <div className="flex items-center gap-3 text-gray-700">
@@ -107,7 +109,7 @@ export default function HistoryDetail({
         </div>
       </div>
       {/* Detalles footer */}
-      <div className="mt-3 ml-13 flex flex-col gap-4">
+      <div className="mt-3 ml-1 flex flex-col gap-4 sm:ml-13">
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-500">
           <div className="flex items-center gap-2">
             <UserIcon className="size-4" />
