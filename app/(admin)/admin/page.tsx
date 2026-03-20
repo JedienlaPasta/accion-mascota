@@ -1,10 +1,31 @@
-import { Button, DropdownButton } from '@/app/ui/components/Button';
-import { Calendar, Download } from 'lucide-react';
+import { FilterSelect } from '@/app/ui/admin/dashboard/FilterSelect';
+import { Button } from '@/app/ui/components/Button';
+import { Download } from 'lucide-react';
 
 const monthOptions = [
-  { value: '2025-01', label: 'ene 2025' },
-  { value: '2025-02', label: 'feb 2025' },
+  { value: '01', label: 'Ene' },
+  { value: '02', label: 'Feb' },
+  { value: '03', label: 'Mar' },
+  { value: '04', label: 'Abr' },
+  { value: '05', label: 'May' },
+  { value: '06', label: 'Jun' },
+  { value: '07', label: 'Jul' },
+  { value: '08', label: 'Ago' },
+  { value: '09', label: 'Sep' },
+  { value: '10', label: 'Oct' },
+  { value: '11', label: 'Nov' },
+  { value: '12', label: 'Dic' },
 ];
+
+const startDate = { year: 2026, month: '01' };
+const currentYear = new Date().getFullYear();
+const yearOptions = Array.from(
+  { length: currentYear - startDate.year + 1 },
+  (_, i) => ({
+    value: String(currentYear - i),
+    label: String(currentYear - i),
+  })
+);
 
 export default function PortalAdmin() {
   return (
@@ -18,7 +39,16 @@ export default function PortalAdmin() {
           </p>
         </div>
         <div className="flex gap-3">
-          <DropdownButton options={monthOptions} className="gap-2" />
+          <div className="flex">
+            <FilterSelect
+              options={monthOptions}
+              className="rounded-l-full border-x"
+            />
+            <FilterSelect
+              options={yearOptions}
+              className="rounded-r-full border-r"
+            />
+          </div>
 
           <Button className="gap-2">
             <Download className="h-4 w-4" />

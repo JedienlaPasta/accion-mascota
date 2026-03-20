@@ -14,7 +14,7 @@ type DropdownButtonProps = Omit<React.ComponentProps<'button'>, 'value'> & {
   placeholder?: string;
 };
 
-export function DropdownButton({
+export function FilterSelect({
   className,
   options,
   value,
@@ -55,18 +55,18 @@ export function DropdownButton({
           toggleDropdown();
           onClick?.(e);
         }}
-        className={`flex h-10 cursor-pointer items-center rounded-full border border-zinc-200 bg-white px-7 text-zinc-700 shadow-emerald-950/30 transition-shadow duration-300 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
+        className={`flex h-10 w-24 cursor-pointer items-center border-y border-zinc-200 bg-white px-7 text-zinc-700 shadow-sm transition-shadow duration-300 disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
         {...props}
         aria-haspopup="menu"
         aria-expanded={isOpen}
       >
-        {selectedOption?.label || children || placeholder}
+        {selectedOption?.label}
       </button>
 
       {isOpen && (
         <div
           role="menu"
-          className="absolute top-full right-0 z-50 mt-2 w-48 rounded-md border border-zinc-200 bg-white p-2 shadow-lg"
+          className="absolute top-full right-0 z-50 mt-1 w-full rounded-md border border-zinc-200 bg-white p-2 shadow-lg"
         >
           {options.map((option) => (
             <button
