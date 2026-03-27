@@ -32,3 +32,9 @@ export const capitalizeAll = (str?: string) => {
     })
     .join(' ');
 };
+
+export const formatFileSize = (size: number) => {
+  const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+  const unitIndex = Math.floor(Math.log(size) / Math.log(1024));
+  return `${(size / Math.pow(1024, unitIndex)).toFixed(2)} ${units[unitIndex]}`;
+};

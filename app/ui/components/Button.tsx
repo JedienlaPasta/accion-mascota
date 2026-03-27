@@ -42,6 +42,15 @@ export function SecondaryButton({ className, ...props }: ButtonProps) {
   );
 }
 
+export function UploadSecondaryButton({ className, ...props }: ButtonProps) {
+  return (
+    <span
+      className={`px-auto flex min-h-9 cursor-pointer items-center justify-center rounded-lg border border-gray-300/80 text-gray-800 shadow-sm shadow-slate-200 transition-shadow duration-300 hover:shadow-lg ${className}`}
+      {...props}
+    />
+  );
+}
+
 type RedirectButtonProps = React.ComponentProps<'button'> & {
   className?: string;
   to: string;
