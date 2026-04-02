@@ -1,10 +1,7 @@
 'use client';
 
 import { uploadPetProfileImage } from '@/app/_lib/actions/s3-uploads';
-import {
-  SecondaryButton,
-  UploadSecondaryButton,
-} from '@/app/ui/components/Button';
+import { UploadSecondaryButton } from '@/app/ui/components/Button';
 import { Camera, Panda, PawPrint } from 'lucide-react';
 import { useState } from 'react';
 

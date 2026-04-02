@@ -3,7 +3,6 @@
 import React from 'react';
 import { AuthProvider } from '../_lib/AuthContext';
 // import { Header } from '../ui/Header';
-import { Footer } from '../ui/Footer';
 import { AdminSidebar } from '../ui/admin/AdminSidebar';
 
 export default function AdminLayout({
@@ -19,7 +18,6 @@ export default function AdminLayout({
           <AdminSidebar />
           <main className="min-h-[90svh] flex-1">{children}</main>
         </div>
-        <Footer />
       </div>
     </AuthProvider>
   );

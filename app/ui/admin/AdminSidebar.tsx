@@ -90,15 +90,6 @@ export function AdminSidebar() {
           ))}
         </ul>
       </nav>
-
-      <div className="border-t border-gray-200/60 p-4">
-        <Link href="/admin/citas/nueva">
-          <Button className="flex w-full justify-center gap-2 rounded-lg">
-            <Plus className="h-4 w-4" />
-            Nueva Cita
-          </Button>
-        </Link>
-      </div>
     </aside>
   );
 }

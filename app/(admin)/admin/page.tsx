@@ -1,23 +1,11 @@
+import AppointmentsPendingToConfirm from '@/app/ui/admin/dashboard/AppointmentsPendingToConfirm';
 import { FilterSelect } from '@/app/ui/admin/dashboard/FilterSelect';
-import { Button } from '@/app/ui/components/Button';
-import { Download } from 'lucide-react';
+import SummaryCards from '@/app/ui/admin/dashboard/SummaryCards';
+import AppointmentTable from '@/app/ui/admin/dashboard/TodayAppointments';
+import { SecondaryButton } from '@/app/ui/components/Button';
+import { Download, ListFilter } from 'lucide-react';
 
-const monthOptions = [
-  { value: '01', label: 'Ene' },
-  { value: '02', label: 'Feb' },
-  { value: '03', label: 'Mar' },
-  { value: '04', label: 'Abr' },
-  { value: '05', label: 'May' },
-  { value: '06', label: 'Jun' },
-  { value: '07', label: 'Jul' },
-  { value: '08', label: 'Ago' },
-  { value: '09', label: 'Sep' },
-  { value: '10', label: 'Oct' },
-  { value: '11', label: 'Nov' },
-  { value: '12', label: 'Dic' },
-];
-
-const startDate = { year: 2026, month: '01' };
+const startDate = { year: 2026 };
 const currentYear = new Date().getFullYear();
 const yearOptions = Array.from(
   { length: currentYear - startDate.year + 1 },
@@ -29,33 +17,38 @@ const yearOptions = Array.from(
 
 export default function PortalAdmin() {
   return (
-    <div className="bg-gray-50/50s bg-secondary-background h-full p-6 lg:p-8">
+    <div className="flex h-full flex-col space-y-8 bg-[#f1f3f2] p-6 lg:p-8">
       {/* Header */}
-      <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-foreground text-2xl font-bold">Dashboard</h1>
           <p className="text-muted-foreground">
-            Gestiona el perfil de tus mascotas registradas
+            Bienvenido/a, {'Usuario'} - Resumen
           </p>
         </div>
-        <div className="flex gap-3">
-          <div className="flex">
-            <FilterSelect
-              options={monthOptions}
-              className="rounded-l-full border-x"
-            />
-            <FilterSelect
-              options={yearOptions}
-              className="rounded-r-full border-r"
-            />
-          </div>
+        <div className="flex gap-2">
+          <FilterSelect options={yearOptions} className="rounded-lg border" />
 
-          <Button className="gap-2">
-            <Download className="h-4 w-4" />
+          <SecondaryButton className="gap-2 bg-white px-4 text-sm">
+            <ListFilter className="-4 h-4" />
+            Filtrar
+          </SecondaryButton>
+
+          <SecondaryButton className="gap-2 bg-white px-4 text-sm">
+            <Download className="-4 h-4" />
             Exportar
-          </Button>
+          </SecondaryButton>
         </div>
       </div>
+      <SummaryCards />
+      <section className="grid grid-cols-4 gap-4">
+        <div className="col-span-3">
+          <AppointmentTable />
+        </div>
+        <div className="col-span-1">
+          <AppointmentsPendingToConfirm />
+        </div>
+      </section>
     </div>
   );
 }

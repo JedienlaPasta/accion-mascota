@@ -55,7 +55,7 @@ export function FilterSelect({
           toggleDropdown();
           onClick?.(e);
         }}
-        className={`flex h-10 w-24 cursor-pointer items-center border-y border-zinc-200 bg-white px-7 text-zinc-700 shadow-sm transition-shadow duration-300 disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
+        className={`flex h-9 w-24 cursor-pointer items-center border-y border-zinc-100 bg-white px-7 text-sm text-zinc-700 shadow-sm transition-shadow duration-300 disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
         {...props}
         aria-haspopup="menu"
         aria-expanded={isOpen}
@@ -66,15 +66,17 @@ export function FilterSelect({
       {isOpen && (
         <div
           role="menu"
-          className="absolute top-full right-0 z-50 mt-1 w-full rounded-md border border-zinc-200 bg-white p-2 shadow-lg"
+          className="absolute top-full right-0 z-50 mt-1 w-full rounded-md border border-zinc-100 bg-white p-2 shadow-lg"
         >
           {options.map((option) => (
             <button
               key={option.value}
               type="button"
               role="menuitem"
-              className={`w-full cursor-pointer rounded-md px-4 py-2 text-left text-sm text-zinc-800 hover:bg-zinc-100 ${
-                option.value === currentValue ? 'bg-zinc-50 font-medium' : ''
+              className={`w-full cursor-pointer rounded-md px-4 py-2 text-left text-xs text-zinc-600 hover:bg-zinc-100 ${
+                option.value === currentValue
+                  ? 'bg-zinc-50 font-medium text-zinc-800'
+                  : ''
               }`}
               onClick={() => handleSelection(option.value)}
             >
