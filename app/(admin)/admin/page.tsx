@@ -3,7 +3,7 @@ import { FilterSelect } from '@/app/ui/admin/dashboard/FilterSelect';
 import SummaryCards from '@/app/ui/admin/dashboard/SummaryCards';
 import AppointmentTable from '@/app/ui/admin/dashboard/TodayAppointments';
 import { SecondaryButton } from '@/app/ui/components/Button';
-import { Download, ListFilter } from 'lucide-react';
+import { ChevronRight, Download, ListFilter } from 'lucide-react';
 
 const startDate = { year: 2026 };
 const currentYear = new Date().getFullYear();
@@ -26,26 +26,38 @@ export default function PortalAdmin() {
             Bienvenido/a, {'Usuario'} - Resumen
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <FilterSelect options={yearOptions} className="rounded-lg border" />
 
           <SecondaryButton className="gap-2 bg-white px-4 text-sm">
-            <ListFilter className="-4 h-4" />
+            <ListFilter className="h-4 w-4" />
             Filtrar
           </SecondaryButton>
 
           <SecondaryButton className="gap-2 bg-white px-4 text-sm">
-            <Download className="-4 h-4" />
+            <Download className="h-4 w-4" />
             Exportar
           </SecondaryButton>
         </div>
       </div>
       <SummaryCards />
-      <section className="grid grid-cols-4 gap-4">
-        <div className="col-span-3">
+      <section className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+        <div className="flex flex-col space-y-4 rounded-2xl border border-zinc-200/80 bg-white p-6 transition-shadow duration-300 hover:shadow-md lg:col-span-3 lg:p-8">
+          <header className="flex items-center justify-between gap-4">
+            <div className="min-w-0">
+              <h2 className="text-lg font-bold text-gray-900">
+                Horario de Hoy
+              </h2>
+              <p className="text-sm text-zinc-500">Jueves, 12 de octubre</p>
+            </div>
+            <SecondaryButton className="gap-2 bg-white px-4 text-sm">
+              Ver Todas
+              <ChevronRight className="h-4 w-4" />
+            </SecondaryButton>
+          </header>
           <AppointmentTable />
         </div>
-        <div className="col-span-1">
+        <div className="lg:col-span-1">
           <AppointmentsPendingToConfirm />
         </div>
       </section>

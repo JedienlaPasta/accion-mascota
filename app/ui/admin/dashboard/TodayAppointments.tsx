@@ -1,6 +1,6 @@
 'use client';
 
-import { Clock } from 'lucide-react';
+type AppointmentStatus = 'confirmada' | 'pendiente';
 
 const mockData = [
   {
@@ -9,7 +9,7 @@ const mockData = [
     nombreMascota: 'Luna',
     nombrePropietario: 'María González',
     tipoConsulta: 'Consulta General',
-    estado: 'confirmada',
+    estado: 'confirmada' as const,
   },
   {
     horaInicio: '10:30',
@@ -17,7 +17,7 @@ const mockData = [
     nombreMascota: 'Max',
     nombrePropietario: 'Juan Pérez',
     tipoConsulta: 'Vacunación',
-    estado: 'pendiente',
+    estado: 'pendiente' as const,
   },
   {
     horaInicio: '11:00',
@@ -25,7 +25,7 @@ const mockData = [
     nombreMascota: 'Toby',
     nombrePropietario: 'Ana Silva',
     tipoConsulta: 'Control Post-operatorio',
-    estado: 'confirmada',
+    estado: 'confirmada' as const,
   },
   {
     horaInicio: '11:30',
@@ -33,7 +33,7 @@ const mockData = [
     nombreMascota: 'Mochi',
     nombrePropietario: 'Carlos Rojas',
     tipoConsulta: 'Desparasitación',
-    estado: 'confirmada',
+    estado: 'confirmada' as const,
   },
   {
     horaInicio: '12:00',
@@ -41,47 +41,50 @@ const mockData = [
     nombreMascota: 'Rocky',
     nombrePropietario: 'Pedro Martínez',
     tipoConsulta: 'Consulta General',
-    estado: 'pendiente',
+    estado: 'pendiente' as const,
   },
 ];
 
 export default function AppointmentTable() {
   return (
-    <table className="flex flex-col space-y-4 rounded-2xl border border-zinc-200/80 bg-white p-8">
-      <thead className="flex items-center justify-between gap-4">
-        <div className="min-w-0">
-          <h2 className="text-lg font-bold text-gray-900">Horario de Hoy</h2>
-          <p className="text-sm text-zinc-500">Jueves, 12 de octubre</p>
-        </div>
-        <button className="cursor-pointer rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-2 text-sm font-semibold text-zinc-100 hover:bg-zinc-800">
-          Ver Todas
-        </button>
-      </thead>
-      <tbody className="grid divide-y divide-zinc-200">
-        {mockData.map((item) => (
-          <AppointmentRow
-            key={item.horaInicio}
-            horaInicio={item.horaInicio}
-            horaFin={item.horaFin}
-            nombreMascota={item.nombreMascota}
-            nombrePropietario={item.nombrePropietario}
-            tipoConsulta={item.tipoConsulta}
-            estado={item.estado}
-          />
-        ))}
-        {mockData.map((item) => (
-          <AppointmentTableRow
-            key={item.horaInicio}
-            horaInicio={item.horaInicio}
-            horaFin={item.horaFin}
-            nombreMascota={item.nombreMascota}
-            nombrePropietario={item.nombrePropietario}
-            tipoConsulta={item.tipoConsulta}
-            estado={item.estado}
-          />
-        ))}
-      </tbody>
-    </table>
+    <div className="overflow-hidden rounded-xl border border-zinc-200/80">
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[720px]">
+          <thead className="bg-zinc-50">
+            <tr className="grid grid-cols-24 items-center gap-4 border-b border-zinc-200/70 px-4 py-3 text-left">
+              <th className="col-span-4 text-xs font-semibold tracking-wide text-zinc-600 uppercase">
+                Hora
+              </th>
+              <th className="col-span-4 text-xs font-semibold tracking-wide text-zinc-600 uppercase">
+                Mascota
+              </th>
+              <th className="col-span-6 text-xs font-semibold tracking-wide text-zinc-600 uppercase">
+                Propietario
+              </th>
+              <th className="col-span-8 text-xs font-semibold tracking-wide text-zinc-600 uppercase">
+                Tipo
+              </th>
+              <th className="col-span-2 text-center text-xs font-semibold tracking-wide text-zinc-600 uppercase">
+                Estado
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-zinc-200/70 bg-white">
+            {mockData.map((item) => (
+              <AppointmentTableRow
+                key={`${item.horaInicio}-${item.nombreMascota}`}
+                horaInicio={item.horaInicio}
+                horaFin={item.horaFin}
+                nombreMascota={item.nombreMascota}
+                nombrePropietario={item.nombrePropietario}
+                tipoConsulta={item.tipoConsulta}
+                estado={item.estado}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 
@@ -91,44 +94,8 @@ type AppointmentRowProps = {
   nombreMascota: string;
   nombrePropietario: string;
   tipoConsulta: string;
-  estado: string;
+  estado: AppointmentStatus;
 };
-
-function AppointmentRow({
-  horaInicio,
-  horaFin,
-  nombreMascota,
-  nombrePropietario,
-  tipoConsulta,
-  estado,
-}: AppointmentRowProps) {
-  return (
-    <div className="flex cursor-pointer items-center justify-between gap-4 rounded-2xl border border-zinc-200/80 bg-white p-2 transition-shadow duration-300 hover:shadow-sm">
-      <div className="flex min-w-0 items-center gap-4">
-        <div className="flex size-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-linear-to-br from-zinc-600 to-zinc-950 p-2.5 text-emerald-50">
-          <Clock className="size-4s" />
-          <p className="text-xs font-semibold tabular-nums">{`${horaInicio} - ${horaFin}`}</p>
-        </div>
-
-        <div className="min-w-0">
-          <div className="text-muted-foreground truncate text-xs font-bold tracking-wider uppercase">
-            <span className="truncate">{nombreMascota}</span>
-            <span className="px-1">·</span>
-            <span className="truncate">{nombrePropietario}</span>
-          </div>
-          <p className="text-muted-foreground truncate text-sm">
-            {tipoConsulta}
-          </p>
-        </div>
-      </div>
-      <span
-        className={`mr-2 inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-1 text-xs font-semibold capitalize ${estado === 'confirmada' ? 'border-emerald-300 bg-emerald-50 text-emerald-600' : 'border-amber-300 bg-amber-50 text-amber-600'}`}
-      >
-        {estado}
-      </span>
-    </div>
-  );
-}
 
 function AppointmentTableRow({
   horaInicio,
@@ -138,14 +105,32 @@ function AppointmentTableRow({
   tipoConsulta,
   estado,
 }: AppointmentRowProps) {
+  const isConfirmed = estado === 'confirmada';
   return (
-    <tr className="grid cursor-pointer grid-cols-24 items-center gap-4 p-2 px-4 text-sm text-zinc-600">
-      <td className="col-span-4 font-medium tabular-nums">{`${horaInicio} - ${horaFin}`}</td>
-      <td className="col-span-4 font-medium">{nombreMascota}</td>
-      <td className="col-span-6">{nombrePropietario}</td>
-      <td className="col-span-8">{tipoConsulta}</td>
-      <td className="col-span-2 text-center text-xs font-medium capitalize">
-        {estado}
+    <tr className="grid cursor-pointer grid-cols-24 items-center gap-4 px-4 py-3 text-sm text-zinc-700 transition-colors hover:bg-zinc-50/80">
+      <td className="col-span-4 font-medium text-zinc-900 tabular-nums">
+        {horaInicio}
+        <span className="px-2 text-zinc-300">—</span>
+        {horaFin}
+      </td>
+      <td className="col-span-4 font-medium text-zinc-900">{nombreMascota}</td>
+      <td className="col-span-6 truncate">{nombrePropietario}</td>
+      <td className="col-span-8 truncate">{tipoConsulta}</td>
+      <td className="col-span-2 flex justify-center">
+        <span
+          className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-2.5 py-1 text-[11px] font-semibold capitalize ${
+            isConfirmed
+              ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+              : 'border-amber-200 bg-amber-50 text-amber-700'
+          }`}
+        >
+          <span
+            className={`h-1.5 w-1.5 rounded-full ${
+              isConfirmed ? 'bg-emerald-500' : 'bg-amber-500'
+            }`}
+          />
+          {estado}
+        </span>
       </td>
     </tr>
   );

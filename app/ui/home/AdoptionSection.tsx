@@ -28,19 +28,19 @@ export default function AdoptionSection() {
               Municipal para asegurar el bienestar de todos.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
-              <a
+              <Link
                 href="/adopcion"
                 className="inline-flex h-12 items-center justify-center rounded-full bg-[#006D4E] px-8 text-base font-semibold text-white transition-all hover:bg-[#005a40] hover:shadow-lg"
               >
                 Ver mascotas en adopción
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/adopcion/proceso"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full border-2 border-gray-200 bg-white px-6 text-base font-medium text-gray-700 transition-colors hover:border-gray-300 hover:bg-gray-50"
               >
                 Conoce el proceso
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
             </div>
           </div>
 
