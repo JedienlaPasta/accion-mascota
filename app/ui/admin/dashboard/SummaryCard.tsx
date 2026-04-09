@@ -10,24 +10,13 @@ const cardIcons: Record<string, ComponentType<{ className?: string }>> = {
   month: FileCheck,
 };
 
-export default function SummaryCards() {
-  return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <SummaryCard title="Citas" value={100} icon="calendar" />
-      <SummaryCard title="Mascotas" value={100} icon="paw" />
-      <SummaryCard title="Propietarios" value={100} icon="user" />
-      <SummaryCard title="Atenciones" value={100} icon="month" />
-    </div>
-  );
-}
-
 type SummaryCardProps = {
   title: string;
   value: number;
   icon: keyof typeof cardIcons;
 };
 
-function SummaryCard({ title, value, icon }: SummaryCardProps) {
+export default function SummaryCard({ title, value, icon }: SummaryCardProps) {
   const Icon = cardIcons[icon];
 
   return (
