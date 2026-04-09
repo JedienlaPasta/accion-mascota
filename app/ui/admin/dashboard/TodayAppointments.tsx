@@ -133,7 +133,7 @@ function AppointmentTableRow({
       </td>
       <td className="relative col-span-2 flex justify-center">
         <Ellipsis className="peer relative z-10 size-6 hover:text-zinc-800" />
-        <span className="absolute top-1/2 z-0 size-8 -translate-y-1/2 rounded-full bg-transparent peer-hover:bg-zinc-200/80" />
+        <span className="absolute top-1/2 z-0 size-8 -translate-y-1/2 rounded-full bg-transparent transition-colors peer-hover:bg-zinc-200/80" />
       </td>
     </tr>
   );

@@ -7,13 +7,11 @@ import {
   Calendar,
   ClipboardList,
   User,
-  Plus,
   Stethoscope,
   LayoutDashboard,
   Settings,
 } from 'lucide-react';
 import { useAuth } from '@/app/_lib/AuthContext';
-import { Button } from '../components/Button';
 
 const navItems = [
   {
@@ -57,7 +55,7 @@ export function AdminSidebar() {
   }
 
   return (
-    <aside className="hidden w-64 flex-col border-r border-gray-300/80 bg-white shadow-lg shadow-gray-200/80 lg:flex">
+    <aside className="hidden w-64 flex-col border-r border-gray-200/70 bg-white shadow-lg shadow-gray-200/80 lg:flex">
       <div className="flex items-center gap-2.5 border-b border-gray-200/60 p-4">
         <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
           <Stethoscope className="size-5" />
@@ -76,7 +74,7 @@ export function AdminSidebar() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                className={`flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-colors ${
                   pathname === item.href ||
                   (pathname?.startsWith(item.href) && item.href !== '/admin')
                     ? 'bg-emerald-800/90 text-white shadow-md shadow-emerald-800/20'

@@ -19,11 +19,11 @@ const yearOptions = Array.from(
 
 export default function PortalAdmin() {
   return (
-    <div className="flex h-full flex-col space-y-8 bg-[#f1f3f2] p-6 lg:p-8">
+    <div className="flex h-full flex-col space-y-8 bg-gray-50/50 p-6 lg:p-8">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <h1 className="text-foreground text-2xl font-bold">Dashboard</h1>
+          <h1 className="text-foreground text-4xl font-bold">Dashboard</h1>
           <p className="text-muted-foreground">
             Bienvenido/a, {'Usuario'} - Resumen
           </p>
@@ -42,10 +42,10 @@ export default function PortalAdmin() {
           </SecondaryButton>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-7">
-        <section className="flex flex-col gap-4 lg:col-span-5">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-7">
+        <section className="flex flex-col gap-4 xl:col-span-5">
           <SummaryCards />
-          <div className="flex flex-col space-y-4 overflow-hidden rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-md lg:col-span-3">
+          <div className="flex flex-col space-y-4 overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md lg:col-span-3">
             <header className="flex items-center justify-between">
               <h2 className="text-2xl font-bold text-gray-900">
                 Horario de Hoy
@@ -68,7 +68,7 @@ export default function PortalAdmin() {
           </div>
         </section>
 
-        <section className="lg:col-span-2">
+        <section className="xl:col-span-2">
           <AppointmentsPendingToConfirm />
         </section>
       </div>

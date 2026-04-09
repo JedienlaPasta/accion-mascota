@@ -50,7 +50,7 @@ export function PortalSidebar() {
   }
 
   return (
-    <aside className="hidden w-64 flex-col border-r border-gray-200/60 bg-white shadow-lg shadow-gray-200/80 lg:flex">
+    <aside className="hidden w-64 flex-col border-r border-gray-200/70 bg-white shadow-lg shadow-gray-200/80 lg:flex">
       <div className="border-b border-gray-200/60 p-4">
         <p className="text-foreground text-sm font-medium">Portal Ciudadano</p>
         <p className="text-muted-foreground truncate text-xs">
@@ -78,10 +78,10 @@ export function PortalSidebar() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   pathname === item.href ||
                   (pathname?.startsWith(item.href) && item.href !== '/portal')
-                    ? 'bg-emerald-700/5 font-medium text-emerald-700'
+                    ? 'bg-emerald-800/90 text-white shadow-md shadow-emerald-800/20'
                     : 'text-muted-foreground hover:text-foreground hover:bg-gray-100/80'
                 }`}
               >

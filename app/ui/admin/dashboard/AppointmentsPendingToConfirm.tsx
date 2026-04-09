@@ -57,7 +57,7 @@ const mockData: Appointment[] = [
 
 export default function AppointmentsPendingToConfirm() {
   return (
-    <div className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-md lg:p-8">
+    <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-shadow hover:shadow-md lg:p-6">
       <header className="mb-5 flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-700 ring-1 ring-amber-100">
@@ -72,7 +72,7 @@ export default function AppointmentsPendingToConfirm() {
           <ChevronRight className="h-4 w-4" />
         </SecondaryButton>
       </header>
-      <div className="grid max-h-112 grid-cols-1 gap-2.5 overflow-auto pr-1">
+      <div className="grid max-h-112 grid-cols-1 gap-2.5 overflow-auto">
         {mockData.map((item) => (
           <AppointmentCard key={item.id} appointment={item} />
         ))}
@@ -94,7 +94,7 @@ function AppointmentCard({ appointment }: AppointmentCardProps) {
 
   return (
     <div className="group flex w-full items-center justify-between gap-4 rounded-2xl border border-zinc-200/80 bg-white p-3 transition-colors hover:bg-zinc-50">
-      <div className="flex min-w-0 items-center gap-4">
+      <div className="flex min-w-0 items-center gap-2.5">
         <div className="flex size-12 shrink-0 flex-col items-center justify-center rounded-2xl bg-linear-to-br from-amber-400 to-amber-600 text-amber-50 shadow-sm shadow-amber-950/10">
           <Clock className="size-4" />
           <p className="text-xs font-semibold tabular-nums">
