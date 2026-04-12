@@ -1,6 +1,7 @@
+import AppointmentsCalendarTable from '@/app/ui/admin/citas/AppointmentsCalendarTable';
 import SummaryCard from '@/app/ui/admin/dashboard/SummaryCard';
-import { SecondaryButton } from '@/app/ui/components/Button';
-import { Calendar, Clock } from 'lucide-react';
+import { Button, SecondaryButton } from '@/app/ui/components/Button';
+import { Calendar, Clock, Plus } from 'lucide-react';
 
 export default function PortalAdmin() {
   return (
@@ -15,6 +16,7 @@ export default function PortalAdmin() {
             Administra y confirma las citas agendadas.
           </p>
         </div>
+        {/* Top Content Buttons */}
         <div className="flex flex-wrap gap-2">
           <SecondaryButton className="gap-2 bg-white px-4 text-sm">
             <Clock className="h-4 w-4" />2 pendientes
@@ -23,24 +25,27 @@ export default function PortalAdmin() {
           <SecondaryButton className="gap-2 bg-white px-4 text-sm">
             <Calendar className="h-4 w-4" />0 hoy
           </SecondaryButton>
+
+          <SecondaryButton className="gap-2 bg-white px-4 text-sm">
+            <Plus className="h-4 w-4" />
+            Nueva Cita
+          </SecondaryButton>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4">
-        <section className="flex flex-col gap-4 xl:col-span-5">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <SummaryCard title="Total Agendadas" value={100} icon="calendar" />
-            <SummaryCard title="Total Atendidas" value={100} icon="month" />
-            <SummaryCard
-              title="Pendientes de Confirmar"
-              value={100}
-              icon="user"
-            />
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {/* Calendario de citas (Confirmadas y por confirmar) */}
-          </div>
-        </section>
-      </div>
+      <section className="flex flex-col gap-4 xl:col-span-5">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <SummaryCard title="Total Agendadas" value={100} icon="calendar" />
+          <SummaryCard title="Total Atendidas" value={100} icon="month" />
+          <SummaryCard
+            title="Pendientes de Confirmar"
+            value={100}
+            icon="user"
+          />
+        </div>
+
+        {/* Calendario de citas (Confirmadas y por confirmar) */}
+        <AppointmentsCalendarTable />
+      </section>
     </div>
   );
 }
