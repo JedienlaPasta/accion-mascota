@@ -95,7 +95,7 @@ function AppointmentCard({ appointment }: AppointmentCardProps) {
   return (
     <div className="group flex w-full items-center justify-between gap-4 rounded-2xl border border-zinc-200/80 bg-white p-3 transition-colors hover:bg-zinc-50">
       <div className="flex min-w-0 items-center gap-2.5">
-        <div className="flex size-12 shrink-0 flex-col items-center justify-center rounded-2xl bg-linear-to-br from-amber-400 to-amber-600 text-amber-50 shadow-sm shadow-amber-950/10">
+        <div className="flex size-12 shrink-0 flex-col items-center justify-center rounded-2xl bg-gray-50 text-zinc-700 shadow-sm shadow-zinc-950/10">
           <Clock className="size-4" />
           <p className="text-xs font-semibold tabular-nums">
             {appointment.hora}
