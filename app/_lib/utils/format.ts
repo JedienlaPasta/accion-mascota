@@ -38,3 +38,17 @@ export const formatFileSize = (size: number) => {
   const unitIndex = Math.floor(Math.log(size) / Math.log(1024));
   return `${(size / Math.pow(1024, unitIndex)).toFixed(2)} ${units[unitIndex]}`;
 };
+
+export const formatPhone = (phone?: string | number) => {
+  if (!phone) return '';
+  return phone.toString().replace(/\B(?=(\d{4})+(?!\d))/g, ' ');
+};
+
+export const formatNumber = (num: number | string) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+};
+
+export const formatRUT = (rut: string | number, dv: string) => {
+  if (!rut) return '';
+  return formatNumber(rut) + '-' + dv;
+};

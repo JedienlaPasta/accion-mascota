@@ -3,7 +3,7 @@ import SummaryCard from '@/app/ui/admin/dashboard/SummaryCard';
 import { Button, SecondaryButton } from '@/app/ui/components/Button';
 import { Calendar, Clock, Plus } from 'lucide-react';
 
-export default function PortalAdmin() {
+export default function CitasPageAdmin() {
   return (
     <div className="flex h-full flex-col space-y-8 bg-gray-50/50 p-6 lg:p-8">
       {/* Header */}

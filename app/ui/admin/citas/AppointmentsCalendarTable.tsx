@@ -1,5 +1,6 @@
 'use client';
 
+import { capitalize } from '@/app/_lib/utils/format';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
@@ -121,9 +122,7 @@ function formatDateParts(date: Date, options: Intl.DateTimeFormatOptions) {
   console.log(parts);
   return parts
     .filter((p) => p.type !== 'literal')
-    .map((p) =>
-      p.type === 'month' ? p.value[0].toUpperCase() + p.value.slice(1) : p.value
-    )
+    .map((p) => (p.type === 'month' ? capitalize(p.value) : p.value))
     .join(' ');
 }
 
@@ -284,7 +283,7 @@ export default function AppointmentsCalendarTable() {
                   }}
                 >
                   <div
-                    className={`h-full w-1.5 rounded-full ${lineByStatus(e.status)}`}
+                    className={`h-full w-2 rounded-full ${lineByStatus(e.status)}`}
                   ></div>
                   <div className="relative flex h-full w-full flex-col justify-between">
                     <div>

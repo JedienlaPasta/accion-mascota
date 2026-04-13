@@ -6,6 +6,7 @@ import AppointmentTable from '@/app/ui/admin/dashboard/TodayAppointments';
 import { SecondaryButton } from '@/app/ui/components/Button';
 import { Suspense } from 'react';
 import { ChevronRight, Download, ListFilter } from 'lucide-react';
+import TableWrapper from '@/app/ui/admin/TableWrapper';
 
 const startDate = { year: 2026 };
 const currentYear = new Date().getFullYear();
@@ -52,27 +53,11 @@ export default function PortalAdmin() {
             <SummaryCard title="Propietarios" value={100} icon="user" />
             <SummaryCard title="Atenciones" value={100} icon="month" />
           </div>
-          <div className="flex flex-col space-y-4 overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md lg:col-span-3">
-            <header className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">
-                Horario de Hoy
-              </h2>
-              <div className="flex gap-4">
-                <SecondaryButton className="gap-2 px-3! text-sm">
-                  Ver Todas
-                  <ChevronRight className="h-4 w-4" />
-                </SecondaryButton>
-                <Suspense
-                  fallback={
-                    <div className="flex h-10 min-w-52 flex-1 items-center rounded-lg border border-slate-200 bg-white px-4 shadow-sm" />
-                  }
-                >
-                  <SearchBar placeholder="Buscar" />
-                </Suspense>
-              </div>
-            </header>
+
+          {/* Appointments Table */}
+          <TableWrapper title="Horario de Hoy">
             <AppointmentTable />
-          </div>
+          </TableWrapper>
         </section>
 
         <section className="xl:col-span-2">
