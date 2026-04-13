@@ -108,10 +108,11 @@ const guiasCuidado = {
 
 export default function InformacionPage() {
   return (
-    <div className="py-18">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 text-center">
-          <h1 className="text-foreground mb-4 text-4xl font-bold">
+    <div className="bg-secondary-background min-h-screen pb-24">
+      {/* Hero Section */}
+      <div className="border-b border-gray-100 bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl text-center">
+          <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
             Información y Tenencia Responsable
           </h1>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg text-pretty">
@@ -140,7 +141,9 @@ export default function InformacionPage() {
             </Link>
           </div>
         </div>
+      </div>
 
+      <div className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 lg:px-8">
         <section id="ley" className="mb-16 scroll-mt-20">
           <div className="mb-8 flex items-center gap-3">
             <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-lg">

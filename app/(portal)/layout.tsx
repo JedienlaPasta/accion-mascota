@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { AuthProvider } from '../_lib/AuthContext';
-import { Footer } from '../ui/Footer';
+// import { Footer } from '../ui/Footer';
 import { PortalSidebar } from '../ui/portal/PortalSidebar';
 import { SessionHeader } from '../ui/SessionHeader';
 
@@ -17,9 +17,9 @@ export default function PortalLayout({
         <SessionHeader />
         <div className="flex flex-1">
           <PortalSidebar />
-          <main className="min-h-[90svh] flex-1">{children}</main>
+          <main className="flex-1">{children}</main>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </AuthProvider>
   );

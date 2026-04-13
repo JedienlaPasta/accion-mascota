@@ -11,7 +11,6 @@ import {
 } from 'lucide-react';
 import { servicios, horariosAtencion } from '@/app/_lib/mock-data';
 import Badge from '@/app/ui/components/Badge';
-import Image from 'next/image';
 
 function formatPrice(precio: number | 'gratuito') {
   if (precio === 'gratuito') return 'Gratuito';
@@ -43,29 +42,22 @@ export default function ServiciosPage() {
   const categorias = [...new Set(servicios.map((s) => s.categoria))];
 
   return (
-    <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <div className="py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h1 className="text-foreground mb-4 text-4xl font-bold">
-              Nuestros Servicios
-            </h1>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-lg text-pretty">
-              Conoce todos los servicios que ofrecemos en la Veterinaria
-              Municipal. Precios accesibles y atención de calidad para todas las
-              mascotas de la comuna.
-            </p>
-          </div>
-          <Image
-            src="/dog_06.jpg"
-            alt="Mascota"
-            width={500}
-            height={500}
-            className="inset-0 size-full rounded-4xl object-cover"
-          />
-        </div>{' '}
-        {}
-        <div className="my-12 grid gap-4 sm:grid-cols-3">
+    <div className="bg-secondary-background min-h-screen pb-24">
+      {/* Hero Section */}
+      <div className="border-b border-gray-100 bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl text-center">
+          <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+            Nuestros Servicios
+          </h1>
+          <p className="mx-auto max-w-2xl text-lg text-gray-500">
+            Conoce todos los servicios que ofrecemos en la Veterinaria
+            Municipal. Precios accesibles y atención de calidad para todas las
+            mascotas de la comuna.
+          </p>
+        </div>
+      </div>
+      <div className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-4 sm:grid-cols-3">
           <div className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
             <div className="flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">
@@ -115,7 +107,7 @@ export default function ServiciosPage() {
             </div>
           </div>
         </div>
-        <div id="todos" className="space-y-12">
+        <div id="todos" className="space-y-10">
           {categorias.map((categoria) => {
             const Icon = iconMap[categoria];
             const serviciosCategoria = servicios.filter(
@@ -180,7 +172,7 @@ export default function ServiciosPage() {
             );
           })}
         </div>
-        <div className="bg-muted/50 mt-12 rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
+        <div className="mt-10 rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
           <div className="mb-6 flex items-center gap-3">
             <CheckCircle className="h-5 w-5 text-emerald-700" />
             <h3 className="text-foreground text-lg font-bold">

@@ -50,7 +50,7 @@ export function PortalSidebar() {
   }
 
   return (
-    <aside className="sticky top-0 hidden h-screen w-72 flex-col border-r border-zinc-200/70 bg-white lg:flex">
+    <aside className="sticky top-0 hidden min-h-fit w-72 flex-col border-r border-zinc-200/70 bg-white lg:flex">
       <nav className="flex-1 p-3">
         <ul className="space-y-1">
           <li>

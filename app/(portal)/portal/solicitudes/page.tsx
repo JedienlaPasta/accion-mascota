@@ -71,7 +71,7 @@ const getEstadoUI = (estado: string) => {
 
 export default function MisSolicitudesPage() {
   return (
-    <div className="bg-secondary-background min-h-screen pt-8 pb-24">
+    <div className="bg-secondary-background h-full pt-8 pb-24">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <div className="mb-8">
           <h1 className="mb-2 text-3xl font-extrabold text-gray-900">

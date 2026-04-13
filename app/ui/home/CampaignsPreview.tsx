@@ -6,7 +6,7 @@ import Badge from '../components/Badge';
 import { Button, RoundMutedButton } from '../components/Button';
 import { capitalize } from '../../_lib/utils/format';
 
-function formatDate(dateString: string) {
+export function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString('es-CL', {
     day: 'numeric',
     month: 'long',
@@ -41,7 +41,7 @@ export function CampaignsPreview() {
               key={campana.id}
               className="hover:border-primary/30 overflow-hidden border-2 transition-colors"
             >
-              <CardHeader>
+              <CardHeader className="pt-3 pb-4">
                 <div className="flex items-start justify-between">
                   <div>
                     <CardTitle className="mb-2 text-xl">
