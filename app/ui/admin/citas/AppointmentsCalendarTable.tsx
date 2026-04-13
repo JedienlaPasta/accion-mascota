@@ -5,8 +5,8 @@ import { useMemo, useState } from 'react';
 
 const DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
 const SLOT_MIN = 15;
-const DAY_START = '09:00';
-const DAY_END = '18:00';
+const DAY_START = '08:30';
+const DAY_END = '17:30';
 const SLOT_HEIGHT = 30;
 
 type Status = 'Agendado' | 'Completado' | 'Cancelado';
@@ -116,25 +116,28 @@ function addDays(date: Date, days: number) {
   return d;
 }
 
+function formatDateParts(date: Date, options: Intl.DateTimeFormatOptions) {
+  const parts = new Intl.DateTimeFormat('es-CL', options).formatToParts(date);
+  console.log(parts);
+  return parts
+    .filter((p) => p.type !== 'literal')
+    .map((p) =>
+      p.type === 'month' ? p.value[0].toUpperCase() + p.value.slice(1) : p.value
+    )
+    .join(' ');
+}
+
 function formatDayShort(date: Date) {
-  return new Intl.DateTimeFormat('es-CL', {
-    day: '2-digit',
-    month: 'short',
-  }).format(date);
+  return formatDateParts(date, { day: '2-digit', month: 'short' });
 }
 
 function formatWeekRange(weekStart: Date) {
-  const inicio = new Intl.DateTimeFormat('es-CL', {
-    day: '2-digit',
-    month: 'short',
-  }).format(weekStart);
-  const fin = new Intl.DateTimeFormat('es-CL', {
+  const inicio = formatDateParts(weekStart, { day: '2-digit', month: 'short' });
+  const fin = formatDateParts(addDays(weekStart, 4), {
     day: '2-digit',
     month: 'short',
     year: 'numeric',
-  }).format(addDays(weekStart, 4));
-  console.log(inicio);
-  console.log(fin);
+  });
   return `${inicio} – ${fin}`;
 }
 
@@ -156,19 +159,19 @@ export default function AppointmentsCalendarTable() {
   const startMin = toMin(DAY_START);
   const endMin = toMin(DAY_END);
   const totalMin = endMin - startMin;
-  const slotCount = Math.floor(totalMin / SLOT_MIN);
+  const slotCount = Math.ceil(totalMin / SLOT_MIN);
   const dayHeight = slotCount * SLOT_HEIGHT;
   const hourBlockH = (60 / SLOT_MIN) * SLOT_HEIGHT;
 
   const hours: string[] = [];
-  for (let minute = startMin; minute < endMin; minute += 60) {
+  const firstHourLabelMin = Math.ceil(startMin / 60) * 60;
+  for (let minute = firstHourLabelMin; minute < endMin; minute += 60) {
     const hour = String(Math.floor(minute / 60)).padStart(2, '0');
     hours.push(`${hour}:00`);
   }
 
   function topFor(time: string) {
-    const hourOffset = 30; // Espacio para citas de 08:30 sin renderizar las 08:00 en la tabla
-    const delta = toMin(time) - startMin + hourOffset;
+    const delta = toMin(time) - startMin;
     return Math.max(0, (delta / SLOT_MIN) * SLOT_HEIGHT);
   }
   function heightFor(startTime: string, endTime: string) {
@@ -235,7 +238,7 @@ export default function AppointmentsCalendarTable() {
       </div>
 
       <div className="grid grid-cols-[80px_repeat(5,1fr)] items-stretch border-b border-zinc-200">
-        <div className="bg-zinc-50 py-2 text-center text-sm font-medium text-zinc-700">
+        <div className="flex items-center justify-center bg-zinc-50 py-2 text-center text-sm font-medium text-zinc-700">
           Hora
         </div>
         {DAYS.map((day, idx) => (
