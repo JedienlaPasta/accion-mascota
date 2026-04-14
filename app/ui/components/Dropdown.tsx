@@ -8,11 +8,12 @@ type Option = {
 };
 
 type DropdownProps = {
-  label: string;
+  label?: string;
   value: string;
   onChange: (value: string) => void;
   options: Option[];
   required?: boolean;
+  readOnly?: boolean;
   placeholder?: string;
   labelStyle?: string;
 };
@@ -23,6 +24,7 @@ export default function Dropdown({
   onChange,
   options,
   required,
+  readOnly,
   placeholder = 'Seleccionar o escribir...',
   labelStyle = 'ml-1 mb-1 flex justify-between text-[10px] font-bold text-slate-500 uppercase',
 }: DropdownProps) {
@@ -64,10 +66,11 @@ export default function Dropdown({
 
   return (
     <div className="flex grow flex-col" ref={dropdownRef}>
-      <label className={labelStyle}>
-        <span>
-          {label}
-          {/* {required ? (
+      {label ? (
+        <label className={labelStyle}>
+          <span>
+            {label}
+            {/* {required ? (
             <span className="text-xs font-normal text-red-500"> *</span>
           ) : (
             <span className="text-[10px] font-normal text-slate-400">
@@ -75,11 +78,12 @@ export default function Dropdown({
               (opcional)
             </span>
           )} */}
-          {required && (
-            <span className="text-xs font-normal text-red-500"> *</span>
-          )}
-        </span>
-      </label>
+            {required && (
+              <span className="text-xs font-normal text-red-500"> *</span>
+            )}
+          </span>
+        </label>
+      ) : null}
       <div className="relative">
         <div className="relative">
           <input
@@ -88,11 +92,12 @@ export default function Dropdown({
             onChange={handleInputChange}
             onClick={() => setIsOpen(true)}
             placeholder={placeholder}
+            readOnly={readOnly}
             className={`h-11 w-full rounded-xl border bg-white pr-10 pl-4 text-sm text-gray-700 shadow-sm transition-all outline-none placeholder:text-gray-400 ${
               isOpen
                 ? 'border-blue-400 ring-2 ring-blue-100'
                 : 'border-slate-200'
-            }`}
+            } ${readOnly ? 'cursor-pointer' : ''}`}
           />
           <div
             onClick={toggleDropdown}

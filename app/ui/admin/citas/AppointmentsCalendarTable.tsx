@@ -3,6 +3,7 @@
 import { capitalize } from '@/app/_lib/utils/format';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo, useState } from 'react';
+import Dropdown from '../../components/Dropdown';
 
 const DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
 const SLOT_MIN = 15;
@@ -10,7 +11,7 @@ const DAY_START = '08:30';
 const DAY_END = '17:30';
 const SLOT_HEIGHT = 30;
 
-type Status = 'Agendado' | 'Completado' | 'Cancelado';
+type Status = 'Agendado' | 'Completado' | 'Cancelado' | 'Pendiente';
 
 type Appointment = {
   id: string;
@@ -66,7 +67,7 @@ const MOCK_EVENTS: Appointment[] = [
     end: '11:30',
     title: 'Manchitas',
     subtitle: 'Dolor',
-    status: 'Agendado',
+    status: 'Pendiente',
   },
   {
     id: 'a6',
@@ -75,7 +76,7 @@ const MOCK_EVENTS: Appointment[] = [
     end: '15:00',
     title: 'Milo',
     subtitle: 'Dolor',
-    status: 'Agendado',
+    status: 'Pendiente',
   },
   {
     id: 'a7',
@@ -181,12 +182,15 @@ export default function AppointmentsCalendarTable() {
     if (s === 'Completado')
       return 'border-emerald-200 bg-emerald-50 text-emerald-700';
     if (s === 'Cancelado') return 'border-red-200 bg-red-50 text-red-700';
+    if (s === 'Pendiente')
+      return 'border-yellow-200 bg-yellow-50 text-yellow-700';
     return 'border-sky-200 bg-sky-50 text-sky-700';
   }
 
   function lineByStatus(s: Status) {
     if (s === 'Completado') return 'bg-emerald-500/35';
     if (s === 'Cancelado') return 'bg-red-500/35';
+    if (s === 'Pendiente') return 'bg-yellow-500/35';
     return 'bg-sky-500/35';
   }
 
@@ -223,7 +227,7 @@ export default function AppointmentsCalendarTable() {
           Semana {weekLabel}
         </p>
 
-        <select
+        {/* <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value as 'Todos' | Status)}
           className="h-9 cursor-pointer rounded-lg border border-zinc-200 bg-white px-3 text-sm text-zinc-700 shadow-sm"
@@ -232,8 +236,24 @@ export default function AppointmentsCalendarTable() {
           <option value="Todos">Todos</option>
           <option value="Agendado">Agendado</option>
           <option value="Completado">Completado</option>
+          <option value="Pendiente">Pendiente</option>
           <option value="Cancelado">Cancelado</option>
-        </select>
+        </select> */}
+
+        <div>
+          <Dropdown
+            value={statusFilter}
+            readOnly={true}
+            onChange={(e) => setStatusFilter(e as 'Todos' | Status)}
+            options={[
+              { value: 'Todos', label: 'Todos' },
+              { value: 'Agendado', label: 'Agendado' },
+              { value: 'Completado', label: 'Completado' },
+              { value: 'Pendiente', label: 'Pendiente' },
+              { value: 'Cancelado', label: 'Cancelado' },
+            ]}
+          />
+        </div>
       </div>
 
       <div className="grid grid-cols-[80px_repeat(5,1fr)] items-stretch border-b border-zinc-200">

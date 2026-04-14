@@ -1,3 +1,4 @@
+import ImagenMascota from '@/app/ui/public/adopcion/ImagenMascota';
 import {
   AlertCircle,
   CheckCircle2,
@@ -6,8 +7,10 @@ import {
   Heart,
   XCircle,
 } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
+
+const BLUR_DATA_URL =
+  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjRjRGNEY1Ii8+PC9zdmc+';
 
 // Mock data para las solicitudes del usuario actual
 const misSolicitudes = [
@@ -112,11 +115,12 @@ export default function MisSolicitudesPage() {
                 >
                   {/* Foto de la mascota */}
                   <div className="relative h-48 shrink-0 bg-gray-100 sm:h-auto sm:w-48">
-                    <Image
+                    <ImagenMascota
                       src={solicitud.imagen}
                       alt={solicitud.mascotaNombre}
-                      fill
-                      className="object-cover"
+                      sizes="(min-width: 640px) 192px, 100vw"
+                      quality={70}
+                      blurDataURL={BLUR_DATA_URL}
                     />
                   </div>
 

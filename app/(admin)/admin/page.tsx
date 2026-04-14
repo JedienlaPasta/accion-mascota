@@ -1,11 +1,9 @@
 import AppointmentsPendingToConfirm from '@/app/ui/admin/dashboard/AppointmentsPendingToConfirm';
 import { FilterSelect } from '@/app/ui/admin/dashboard/FilterSelect';
-import SearchBar from '@/app/ui/admin/dashboard/SearchBar';
 import SummaryCard from '@/app/ui/admin/dashboard/SummaryCard';
 import AppointmentTable from '@/app/ui/admin/dashboard/TodayAppointments';
 import { SecondaryButton } from '@/app/ui/components/Button';
-import { Suspense } from 'react';
-import { ChevronRight, Download, ListFilter } from 'lucide-react';
+import { Download, ListFilter } from 'lucide-react';
 import TableWrapper from '@/app/ui/admin/TableWrapper';
 
 const startDate = { year: 2026 };
@@ -44,8 +42,8 @@ export default function PortalAdmin() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-7">
-        <section className="flex flex-col gap-4 xl:col-span-5">
+      <div className="grid gap-4">
+        <section className="flex flex-col gap-4">
           {/* <SummaryCards /> */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <SummaryCard title="Citas" value={100} icon="calendar" />
@@ -59,11 +57,8 @@ export default function PortalAdmin() {
             <AppointmentTable />
           </TableWrapper>
         </section>
-
-        <section className="xl:col-span-2">
-          <AppointmentsPendingToConfirm />
-        </section>
       </div>
+      <AppointmentsPendingToConfirm />
     </div>
   );
 }
