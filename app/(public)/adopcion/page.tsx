@@ -57,7 +57,7 @@ export default function AdopcionPage() {
                   : 'border border-gray-200 bg-white text-gray-600 hover:bg-gray-50'
               }`}
             >
-              🐶 Perros
+              Perros
             </button>
             <button
               onClick={() => setFiltroEspecie('gato')}
@@ -67,7 +67,7 @@ export default function AdopcionPage() {
                   : 'border border-gray-200 bg-white text-gray-600 hover:bg-gray-50'
               }`}
             >
-              🐱 Gatos
+              Gatos
             </button>
           </div>
 
