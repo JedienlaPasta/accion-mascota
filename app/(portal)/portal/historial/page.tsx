@@ -278,7 +278,7 @@ export default function HistorialClinicMascotas() {
         <>
           {/* Overlay */}
           <div
-            className="fixed inset-0 z-40 bg-gray-800/70 transition-all"
+            className="fixed inset-0 z-60 bg-gray-800/70 transition-all"
             onClick={() => setActiveRecord(null)}
           />
           <HistoryDetail
@@ -293,7 +293,6 @@ export default function HistorialClinicMascotas() {
             TipoIcon={tipoIcons[activeRecord.tipo]}
             colors={tipoColors[activeRecord.tipo]}
             petName={getPetName(activeRecord.mascotaId)}
-            // isOpen={!!activeRecord}
             closeModal={() => setActiveRecord(null)}
           />
         </>

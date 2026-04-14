@@ -41,9 +41,9 @@ export default function HistoryDetail({
   return (
     <div
       key={registro.id}
-      className="fixed top-1/2 left-1/2 z-50 w-full max-w-5xl -translate-x-1/2 -translate-y-[80%] overflow-hidden rounded-3xl border border-gray-100 bg-white px-4 py-6 shadow-sm transition-all hover:shadow-md sm:w-[80%] sm:px-4 sm:py-6 lg:px-8 lg:py-10"
+      className="fixed top-1/2 left-1/2 z-70 w-full max-w-5xl -translate-x-1/2 -translate-y-[80%] overflow-hidden rounded-3xl border border-gray-100 bg-white px-4 py-6 shadow-sm transition-all hover:shadow-md sm:w-[80%] sm:px-4 sm:py-6 lg:px-8 lg:py-10"
     >
-      <div className="relative z-50 flex items-start justify-between gap-3 bg-white">
+      <div className="relative flex items-start justify-between gap-3 bg-white">
         {/* Left */}
         <div className="flex items-center gap-3">
           <div
