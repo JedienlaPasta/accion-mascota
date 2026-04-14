@@ -1,3 +1,4 @@
+import { CTAButton } from '@/app/ui/components/Button';
 import {
   Card,
   CardDescription,
@@ -272,35 +273,29 @@ export default function InformacionPage() {
         </section>
 
         <section id="adopcion" className="mt-16 scroll-mt-20">
-          <Card className="border-emerald-700/20 bg-emerald-50/50 shadow-sm">
-            <div className="p-6 md:p-8">
-              <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
-                <div className="flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
-                  <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-emerald-100 shadow-inner">
-                    <HeartHandshake className="h-10 w-10 text-emerald-600" />
+          <Card className="bg-linear-to-br from-gray-50 via-white to-gray-100">
+            <div className="px-6 py-4 md:px-10 md:py-4">
+              <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
+                <div className="flex flex-col items-center gap-4 md:flex-row md:items-start">
+                  <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-sm shadow-emerald-900/20">
+                    <HeartHandshake className="h-6 w-6" />
                   </div>
-                  <div>
-                    <h3 className="mb-2 text-2xl font-bold text-emerald-950">
-                      Dale un hogar a un rescatado con Acción Mascota
+                  <div className="max-w-xl">
+                    <h3 className="text-2xl font-extrabold text-emerald-950">
+                      Dale un hogar a un rescatado
                     </h3>
-                    <p className="max-w-2xl leading-relaxed text-emerald-800/80">
-                      Adoptar es una decisión responsable que cambia vidas. A
-                      través de nuestra plataforma, puedes conocer a los
-                      perritos y gatitos de la comuna que están buscando una
-                      segunda oportunidad y la orientación de la Veterinaria
-                      Municipal.
+                    <p className="mt-2 text-sm leading-relaxed text-emerald-900/70">
+                      Conoce a las mascotas que buscan familia y revisa el
+                      proceso de adopción.
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-2 shrink-0 md:mt-0">
-                  <Link
-                    href="/adopcion"
-                    className="inline-flex h-12 items-center justify-center rounded-lg bg-emerald-600 px-8 text-sm font-semibold text-white transition-all hover:bg-emerald-700 hover:shadow-md focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-emerald-50 focus:outline-none"
-                  >
+                <Link href="/adopcion" className="shrink-0">
+                  <CTAButton hasIcon={false}>
                     Ver mascotas en adopción
-                  </Link>
-                </div>
+                  </CTAButton>
+                </Link>
               </div>
             </div>
           </Card>
