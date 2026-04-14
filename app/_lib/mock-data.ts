@@ -285,7 +285,7 @@ export const servicios: Servicio[] = [
     descripcion:
       'Cirugía de esterilización para perros. Incluye anestesia y medicamentos',
     precio: 25000,
-    duracion: '2-3 horas',
+    duracion: '1-2 horas',
     categoria: 'cirugia',
   },
   {
@@ -294,7 +294,7 @@ export const servicios: Servicio[] = [
     descripcion:
       'Cirugía de esterilización para gatos. Incluye anestesia y medicamentos',
     precio: 20000,
-    duracion: '1-2 horas',
+    duracion: '1 hora',
     categoria: 'cirugia',
   },
   {
@@ -355,8 +355,9 @@ export const campanas: Campana[] = [
 
 // Horarios de atención
 export const horariosAtencion = {
-  lunesViernes: { apertura: '08:30', cierre: '17:30' },
-  sabado: { apertura: '09:00', cierre: '13:00' },
+  lunesJueves: { apertura: '08:30', cierre: '17:30' },
+  viernes: { apertura: '08:30', cierre: '16:30' },
+  sabado: null,
   domingo: null,
   festivos: null,
 };

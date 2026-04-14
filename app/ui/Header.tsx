@@ -6,6 +6,7 @@ import { Menu, X, User } from 'lucide-react';
 import { useAuth } from '../_lib/AuthContext';
 import { Button } from './components/Button';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const navLinks = [
   { href: '/', label: 'Inicio' },
@@ -13,12 +14,12 @@ const navLinks = [
   { href: '/adopcion', label: 'Adopción' },
   { href: '/campanas', label: 'Campañas' },
   { href: '/informacion', label: 'Información' },
-  { href: '/emergencias', label: 'Emergencias' },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { usuario, isLoggedIn, logout } = useAuth();
+  const pathname = usePathname();
 
   return (
     <header className="bg-secondary-backgrounds sticky top-0 z-50 border-b border-gray-200/60 bg-white shadow-sm shadow-gray-200/40">
@@ -50,7 +51,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="hover:text-foreground hover:bg-secondary font-mediums rounded-md px-3 py-2 text-sm text-gray-800 transition-colors"
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors outline-none ${pathname === link.href ? 'bg-gray-100 text-gray-800' : 'text-gray-600/90'}`}
               >
                 <p>{link.label}</p>
               </Link>

@@ -1,7 +1,8 @@
 import { mascotasAdopcion } from '@/app/_lib/mock-data';
-import { ArrowRight, Heart } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowRight, Heart, UserPlus } from 'lucide-react';
 import Link from 'next/link';
+import ImagenMascota from '../public/adopcion/ImagenMascota';
+import { Button, MutedButton } from '../components/Button';
 
 export default function AdoptionSection() {
   // Solo las primeras 4 mascotas para el grid
@@ -28,18 +29,17 @@ export default function AdoptionSection() {
               Municipal para asegurar el bienestar de todos.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
-              <Link
-                href="/adopcion"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-[#006D4E] px-8 text-base font-semibold text-white transition-all hover:bg-[#005a40] hover:shadow-lg"
-              >
-                Ver mascotas en adopción
+              <Link href="/adopcion">
+                <Button className="font-semibold">
+                  Ver mascotas en adopción
+                </Button>
               </Link>
-              <Link
-                href="/adopcion/proceso"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border-2 border-gray-200 bg-white px-6 text-base font-medium text-gray-700 transition-colors hover:border-gray-300 hover:bg-gray-50"
-              >
-                Conoce el proceso
-                <ArrowRight className="h-4 w-4" />
+
+              <Link href="/adopcion/proceso">
+                <MutedButton className="gap-2">
+                  Conoce el proceso
+                  <ArrowRight className="h-4 w-4" />
+                </MutedButton>
               </Link>
             </div>
           </div>
@@ -52,12 +52,10 @@ export default function AdoptionSection() {
                 href={`/adopcion/${mascotas[0]?.id}`}
                 className="group relative col-span-2 row-span-1 overflow-hidden rounded-4xl bg-gray-100"
               >
-                <Image
-                  width={400}
-                  height={400}
+                <ImagenMascota
                   src={mascotas[0]?.imagenes[0]}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   alt={mascotas[0]?.nombre}
+                  className="overflow-hidden rounded-4xl bg-transparent! transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <span className="font-bold text-white">
@@ -71,12 +69,10 @@ export default function AdoptionSection() {
                 href={`/adopcion/${mascotas[1]?.id}`}
                 className="group relative col-span-2 row-span-2 overflow-hidden rounded-4xl bg-gray-200"
               >
-                <Image
-                  width={400}
-                  height={400}
+                <ImagenMascota
                   src={mascotas[1]?.imagenes[0]}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   alt={mascotas[1]?.nombre}
+                  className="overflow-hidden rounded-4xl bg-transparent! transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <span className="text-lg font-bold text-white">
@@ -90,12 +86,10 @@ export default function AdoptionSection() {
                 href={`/adopcion/${mascotas[2]?.id}`}
                 className="group relative col-span-2 row-span-2 overflow-hidden rounded-[2.5rem] bg-gray-300"
               >
-                <Image
-                  width={400}
-                  height={400}
+                <ImagenMascota
                   src={mascotas[2]?.imagenes[0]}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   alt={mascotas[2]?.nombre}
+                  className="overflow-hidden rounded-[2.5rem] bg-transparent! transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <span className="text-xl font-bold text-white">
@@ -109,12 +103,10 @@ export default function AdoptionSection() {
                 href={`/adopcion/${mascotas[3]?.id}`}
                 className="group relative col-span-2 row-span-1 overflow-hidden rounded-4xl bg-gray-100"
               >
-                <Image
-                  width={400}
-                  height={400}
+                <ImagenMascota
                   src={mascotas[3]?.imagenes[0]}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   alt={mascotas[3]?.nombre}
+                  className="overflow-hidden rounded-4xl bg-transparent! transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <span className="font-bold text-white">

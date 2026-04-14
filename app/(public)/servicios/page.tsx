@@ -66,12 +66,12 @@ export default function ServiciosPage() {
               <div>
                 <p className="text-foreground font-medium">Horario</p>
                 <p className="text-muted-foreground text-sm">
-                  Lun-Vie: {horariosAtencion.lunesViernes.apertura} -{' '}
-                  {horariosAtencion.lunesViernes.cierre}
+                  Lun-Jue: {horariosAtencion.lunesJueves.apertura} -{' '}
+                  {horariosAtencion.lunesJueves.cierre}
                 </p>
                 <p className="text-muted-foreground text-sm">
-                  Sáb: {horariosAtencion.sabado.apertura} -{' '}
-                  {horariosAtencion.sabado.cierre}
+                  Vie: {horariosAtencion.viernes.apertura} -{' '}
+                  {horariosAtencion.viernes.cierre}
                 </p>
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function ServiciosPage() {
               </div>
               <div>
                 <p className="text-foreground font-medium">Contacto</p>
-                <p className="text-muted-foreground text-sm">+56 2 1234 5678</p>
+                <p className="text-muted-foreground text-sm">+56 9 1234 5678</p>
                 <p className="text-muted-foreground text-sm">
                   veterinaria@tucomuna.cl
                 </p>

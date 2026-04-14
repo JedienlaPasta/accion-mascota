@@ -82,7 +82,7 @@ export function SessionHeader() {
                   aria-expanded={userMenuOpen}
                   onClick={() => setUserMenuOpen((prev) => !prev)}
                 >
-                  <span className="flex size-10 items-center justify-center rounded-full bg-emerald-700/80 text-xl font-bold text-zinc-50">
+                  <span className="flex size-10 items-center justify-center rounded-full bg-emerald-800/80 text-xl font-bold text-zinc-50">
                     {userName.charAt(0)}
                   </span>
                   <ChevronDown className="size-4 text-zinc-400" />

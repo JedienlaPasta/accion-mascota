@@ -6,7 +6,11 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { PawPrint, LogIn, ArrowLeft, ShieldCheck } from 'lucide-react';
-import { Button, RoundMutedButton } from '../../ui/components/Button';
+import {
+  Button,
+  RoundMutedButton,
+  SecondaryButton,
+} from '../../ui/components/Button';
 import { useAuth } from '@/app/_lib/AuthContext';
 import Input from '@/app/ui/components/Input';
 import Image from 'next/image';
@@ -129,13 +133,13 @@ export default function LoginPage() {
                 Demo: Ingresa como funcionario
               </p>
             </div>
-            <RoundMutedButton
+            <SecondaryButton
               onClick={handleAdminLogin}
               disabled={loading}
-              className=""
+              className="px-4"
             >
               Ingresar
-            </RoundMutedButton>
+            </SecondaryButton>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ export function Footer() {
               <Image
                 src="/logo.png"
                 alt="cuidapet logo"
-                width={100}
+                width={120}
                 height={40}
                 className="h-22 w-40 object-cover p-3 brightness-0 invert"
               />
@@ -129,7 +129,7 @@ export function Footer() {
               alt="cuidapet logo"
               width={200}
               height={40}
-              className="h-10 w-32 object-cover opacity-80"
+              className="w-32 object-cover opacity-80"
             />
             <span className="hidden h-10 w-px bg-emerald-800 md:block"></span>
             <div>

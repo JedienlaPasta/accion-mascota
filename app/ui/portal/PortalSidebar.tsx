@@ -83,7 +83,7 @@ export function PortalSidebar() {
                   aria-current={isActive ? 'page' : undefined}
                   className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors ${
                     isActive
-                      ? 'bg-emerald-700 text-white shadow-sm shadow-emerald-900/20'
+                      ? 'bg-emerald-800/90 text-white shadow-sm shadow-emerald-900/20'
                       : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'
                   }`}
                 >

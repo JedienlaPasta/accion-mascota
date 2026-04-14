@@ -10,8 +10,13 @@ import {
   Scissors,
 } from 'lucide-react';
 import { useAuth } from '@/app/_lib/AuthContext';
-import { CTAButton, RoundMutedButton } from '../components/Button';
+import {
+  CTAButton,
+  MutedCTAButton,
+  RoundMutedButton,
+} from '../components/Button';
 import Image from 'next/image';
+import ImagenMascota from '../public/adopcion/ImagenMascota';
 
 export function HeroSection() {
   const { isLoggedIn } = useAuth();
@@ -25,10 +30,11 @@ export function HeroSection() {
             <div className="mb-6 flex items-center justify-start gap-4 sm:gap-10">
               <Image
                 src="/escudo.png"
-                alt="Hero"
+                alt="HeroLogo"
                 width={200}
                 height={200}
-                className="w-30 shrink-0"
+                priority
+                className="h-10 w-auto shrink-0"
               />
 
               <div className="relative size-6">
@@ -37,9 +43,8 @@ export function HeroSection() {
                 <PawPrint className="absolute top-5 -left-2 h-6 w-6 -rotate-65 text-amber-500/60" />
               </div>
 
-              <div className="inline-flex shrink-0 items-center gap-2 rounded-full bg-emerald-800/10 px-3 py-1 text-sm font-medium text-emerald-800">
+              <div className="inline-flex shrink-0 items-center gap-2 rounded-full bg-emerald-800/80 px-3 py-1 text-sm font-medium text-emerald-50">
                 <Heart className="h-4 w-4" />
-                {/* <BookHeart className="h-4 w-4" /> */}
                 Tenencia Responsable
               </div>
             </div>
@@ -82,25 +87,24 @@ export function HeroSection() {
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
               {isLoggedIn ? (
                 <Link href="/portal/citas/nueva">
-                  <CTAButton className="w-full gap-2 sm:w-auto">
-                    <Calendar className="h-5 w-5" />
-                    Agendar Cita
-                  </CTAButton>
+                  <CTAButton>Agendar Cita</CTAButton>
                 </Link>
               ) : (
                 <Link href="/login">
-                  <CTAButton className="w-full gap-2 sm:w-auto">
-                    <Calendar className="h-5 w-5" />
-                    Agendar Cita
-                  </CTAButton>
+                  <CTAButton>Agendar Cita</CTAButton>
                 </Link>
               )}
+
               <Link href="/servicios">
+                <MutedCTAButton>Ver Servicios</MutedCTAButton>
+              </Link>
+
+              {/* <Link href="/servicios">
                 <RoundMutedButton className="w-full gap-2 bg-transparent sm:w-auto">
                   Ver Servicios
                   <ArrowRight className="h-4 w-4" />
                 </RoundMutedButton>
-              </Link>
+              </Link> */}
             </div>
 
             {/* Stats */}
@@ -128,19 +132,23 @@ export function HeroSection() {
           <div className="relative hidden rounded-xl lg:block">
             <div className="relative mx-auto aspect-square w-full max-w-lg">
               {/* Main card */}
-              <Image
+              {/* <Image
                 src="/dog_cat_01.jpg"
                 alt="Mascota"
                 width={500}
                 height={500}
                 className="inset-0 size-full rounded-4xl object-cover"
+              /> */}
+              <ImagenMascota
+                src="/dog_cat_01.jpg"
+                alt="Mascota"
+                className="overflow-hidden rounded-4xl bg-gray-100!"
               />
 
               {/* Floating cards */}
               <div className="bg-card border-border absolute -top-4 -left-4 rounded-xl border p-4 shadow-lg">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
-                    {/* <Heart className="h-5 w-5 text-green-600" /> */}
                     <Syringe className="h-5 w-5 text-green-600" />
                   </div>
                   <div>
@@ -153,7 +161,6 @@ export function HeroSection() {
               <div className="bg-card border-border absolute -right-4 -bottom-4 rounded-xl border p-4 shadow-lg">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
-                    {/* <Calendar className="h-5 w-5 text-amber-600" /> */}
                     <Scissors className="h-5 w-5 text-amber-600" />
                   </div>
                   <div>

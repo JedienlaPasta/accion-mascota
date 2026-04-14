@@ -3,13 +3,18 @@
 import Link from 'next/link';
 import { PawPrint, UserPlus, LogIn } from 'lucide-react';
 import { useAuth } from '../../_lib/AuthContext';
-import { Button, RoundMutedButton } from '../components/Button';
+import {
+  Button,
+  CTAButton,
+  MutedCTAButton,
+  RoundMutedButton,
+} from '../components/Button';
 import Image from 'next/image';
 
 export function CTASection() {
   const { isLoggedIn } = useAuth();
 
-  if (!isLoggedIn) {
+  if (isLoggedIn) {
     return (
       <section className="bg-secondary-background py-16 lg:py-36">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
@@ -63,7 +68,7 @@ export function CTASection() {
           un solo lugar.
         </p>
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          <Link href="/registro">
+          {/* <Link href="/registro">
             <Button className="w-full gap-2 sm:w-auto">
               <UserPlus className="h-5 w-5" />
               Crear una cuenta
@@ -74,6 +79,14 @@ export function CTASection() {
               <LogIn className="h-5 w-5" />
               Ya tengo cuenta
             </RoundMutedButton>
+          </Link> */}
+
+          <Link href="/login">
+            <CTAButton>Iniciar sesión</CTAButton>
+          </Link>
+
+          <Link href="/registro">
+            <MutedCTAButton>Crear cuenta</MutedCTAButton>
           </Link>
         </div>
       </div>
