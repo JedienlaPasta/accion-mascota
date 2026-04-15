@@ -55,3 +55,7 @@ tsconfig.tsbuildinfo
 *.tar.gz
 *.zip
 docker-compose.override.yml
+docker-compose.yml
+
+# pnpm
+.pnpm-store/

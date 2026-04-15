@@ -26,7 +26,7 @@ RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
 
-# Configuración de caché para Next.js
+# Configuracion de cache para Next.js
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
