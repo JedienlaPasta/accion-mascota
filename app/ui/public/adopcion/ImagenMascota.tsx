@@ -40,7 +40,7 @@ export default function ImagenMascota({
         className={`object-cover transition-opacity duration-500 ease-in-out ${
           isLoading ? 'opacity-0' : 'opacity-100'
         } ${imageClassName ?? ''}`}
-        onLoadingComplete={() => setIsloading(false)}
+        onLoad={() => setIsloading(false)}
       />
     </div>
   );
