@@ -1,51 +1,9 @@
 'use client';
 
+import { adminTodayAppointments } from '@/app/_lib/mock-data';
 import { Ellipsis } from 'lucide-react';
 
 type AppointmentStatus = 'confirmada' | 'pendiente';
-
-const mockData = [
-  {
-    horaInicio: '10:00',
-    horaFin: '10:30',
-    nombreMascota: 'Luna',
-    nombrePropietario: 'María González',
-    tipoConsulta: 'Consulta General',
-    estado: 'confirmada' as const,
-  },
-  {
-    horaInicio: '10:30',
-    horaFin: '11:00',
-    nombreMascota: 'Max',
-    nombrePropietario: 'Juan Pérez',
-    tipoConsulta: 'Vacunación',
-    estado: 'pendiente' as const,
-  },
-  {
-    horaInicio: '11:00',
-    horaFin: '11:30',
-    nombreMascota: 'Toby',
-    nombrePropietario: 'Ana Silva',
-    tipoConsulta: 'Control Post-operatorio',
-    estado: 'confirmada' as const,
-  },
-  {
-    horaInicio: '11:30',
-    horaFin: '12:00',
-    nombreMascota: 'Mochi',
-    nombrePropietario: 'Carlos Rojas',
-    tipoConsulta: 'Desparasitación',
-    estado: 'confirmada' as const,
-  },
-  {
-    horaInicio: '12:00',
-    horaFin: '12:30',
-    nombreMascota: 'Rocky',
-    nombrePropietario: 'Pedro Martínez',
-    tipoConsulta: 'Consulta General',
-    estado: 'pendiente' as const,
-  },
-];
 
 export default function AppointmentTable() {
   return (
@@ -67,7 +25,7 @@ export default function AppointmentTable() {
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-200/70 bg-white">
-            {mockData.map((item) => (
+            {adminTodayAppointments.map((item) => (
               <AppointmentTableRow
                 key={`${item.horaInicio}-${item.nombreMascota}`}
                 horaInicio={item.horaInicio}

@@ -18,10 +18,13 @@ export interface Mascota {
   fechaNacimiento: string;
   sexo: 'macho' | 'hembra';
   color: string;
+  peso: string;
+  descripcion: string;
   chip: string | null;
   esterilizado: boolean;
   foto: string;
   propietarioId: string;
+  propietarioNombre: string;
 }
 
 export interface MascotaAdopcion {
@@ -114,10 +117,13 @@ export const mascotas: Mascota[] = [
     fechaNacimiento: '2021-03-15',
     sexo: 'hembra',
     color: 'Negro con manchas blancas',
+    peso: '12kg',
+    descripcion: 'Negro con manchas blancas',
     chip: '956000012345678',
     esterilizado: true,
     foto: '/pets/luna.jpg',
     propietarioId: 'usr-001',
+    propietarioNombre: 'María González Pérez',
   },
   {
     id: 'pet-002',
@@ -127,10 +133,13 @@ export const mascotas: Mascota[] = [
     fechaNacimiento: '2022-08-20',
     sexo: 'macho',
     color: 'Atigrado gris',
+    peso: '1.5kg',
+    descripcion: 'Atigrado gris',
     chip: '956000012345679',
     esterilizado: true,
     foto: '/pets/michi.jpg',
     propietarioId: 'usr-001',
+    propietarioNombre: 'María González Pérez',
   },
   {
     id: 'pet-003',
@@ -140,10 +149,13 @@ export const mascotas: Mascota[] = [
     fechaNacimiento: '2023-01-10',
     sexo: 'macho',
     color: 'Dorado',
+    peso: '8kg',
+    descripcion: 'Dorado',
     chip: null,
     esterilizado: false,
     foto: '/pets/rocky.jpg',
     propietarioId: 'usr-001',
+    propietarioNombre: 'María González Pérez',
   },
 ];
 
@@ -387,11 +399,317 @@ export const veterinariasEmergencia = [
   },
 ];
 
+export type PropietarioAdmin = Usuario & {
+  contacto: string;
+  correo: string;
+  mascotas: number;
+  registro: string;
+};
+
+export const propietariosAdmin: PropietarioAdmin[] = [
+  {
+    id: 'usr-001',
+    nombre: 'María González Pérez',
+    rut: '12345678-9',
+    email: 'maria.gonzalez@example.com',
+    telefono: '+56912345678',
+    direccion: 'Av. Las Condes 123, Las Condes',
+    rol: 'ciudadano',
+    contacto: '+56912345678',
+    correo: 'maria.gonzalez@example.com',
+    mascotas: 2,
+    registro: '14-03-2025',
+  },
+  {
+    id: 'usr-002',
+    nombre: 'Juan Pérez Silva',
+    rut: '14567890-1',
+    email: 'juan.perez@example.com',
+    telefono: '+56987654321',
+    direccion: 'Calle Los Olivos 456, Providencia',
+    rol: 'ciudadano',
+    contacto: '+56987654321',
+    correo: 'juan.perez@example.com',
+    mascotas: 1,
+    registro: '19-05-2025',
+  },
+  {
+    id: 'usr-003',
+    nombre: 'Pedro Martínez Rojas',
+    rut: '16789012-3',
+    email: 'pedro.martinez@example.com',
+    telefono: '+56912345678',
+    direccion: 'Los Aromos 789, La Florida',
+    rol: 'ciudadano',
+    contacto: '+56912345678',
+    correo: 'pedro.martinez@example.com',
+    mascotas: 1,
+    registro: '09-08-2025',
+  },
+  {
+    id: 'usr-004',
+    nombre: 'Carlos Rojas Díaz',
+    rut: '11234567-8',
+    email: 'carlos.rojas@example.com',
+    telefono: '+56944444444',
+    direccion: 'Av. Principal 101, Nunoa',
+    rol: 'ciudadano',
+    contacto: '+56944444444',
+    correo: 'carlos.rojas@example.com',
+    mascotas: 1,
+    registro: '04-09-2025',
+  },
+  {
+    id: 'usr-005',
+    nombre: 'Lucia Fernandez Castro',
+    rut: '15678901-2',
+    email: 'lucia.fernandez@example.com',
+    telefono: '+56922222222',
+    direccion: 'Calle Nueva 222, Providencia',
+    rol: 'ciudadano',
+    contacto: '+56922222222',
+    correo: 'lucia.fernandez@example.com',
+    mascotas: 2,
+    registro: '11-10-2025',
+  },
+  {
+    id: 'usr-006',
+    nombre: 'Ana Silva Moreno',
+    rut: '13456789-0',
+    email: 'ana.silva@example.com',
+    telefono: '+56955555555',
+    direccion: 'Pasaje El Sol 333, Macul',
+    rol: 'ciudadano',
+    contacto: '+56955555555',
+    correo: 'ana.silva@example.com',
+    mascotas: 1,
+    registro: '31-10-2025',
+  },
+  {
+    id: 'usr-007',
+    nombre: 'Roberto Díaz Fuentes',
+    rut: '17890123-4',
+    email: 'robert.diaz@example.com',
+    telefono: '+56911111111',
+    direccion: 'Av. Libertador 444, Santiago Centro',
+    rol: 'ciudadano',
+    contacto: '+56911111111',
+    correo: 'robert.diaz@example.com',
+    mascotas: 3,
+    registro: '07-11-2025',
+  },
+];
+
+export type AdminCalendarEvent = {
+  id: string;
+  day: number;
+  start: string;
+  end: string;
+  title: string;
+  subtitle?: string;
+  status: 'Agendado' | 'Completado' | 'Cancelado' | 'Pendiente';
+};
+
+export const adminCalendarEvents: AdminCalendarEvent[] = [
+  {
+    id: 'a1',
+    day: 0,
+    start: '09:00',
+    end: '10:00',
+    title: 'Luna',
+    subtitle: 'Consulta',
+    status: 'Completado',
+  },
+  {
+    id: 'a2',
+    day: 0,
+    start: '10:30',
+    end: '11:30',
+    title: 'Koda',
+    subtitle: 'Control',
+    status: 'Cancelado',
+  },
+  {
+    id: 'a3',
+    day: 1,
+    start: '09:30',
+    end: '10:30',
+    title: 'Roko',
+    subtitle: 'Revisión',
+    status: 'Completado',
+  },
+  {
+    id: 'a4',
+    day: 1,
+    start: '11:00',
+    end: '12:00',
+    title: 'Morita',
+    subtitle: 'Dolor',
+    status: 'Agendado',
+  },
+  {
+    id: 'a5',
+    day: 2,
+    start: '10:30',
+    end: '11:30',
+    title: 'Manchitas',
+    subtitle: 'Dolor',
+    status: 'Pendiente',
+  },
+  {
+    id: 'a6',
+    day: 2,
+    start: '14:00',
+    end: '15:00',
+    title: 'Milo',
+    subtitle: 'Dolor',
+    status: 'Pendiente',
+  },
+  {
+    id: 'a7',
+    day: 3,
+    start: '08:30',
+    end: '09:30',
+    title: 'Leo',
+    subtitle: 'Chequeo',
+    status: 'Agendado',
+  },
+  {
+    id: 'a8',
+    day: 4,
+    start: '11:00',
+    end: '12:00',
+    title: 'Canela',
+    subtitle: 'Resultados',
+    status: 'Agendado',
+  },
+];
+
+export type AdminTodayAppointment = {
+  horaInicio: string;
+  horaFin: string;
+  nombreMascota: string;
+  nombrePropietario: string;
+  tipoConsulta: string;
+  estado: 'confirmada' | 'pendiente';
+};
+
+export const adminTodayAppointments: AdminTodayAppointment[] = [
+  {
+    horaInicio: '10:00',
+    horaFin: '10:30',
+    nombreMascota: 'Luna',
+    nombrePropietario: 'María González',
+    tipoConsulta: 'Consulta General',
+    estado: 'confirmada',
+  },
+  {
+    horaInicio: '10:30',
+    horaFin: '11:00',
+    nombreMascota: 'Max',
+    nombrePropietario: 'Juan Pérez',
+    tipoConsulta: 'Vacunación',
+    estado: 'pendiente',
+  },
+  {
+    horaInicio: '11:00',
+    horaFin: '11:30',
+    nombreMascota: 'Toby',
+    nombrePropietario: 'Ana Silva',
+    tipoConsulta: 'Control Post-operatorio',
+    estado: 'confirmada',
+  },
+  {
+    horaInicio: '11:30',
+    horaFin: '12:00',
+    nombreMascota: 'Mochi',
+    nombrePropietario: 'Carlos Rojas',
+    tipoConsulta: 'Desparasitación',
+    estado: 'confirmada',
+  },
+  {
+    horaInicio: '12:00',
+    horaFin: '12:30',
+    nombreMascota: 'Rocky',
+    nombrePropietario: 'Pedro Martínez',
+    tipoConsulta: 'Consulta General',
+    estado: 'pendiente',
+  },
+];
+
+export type AdminVisitRegistry = {
+  registro: string;
+  nombreMascota: string;
+  especie: 'Perro' | 'Gato' | 'Otro';
+  tipoAtencion: 'consulta' | 'vacuna' | 'cirugia' | 'control' | 'emergencia';
+  diagnostico: string;
+  veterinario: string;
+  microchip: string;
+};
+
+// Dataset centralizado de atenciones para panel admin (VisitsTable)
+export const adminVisitRegistry: AdminVisitRegistry[] = [
+  {
+    registro: '2025-12-15',
+    nombreMascota: 'Luna',
+    especie: 'Perro',
+    tipoAtencion: 'consulta',
+    diagnostico: 'Gastritis leve',
+    veterinario: 'Dr. Carlos Muñoz',
+    microchip: '956000012345678',
+  },
+  {
+    registro: '2025-10-01',
+    nombreMascota: 'Luna',
+    especie: 'Perro',
+    tipoAtencion: 'vacuna',
+    diagnostico: 'Paciente sano, apto para vacunación',
+    veterinario: 'Dra. Ana Soto',
+    microchip: '956000012345678',
+  },
+  {
+    registro: '2024-06-20',
+    nombreMascota: 'Luna',
+    especie: 'Perro',
+    tipoAtencion: 'cirugia',
+    diagnostico: 'Procedimiento exitoso sin complicaciones',
+    veterinario: 'Dr. Carlos Muñoz',
+    microchip: '956000012345678',
+  },
+  {
+    registro: '2025-11-10',
+    nombreMascota: 'Michi',
+    especie: 'Gato',
+    tipoAtencion: 'control',
+    diagnostico: 'Paciente en excelente estado de salud',
+    veterinario: 'Dra. Ana Soto',
+    microchip: '956000012345679',
+  },
+  {
+    registro: '2025-08-15',
+    nombreMascota: 'Michi',
+    especie: 'Gato',
+    tipoAtencion: 'vacuna',
+    diagnostico: 'Paciente sano, apto para vacunación',
+    veterinario: 'Dr. Carlos Muñoz',
+    microchip: '956000012345679',
+  },
+  {
+    registro: '2025-09-05',
+    nombreMascota: 'Rocky',
+    especie: 'Perro',
+    tipoAtencion: 'vacuna',
+    diagnostico: 'Cachorro sano',
+    veterinario: 'Dra. Ana Soto',
+    microchip: 'Sin chip',
+  },
+];
+
 // Todas las mascotas para el panel admin
-export const todasLasMascotas: (Mascota & { propietarioNombre: string })[] = [
-  { ...mascotas[0], propietarioNombre: 'María González Pérez' },
-  { ...mascotas[1], propietarioNombre: 'María González Pérez' },
-  { ...mascotas[2], propietarioNombre: 'María González Pérez' },
+export const todasLasMascotas: Mascota[] = [
+  { ...mascotas[0] },
+  { ...mascotas[1] },
+  { ...mascotas[2] },
   {
     id: 'pet-004',
     nombre: 'Toby',
@@ -400,11 +718,13 @@ export const todasLasMascotas: (Mascota & { propietarioNombre: string })[] = [
     fechaNacimiento: '2020-05-12',
     sexo: 'macho',
     color: 'Gris sal y pimienta',
+    peso: '7kg',
+    descripcion: 'Gris sal y pimienta',
     chip: '956000012345680',
     esterilizado: true,
     foto: '/pets/toby.jpg',
     propietarioId: 'usr-002',
-    propietarioNombre: 'Juan Pérez Rojas',
+    propietarioNombre: 'Juan Pérez Silva',
   },
   {
     id: 'pet-005',
@@ -414,11 +734,45 @@ export const todasLasMascotas: (Mascota & { propietarioNombre: string })[] = [
     fechaNacimiento: '2023-02-28',
     sexo: 'hembra',
     color: 'Crema con puntos oscuros',
+    peso: '3.5kg',
+    descripcion: 'Crema con puntos oscuros',
     chip: '956000012345681',
     esterilizado: false,
     foto: '/pets/nina.jpg',
-    propietarioId: 'usr-003',
-    propietarioNombre: 'Carmen Silva López',
+    propietarioId: 'usr-004',
+    propietarioNombre: 'Carlos Rojas Díaz',
+  },
+  {
+    id: 'pet-006',
+    nombre: 'Max',
+    especie: 'perro',
+    raza: 'Mestizo mediano',
+    fechaNacimiento: '2021-10-08',
+    sexo: 'macho',
+    color: 'Negro con manchas blancas',
+    peso: '12kg',
+    descripcion: 'Negro con manchas blancas',
+    chip: null,
+    esterilizado: false,
+    foto: '/pets/max.jpg',
+    propietarioId: 'usr-002',
+    propietarioNombre: 'Juan Pérez Silva',
+  },
+  {
+    id: 'pet-007',
+    nombre: 'Mochi',
+    especie: 'gato',
+    raza: 'Común europeo',
+    fechaNacimiento: '2023-06-18',
+    sexo: 'hembra',
+    color: 'Atigrado gris',
+    peso: '1.5kg',
+    descripcion: 'Atigrado gris',
+    chip: '956000012345681',
+    esterilizado: true,
+    foto: '/pets/mochi.jpg',
+    propietarioId: 'usr-004',
+    propietarioNombre: 'Carlos Rojas Díaz',
   },
 ];
 
@@ -428,27 +782,75 @@ export const todasLasCitas: (Cita & { propietarioNombre: string })[] = [
   { ...citas[1], propietarioNombre: 'María González Pérez' },
   {
     id: 'cita-003',
-    mascotaId: 'pet-004',
-    mascotaNombre: 'Toby',
+    mascotaId: 'pet-006',
+    mascotaNombre: 'Max',
     propietarioId: 'usr-002',
-    propietarioNombre: 'Juan Pérez Rojas',
-    fecha: '2026-01-23',
-    hora: '11:00',
-    tipo: 'consulta',
-    estado: 'confirmada',
-    notas: 'Problemas de piel, posible alergia',
+    propietarioNombre: 'Juan Pérez Silva',
+    fecha: '2026-04-21',
+    hora: '10:30',
+    tipo: 'vacuna',
+    estado: 'pendiente',
+    notas: 'Vacunación anual',
   },
   {
     id: 'cita-004',
-    mascotaId: 'pet-005',
-    mascotaNombre: 'Nina',
+    mascotaId: 'pet-004',
+    mascotaNombre: 'Toby',
+    propietarioId: 'usr-006',
+    propietarioNombre: 'Ana Silva Moreno',
+    fecha: '2026-04-21',
+    hora: '11:00',
+    tipo: 'control',
+    estado: 'confirmada',
+    notas: 'Control post-operatorio',
+  },
+  {
+    id: 'cita-005',
+    mascotaId: 'pet-007',
+    mascotaNombre: 'Mochi',
+    propietarioId: 'usr-004',
+    propietarioNombre: 'Carlos Rojas Díaz',
+    fecha: '2026-04-21',
+    hora: '11:30',
+    tipo: 'consulta',
+    estado: 'confirmada',
+    notas: 'Desparasitación',
+  },
+  {
+    id: 'cita-006',
+    mascotaId: 'pet-003',
+    mascotaNombre: 'Rocky',
     propietarioId: 'usr-003',
-    propietarioNombre: 'Carmen Silva López',
-    fecha: '2026-01-24',
-    hora: '15:30',
-    tipo: 'vacuna',
+    propietarioNombre: 'Pedro Martínez Rojas',
+    fecha: '2026-04-21',
+    hora: '12:00',
+    tipo: 'consulta',
     estado: 'pendiente',
-    notas: 'Primera vacuna triple felina',
+    notas: 'Consulta general',
+  },
+  {
+    id: 'cita-007',
+    mascotaId: 'pet-001',
+    mascotaNombre: 'Luna',
+    propietarioId: 'usr-001',
+    propietarioNombre: 'María González Pérez',
+    fecha: '2026-04-24',
+    hora: '09:00',
+    tipo: 'control',
+    estado: 'completada',
+    notas: 'Chequeo general',
+  },
+  {
+    id: 'cita-008',
+    mascotaId: 'pet-007',
+    mascotaNombre: 'Mochi',
+    propietarioId: 'usr-004',
+    propietarioNombre: 'Carlos Rojas Díaz',
+    fecha: '2026-04-24',
+    hora: '11:00',
+    tipo: 'consulta',
+    estado: 'confirmada',
+    notas: 'Resultados de laboratorio',
   },
 ];
 

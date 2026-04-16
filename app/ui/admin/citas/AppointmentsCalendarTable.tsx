@@ -4,6 +4,7 @@ import { capitalize } from '@/app/_lib/utils/format';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import Dropdown from '../../components/Dropdown';
+import { adminCalendarEvents } from '@/app/_lib/mock-data';
 
 const DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
 const SLOT_MIN = 15;
@@ -12,91 +13,6 @@ const DAY_END = '17:30';
 const SLOT_HEIGHT = 30;
 
 type Status = 'Agendado' | 'Completado' | 'Cancelado' | 'Pendiente';
-
-type Appointment = {
-  id: string;
-  day: number;
-  start: string;
-  end: string;
-  title: string;
-  subtitle?: string;
-  status: Status;
-};
-
-const MOCK_EVENTS: Appointment[] = [
-  {
-    id: 'a1',
-    day: 0,
-    start: '09:00',
-    end: '10:00',
-    title: 'Luna',
-    subtitle: 'Consulta',
-    status: 'Completado',
-  },
-  {
-    id: 'a2',
-    day: 0,
-    start: '10:30',
-    end: '11:30',
-    title: 'Koda',
-    subtitle: 'Control',
-    status: 'Cancelado',
-  },
-  {
-    id: 'a3',
-    day: 1,
-    start: '09:30',
-    end: '10:30',
-    title: 'Roko',
-    subtitle: 'Revisión',
-    status: 'Completado',
-  },
-  {
-    id: 'a4',
-    day: 1,
-    start: '11:00',
-    end: '12:00',
-    title: 'Morita',
-    subtitle: 'Dolor',
-    status: 'Agendado',
-  },
-  {
-    id: 'a5',
-    day: 2,
-    start: '10:30',
-    end: '11:30',
-    title: 'Manchitas',
-    subtitle: 'Dolor',
-    status: 'Pendiente',
-  },
-  {
-    id: 'a6',
-    day: 2,
-    start: '14:00',
-    end: '15:00',
-    title: 'Milo',
-    subtitle: 'Dolor',
-    status: 'Pendiente',
-  },
-  {
-    id: 'a7',
-    day: 3,
-    start: '08:30',
-    end: '09:30',
-    title: 'Leo',
-    subtitle: 'Chequeo',
-    status: 'Agendado',
-  },
-  {
-    id: 'a8',
-    day: 4,
-    start: '11:00',
-    end: '12:00',
-    title: 'Canela',
-    subtitle: 'Resultados',
-    status: 'Agendado',
-  },
-];
 
 function toMin(t: string) {
   const [hour, minute] = t.split(':').map(Number);
@@ -152,8 +68,8 @@ export default function AppointmentsCalendarTable() {
   );
 
   const events = useMemo(() => {
-    if (statusFilter === 'Todos') return MOCK_EVENTS;
-    return MOCK_EVENTS.filter((e) => e.status === statusFilter);
+    if (statusFilter === 'Todos') return adminCalendarEvents;
+    return adminCalendarEvents.filter((e) => e.status === statusFilter);
   }, [statusFilter]);
 
   const startMin = toMin(DAY_START);

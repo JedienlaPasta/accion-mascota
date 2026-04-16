@@ -1,89 +1,13 @@
+import { adminVisitRegistry } from '@/app/_lib/mock-data';
 import {
   Calendar,
   Ellipsis,
   Syringe,
   Stethoscope,
   FileText,
-  Radar,
   FileCheck,
 } from 'lucide-react';
 import { ComponentType } from 'react';
-
-type VisitRegistry = {
-  registro: string;
-  nombreMascota: string;
-  especie: string;
-  tipoAtencion: 'consulta' | 'vacuna' | 'cirugia' | 'control';
-  diagnostico: string;
-  veterinario: string;
-  microchip: string;
-};
-
-const mockData: VisitRegistry[] = [
-  {
-    registro: '14-03-2025',
-    nombreMascota: 'Luna',
-    especie: 'Gato',
-    tipoAtencion: 'consulta',
-    diagnostico: 'Gastritis leve',
-    veterinario: 'Dr. Carlos Muñoz',
-    microchip: '956000012345678',
-  },
-  {
-    registro: '19-05-2025',
-    nombreMascota: 'Luna',
-    especie: 'Gato',
-    tipoAtencion: 'vacuna',
-    diagnostico: 'Paciente sano, apto para vacunación',
-    veterinario: 'Dra. Ana Soto',
-    microchip: '956000012345679',
-  },
-  {
-    registro: '09-08-2025',
-    nombreMascota: 'Luna',
-    especie: 'Gato',
-    tipoAtencion: 'cirugia',
-    diagnostico: 'Procedimiento exitoso sin complicaciones',
-    veterinario: 'Dr. Carlos Muñoz',
-    microchip: '956000012345680',
-  },
-  {
-    registro: '04-09-2025',
-    nombreMascota: 'Mochi',
-    especie: 'Gato',
-    tipoAtencion: 'control',
-    diagnostico: 'Paciente en excelente estado',
-    veterinario: 'Dra. Ana Soto',
-    microchip: '956000012345681',
-  },
-  {
-    registro: '11-10-2025',
-    nombreMascota: 'Mochi',
-    especie: 'Gato',
-    tipoAtencion: 'vacuna',
-    diagnostico: 'Paciente sano, apto para vacunación',
-    veterinario: 'Dr. Carlos Muñoz',
-    microchip: '956000012345682',
-  },
-  {
-    registro: '	31-10-2025',
-    nombreMascota: 'Toby',
-    especie: 'Perro',
-    tipoAtencion: 'vacuna',
-    diagnostico: 'Cachorro sano',
-    veterinario: 'Dra. Ana Soto',
-    microchip: '956000012345683',
-  },
-  {
-    registro: '07-11-2025',
-    nombreMascota: 'Rocky',
-    especie: 'Perro',
-    tipoAtencion: 'control',
-    diagnostico: 'Paciente en excelente estado',
-    veterinario: 'Dra. Ana Soto',
-    microchip: '956000012345684',
-  },
-];
 
 export default function VisitsTable() {
   return (
@@ -103,9 +27,9 @@ export default function VisitsTable() {
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-200/70 bg-white">
-            {mockData.map((item) => (
+            {adminVisitRegistry.map((item) => (
               <VisitTableRow
-                key={`${item.microchip}`}
+                key={`${item.microchip + item.registro + item.tipoAtencion}`}
                 nombreMascota={item.nombreMascota}
                 tipoAtencion={item.tipoAtencion}
                 diagnostico={item.diagnostico}
@@ -123,7 +47,7 @@ export default function VisitsTable() {
 type VisitTableRowProps = {
   registro: string;
   nombreMascota: string;
-  tipoAtencion: 'consulta' | 'vacuna' | 'cirugia' | 'control';
+  tipoAtencion: 'consulta' | 'vacuna' | 'cirugia' | 'control' | 'emergencia';
   diagnostico: string;
   veterinario: string;
 };

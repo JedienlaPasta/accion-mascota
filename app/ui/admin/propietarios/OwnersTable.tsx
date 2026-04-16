@@ -1,73 +1,8 @@
 'use client';
 
+import { propietariosAdmin } from '@/app/_lib/mock-data';
 import { formatPhone, formatRUT } from '@/app/_lib/utils/format';
 import { Ellipsis } from 'lucide-react';
-
-const mockData = [
-  {
-    nombrePropietario: 'María González Pérez',
-    rut: '12345678-9',
-    contacto: '+56912345678',
-    correo: 'maria.gonzalez@example.com',
-    direccion: 'Av. Las Condes 123, Las Condes',
-    mascotas: 2,
-    registro: '14-03-2025',
-  },
-  {
-    nombrePropietario: 'Juan Pérez Silva',
-    rut: '14567890-1',
-    contacto: '+56987654321',
-    correo: 'juan.perez@example.com',
-    direccion: 'Calle Los Olivos 456, Providencia',
-    mascotas: 1,
-    registro: '19-05-2025',
-  },
-  {
-    nombrePropietario: 'Pedro Martínez Rojas',
-    rut: '16789012-3',
-    contacto: '+56912345678',
-    correo: 'pedro.martinez@example.com',
-    direccion: 'Los Aromos 789, La Florida',
-    mascotas: 1,
-    registro: '09-08-2025',
-  },
-  {
-    nombrePropietario: 'Carlos Rojas Díaz',
-    rut: '11234567-8',
-    contacto: '+56944444444',
-    correo: 'carlos.rojas@example.com',
-    direccion: 'Av. Principal 101, Nunoa',
-    mascotas: 1,
-    registro: '04-09-2025',
-  },
-  {
-    nombrePropietario: 'Lucia Fernandez Castro',
-    rut: '15678901-2',
-    contacto: '+56922222222',
-    correo: 'lucia.fernandez@example.com',
-    direccion: 'Calle Nueva 222, Providencia',
-    mascotas: 2,
-    registro: '11-10-2025',
-  },
-  {
-    nombrePropietario: 'Ana Silva Moreno',
-    rut: '13456789-0',
-    contacto: '+56955555555',
-    correo: 'ana.silva@example.com',
-    direccion: 'Pasaje El Sol 333, Macul',
-    mascotas: 1,
-    registro: '	31-10-2025',
-  },
-  {
-    nombrePropietario: 'Roberto Díaz Fuentes',
-    rut: '17890123-4',
-    contacto: '+56911111111',
-    correo: 'robert.diaz@example.com',
-    direccion: 'Av. Libertador 444, Santiago Centro',
-    mascotas: 3,
-    registro: '07-11-2025',
-  },
-];
 
 export default function OwnersTable() {
   return (
@@ -91,10 +26,10 @@ export default function OwnersTable() {
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-200/70 bg-white">
-            {mockData.map((item) => (
+            {propietariosAdmin.map((item) => (
               <OwnerTableRow
                 key={`${item.rut}`}
-                nombrePropietario={item.nombrePropietario}
+                nombrePropietario={item.nombre}
                 rut={item.rut}
                 contacto={item.contacto}
                 correo={item.correo}
