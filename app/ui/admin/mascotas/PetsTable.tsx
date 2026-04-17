@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function PetsTable({ data }: { data: Mascota[] }) {
   return (
-    <div className="borders rounded-xls overflow-hidden border-zinc-200/80">
+    <div className="borders overflow-hidden border-zinc-200/80">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[720px]">
           <thead className="border-b border-zinc-200/80">
@@ -107,10 +107,10 @@ function PetTableRow({
       </td>
       <td className="col-span-2 flex justify-center">
         <span
-          className={`inline-flex w-8 shrink-0 items-center justify-center gap-2 rounded-lg border py-1 text-[11px] font-semibold capitalize ${
+          className={`inline-flex w-8 shrink-0 items-center justify-center gap-2 rounded-md border py-1 text-[11px] font-semibold capitalize ${
             esterilizado
-              ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
-              : 'border-amber-200 bg-amber-50 text-amber-700'
+              ? 'border-emerald-200 bg-emerald-50 text-emerald-600'
+              : 'border-yellow-200 bg-yellow-50 text-yellow-600'
           }`}
         >
           {esterilizado ? 'Si' : 'No'}

@@ -12,12 +12,21 @@ type PetRecordProps = {
 
 export default function PetRecord({ id, mockData }: PetRecordProps) {
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    document.body.style.paddingRight = '15px';
+    const mainContainer = document.getElementById('main-scroll');
+    if (!mainContainer) return;
+
+    const scrollbarWidth =
+      mainContainer.offsetWidth - mainContainer.clientWidth;
+
+    mainContainer.style.overflow = 'hidden';
+
+    if (scrollbarWidth > 0) {
+      mainContainer.style.paddingRight = `${scrollbarWidth}px`;
+    }
 
     return () => {
-      document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
+      mainContainer.style.overflow = '';
+      mainContainer.style.paddingRight = '';
     };
   }, []);
 

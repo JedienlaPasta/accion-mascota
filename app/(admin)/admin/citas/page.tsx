@@ -1,11 +1,11 @@
 import AppointmentsCalendarTable from '@/app/ui/admin/citas/AppointmentsCalendarTable';
 import SummaryCard from '@/app/ui/admin/dashboard/SummaryCard';
-import { Button, SecondaryButton } from '@/app/ui/components/Button';
+import { SecondaryButton } from '@/app/ui/components/Button';
 import { Calendar, Clock, Plus } from 'lucide-react';
 
 export default function CitasPageAdmin() {
   return (
-    <div className="flex h-full flex-col space-y-8 bg-gray-50/50 p-6 lg:p-8">
+    <div className="flex min-h-full flex-col space-y-8 bg-gray-50/50 p-6 lg:p-8">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>

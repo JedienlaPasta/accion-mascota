@@ -56,7 +56,7 @@ export function AdminSidebar() {
   }
 
   return (
-    <aside className="sticky top-0 hidden h-screen w-72 flex-col border-r border-zinc-200/70 bg-white lg:flex">
+    <aside className="sticky top-0 hidden w-72 flex-col border-r border-zinc-200/70 bg-white lg:flex">
       {/* <div className="flex items-center gap-2.5 border-b border-gray-200/60 p-4">
         <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
           <Stethoscope className="size-5" />

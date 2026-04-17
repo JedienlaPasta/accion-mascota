@@ -11,7 +11,7 @@ import { ComponentType } from 'react';
 
 export default function VisitsTable() {
   return (
-    <div className="borders rounded-xls overflow-hidden border-zinc-200/80">
+    <div className="borders overflow-hidden border-zinc-200/80">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[720px]">
           <thead className="border-b border-zinc-200/80">

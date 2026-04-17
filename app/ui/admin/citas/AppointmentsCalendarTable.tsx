@@ -96,11 +96,11 @@ export default function AppointmentsCalendarTable() {
 
   function badgeByStatus(s: Status) {
     if (s === 'Completado')
-      return 'border-emerald-200 bg-emerald-50 text-emerald-700';
-    if (s === 'Cancelado') return 'border-red-200 bg-red-50 text-red-700';
+      return 'border-emerald-200 bg-emerald-50 text-emerald-600';
+    if (s === 'Cancelado') return 'border-red-200 bg-red-50 text-red-600';
     if (s === 'Pendiente')
-      return 'border-yellow-200 bg-yellow-50 text-yellow-700';
-    return 'border-sky-200 bg-sky-50 text-sky-700';
+      return 'border-yellow-200 bg-yellow-50 text-yellow-600';
+    return 'border-sky-200 bg-sky-50 text-sky-600';
   }
 
   function lineByStatus(s: Status) {
@@ -111,9 +111,9 @@ export default function AppointmentsCalendarTable() {
   }
 
   return (
-    <div className="overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm">
-      <div className="flex items-center justify-between gap-3 border-b border-zinc-200 bg-white px-3 py-2">
-        <div className="flex items-center gap-2">
+    <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
+      <div className="flex items-center justify-between gap-3 border-b border-zinc-200 bg-white px-3 py-3">
+        <div className="flex items-center gap-2 px-1">
           <button
             type="button"
             onClick={() => setWeekStart((prev) => addDays(prev, -7))}
@@ -142,19 +142,6 @@ export default function AppointmentsCalendarTable() {
         <p className="truncate text-sm font-semibold text-zinc-800">
           Semana {weekLabel}
         </p>
-
-        {/* <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value as 'Todos' | Status)}
-          className="h-9 cursor-pointer rounded-lg border border-zinc-200 bg-white px-3 text-sm text-zinc-700 shadow-sm"
-          aria-label="Filtrar por estado"
-        >
-          <option value="Todos">Todos</option>
-          <option value="Agendado">Agendado</option>
-          <option value="Completado">Completado</option>
-          <option value="Pendiente">Pendiente</option>
-          <option value="Cancelado">Cancelado</option>
-        </select> */}
 
         <div>
           <Dropdown
@@ -212,7 +199,7 @@ export default function AppointmentsCalendarTable() {
               .map((e) => (
                 <div
                   key={e.id}
-                  className="absolute right-2 left-2 flex gap-2 rounded-2xl border border-zinc-200 bg-white p-3 text-xs shadow-sm"
+                  className="absolute right-2 left-2 flex cursor-pointer gap-2 rounded-2xl border border-zinc-200 bg-white p-3 text-xs shadow-sm"
                   style={{
                     top: topFor(e.start) + 8,
                     height: heightFor(e.start, e.end) - 16,

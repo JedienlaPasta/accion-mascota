@@ -6,7 +6,7 @@ import { Ellipsis } from 'lucide-react';
 
 export default function OwnersTable() {
   return (
-    <div className="borders rounded-xls overflow-hidden border-zinc-200/80">
+    <div className="borders overflow-hidden border-zinc-200/80">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[720px]">
           <thead className="border-b border-zinc-200/80">
@@ -85,7 +85,7 @@ function OwnerTableRow({
       </td>
 
       <td className="col-span-3 flex justify-center tabular-nums">
-        <span className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 capitalize">
+        <span className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-600 capitalize">
           {mascotas}
         </span>
       </td>
