@@ -1,11 +1,29 @@
+import { adminCalendarEvents } from '@/app/_lib/mock-data';
+import AppointmentDetailsModal from '@/app/ui/admin/citas/AppointmentDetailsModal';
 import AppointmentsCalendarTable from '@/app/ui/admin/citas/AppointmentsCalendarTable';
 import SummaryCard from '@/app/ui/admin/dashboard/SummaryCard';
 import { SecondaryButton } from '@/app/ui/components/Button';
 import { Calendar, Clock, Plus } from 'lucide-react';
 
-export default function CitasPageAdmin() {
+type AppointmentsManagementProps = {
+  searchParams?: Promise<{ appointmentId?: string }>;
+};
+
+export default async function AppointmentsManagementPageAdmin(
+  props: AppointmentsManagementProps
+) {
+  const searchParams = await props.searchParams;
+  const id = searchParams?.appointmentId ?? '';
+
   return (
     <div className="flex min-h-full flex-col space-y-8 bg-gray-50/50 p-6 lg:p-8">
+      {/* Appointment Details Modal */}
+      {id && (
+        <AppointmentDetailsModal
+          id={id}
+          appointmentData={adminCalendarEvents}
+        />
+      )}
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>

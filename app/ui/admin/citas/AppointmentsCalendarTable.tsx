@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import Dropdown from '../../components/Dropdown';
 import { adminCalendarEvents } from '@/app/_lib/mock-data';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
 const SLOT_MIN = 15;
@@ -110,6 +111,17 @@ export default function AppointmentsCalendarTable() {
     return 'bg-sky-500/35';
   }
 
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleClick = (id: string) => {
+    if (!id) return;
+    const params = new URLSearchParams(searchParams);
+    params.set('appointmentId', id);
+    const qs = params.toString();
+    router.replace(qs ? `?${qs}` : '', { scroll: false });
+  };
+
   return (
     <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
       <div className="flex items-center justify-between gap-3 border-b border-zinc-200 bg-white px-3 py-3">
@@ -199,6 +211,8 @@ export default function AppointmentsCalendarTable() {
               .map((e) => (
                 <div
                   key={e.id}
+                  onClick={() => handleClick(e.id)}
+                  role="button"
                   className="absolute right-2 left-2 flex cursor-pointer gap-2 rounded-2xl border border-zinc-200 bg-white p-3 text-xs shadow-sm"
                   style={{
                     top: topFor(e.start) + 8,
