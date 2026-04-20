@@ -51,13 +51,11 @@ export default function HistorialClinicMascotas() {
   );
 
   return (
-    <div className="relative h-full bg-gray-50/50 p-6 lg:p-8">
+    <div className="relative h-full space-y-6 bg-gray-50/50 p-6 lg:p-8">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-foreground text-2xl font-bold">
-          Historial Clínico
-        </h1>
-        <p className="text-muted-foreground">
+      <div>
+        <h2 className="text-foreground text-lg font-bold">Historial Clínico</h2>
+        <p className="text-muted-foreground text-sm">
           Registro completo de atenciones de todas tus mascotas.
         </p>
       </div>

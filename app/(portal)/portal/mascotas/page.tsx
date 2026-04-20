@@ -49,12 +49,12 @@ export default function MascotasPage() {
   }
 
   return (
-    <div className="h-full space-y-8 bg-gray-50/50 p-6 lg:p-8">
+    <div className="h-full space-y-6 bg-gray-50/50 p-6 lg:p-8">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <h1 className="text-foreground text-2xl font-bold">Mis Mascotas</h1>
-          <p className="text-muted-foreground">
+          <h2 className="text-foreground text-lg font-bold">Mis Mascotas</h2>
+          <p className="text-muted-foreground text-sm">
             Gestiona el perfil de tus mascotas registradas
           </p>
         </div>

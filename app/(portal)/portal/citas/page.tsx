@@ -48,12 +48,12 @@ export default function Citas() {
   };
 
   return (
-    <div className="h-full bg-gray-50/50 p-6 lg:p-8">
+    <div className="h-full space-y-6 bg-gray-50/50 p-6 lg:p-8">
       {/* Header */}
-      <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <h1 className="text-foreground text-2xl font-bold">Mis Citas</h1>
-          <p className="text-muted-foreground">
+          <h2 className="text-foreground text-lg font-bold">Mis Citas</h2>
+          <p className="text-muted-foreground text-sm">
             Revisa tus próximas visitas y el historial de atenciones.
           </p>
         </div>
