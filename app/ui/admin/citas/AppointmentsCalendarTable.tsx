@@ -4,7 +4,7 @@ import { capitalize } from '@/app/_lib/utils/format';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import Dropdown from '../../components/Dropdown';
-import { adminCalendarEvents } from '@/app/_lib/mock-data';
+import { adminAppointments, type AdminAppointment } from '@/app/_lib/mock-data';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
@@ -13,7 +13,7 @@ const DAY_START = '08:30';
 const DAY_END = '17:30';
 const SLOT_HEIGHT = 30;
 
-type Status = 'Agendado' | 'Completado' | 'Cancelado' | 'Pendiente';
+type Status = AdminAppointment['status'];
 
 function toMin(t: string) {
   const [hour, minute] = t.split(':').map(Number);
@@ -69,8 +69,8 @@ export default function AppointmentsCalendarTable() {
   );
 
   const events = useMemo(() => {
-    if (statusFilter === 'Todos') return adminCalendarEvents;
-    return adminCalendarEvents.filter((e) => e.status === statusFilter);
+    if (statusFilter === 'Todos') return adminAppointments;
+    return adminAppointments.filter((e) => e.status === statusFilter);
   }, [statusFilter]);
 
   const startMin = toMin(DAY_START);
@@ -228,13 +228,11 @@ export default function AppointmentsCalendarTable() {
                         {e.start} – {e.end}
                       </div>
                       <div className="text-sm font-semibold text-zinc-900">
-                        {e.title}
+                        {e.petName}
                       </div>
-                      {e.subtitle ? (
-                        <div className="text-[11px] text-zinc-600">
-                          {e.subtitle}
-                        </div>
-                      ) : null}
+                      <div className="text-[11px] text-zinc-600 capitalize">
+                        {e.type}
+                      </div>
                     </div>
                     <div
                       className={`rounded-md border px-1.5 py-0.5 text-[10px] font-medium ${badgeByStatus(e.status)}`}

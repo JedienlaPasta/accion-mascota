@@ -1,4 +1,4 @@
-import { adminCalendarEvents } from '@/app/_lib/mock-data';
+import { adminAppointments } from '@/app/_lib/mock-data';
 import AppointmentDetailsModal from '@/app/ui/admin/citas/AppointmentDetailsModal';
 import AppointmentsCalendarTable from '@/app/ui/admin/citas/AppointmentsCalendarTable';
 import SummaryCard from '@/app/ui/admin/dashboard/SummaryCard';
@@ -19,10 +19,7 @@ export default async function AppointmentsManagementPageAdmin(
     <div className="flex min-h-full flex-col space-y-8 bg-gray-50/50 p-6 lg:p-8">
       {/* Appointment Details Modal */}
       {id && (
-        <AppointmentDetailsModal
-          id={id}
-          appointmentData={adminCalendarEvents}
-        />
+        <AppointmentDetailsModal id={id} appointmentData={adminAppointments} />
       )}
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">

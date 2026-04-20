@@ -500,24 +500,42 @@ export const propietariosAdmin: PropietarioAdmin[] = [
   },
 ];
 
-export type AdminCalendarEvent = {
+export type AdminAppointmentStatus =
+  | 'Agendado'
+  | 'Completado'
+  | 'Cancelado'
+  | 'Pendiente';
+
+export type AdminAppointment = {
   id: string;
   day: number;
   start: string;
   end: string;
-  title: string;
-  subtitle?: string;
-  status: 'Agendado' | 'Completado' | 'Cancelado' | 'Pendiente';
+  appointmentDate: string;
+  petId: string;
+  petName: string;
+  ownerId: string;
+  ownerName: string;
+  vetName: string;
+  type: Cita['tipo'];
+  notes: string;
+  status: AdminAppointmentStatus;
 };
 
-export const adminCalendarEvents: AdminCalendarEvent[] = [
+export const adminAppointments: AdminAppointment[] = [
   {
     id: 'a1',
     day: 0,
     start: '09:00',
     end: '10:00',
-    title: 'Luna',
-    subtitle: 'Consulta',
+    appointmentDate: '2026-04-13',
+    petId: 'pet-001',
+    petName: 'Luna',
+    ownerId: 'usr-001',
+    ownerName: 'María González Pérez',
+    vetName: 'Dr. Juan Pérez Silva',
+    type: 'consulta',
+    notes: 'Control de rutina.',
     status: 'Completado',
   },
   {
@@ -525,8 +543,14 @@ export const adminCalendarEvents: AdminCalendarEvent[] = [
     day: 0,
     start: '10:30',
     end: '11:30',
-    title: 'Koda',
-    subtitle: 'Control',
+    appointmentDate: '2026-04-13',
+    petId: 'pet-008',
+    petName: 'Koda',
+    ownerId: 'usr-002',
+    ownerName: 'Juan Pérez Silva',
+    vetName: 'Dr. Juan Pérez Silva',
+    type: 'control',
+    notes: 'Control general.',
     status: 'Cancelado',
   },
   {
@@ -534,8 +558,14 @@ export const adminCalendarEvents: AdminCalendarEvent[] = [
     day: 1,
     start: '09:30',
     end: '10:30',
-    title: 'Roko',
-    subtitle: 'Revisión',
+    appointmentDate: '2026-04-14',
+    petId: 'pet-009',
+    petName: 'Roko',
+    ownerId: 'usr-004',
+    ownerName: 'Carlos Rojas Díaz',
+    vetName: 'Dr. Juan Pérez Silva',
+    type: 'control',
+    notes: 'Revisión programada.',
     status: 'Completado',
   },
   {
@@ -543,8 +573,14 @@ export const adminCalendarEvents: AdminCalendarEvent[] = [
     day: 1,
     start: '11:00',
     end: '12:00',
-    title: 'Morita',
-    subtitle: 'Dolor',
+    appointmentDate: '2026-04-14',
+    petId: 'pet-010',
+    petName: 'Morita',
+    ownerId: 'usr-003',
+    ownerName: 'Pedro Martínez Rojas',
+    vetName: 'Dr. Juan Pérez Silva',
+    type: 'consulta',
+    notes: 'Evaluación por dolor.',
     status: 'Agendado',
   },
   {
@@ -552,8 +588,14 @@ export const adminCalendarEvents: AdminCalendarEvent[] = [
     day: 2,
     start: '10:30',
     end: '11:30',
-    title: 'Manchitas',
-    subtitle: 'Dolor',
+    appointmentDate: '2026-04-15',
+    petId: 'pet-011',
+    petName: 'Manchitas',
+    ownerId: 'usr-006',
+    ownerName: 'Ana Silva Moreno',
+    vetName: 'Dr. Juan Pérez Silva',
+    type: 'consulta',
+    notes: 'Revisión por dolor.',
     status: 'Pendiente',
   },
   {
@@ -561,8 +603,14 @@ export const adminCalendarEvents: AdminCalendarEvent[] = [
     day: 2,
     start: '14:00',
     end: '15:00',
-    title: 'Milo',
-    subtitle: 'Dolor',
+    appointmentDate: '2026-04-15',
+    petId: 'pet-012',
+    petName: 'Milo',
+    ownerId: 'usr-005',
+    ownerName: 'Lucia Fernandez Castro',
+    vetName: 'Dr. Juan Pérez Silva',
+    type: 'vacuna',
+    notes: 'Vacunación programada.',
     status: 'Pendiente',
   },
   {
@@ -570,8 +618,14 @@ export const adminCalendarEvents: AdminCalendarEvent[] = [
     day: 3,
     start: '08:30',
     end: '09:30',
-    title: 'Leo',
-    subtitle: 'Chequeo',
+    appointmentDate: '2026-04-16',
+    petId: 'pet-013',
+    petName: 'Leo',
+    ownerId: 'usr-007',
+    ownerName: 'Roberto Díaz Fuentes',
+    vetName: 'Dr. Juan Pérez Silva',
+    type: 'control',
+    notes: 'Chequeo general.',
     status: 'Agendado',
   },
   {
@@ -579,8 +633,14 @@ export const adminCalendarEvents: AdminCalendarEvent[] = [
     day: 4,
     start: '11:00',
     end: '12:00',
-    title: 'Canela',
-    subtitle: 'Resultados',
+    appointmentDate: '2026-04-17',
+    petId: 'pet-007',
+    petName: 'Canela',
+    ownerId: 'usr-004',
+    ownerName: 'Carlos Rojas Díaz',
+    vetName: 'Dr. Juan Pérez Silva',
+    type: 'consulta',
+    notes: 'Entrega de resultados.',
     status: 'Agendado',
   },
 ];
