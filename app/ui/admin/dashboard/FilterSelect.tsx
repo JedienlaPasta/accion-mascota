@@ -1,4 +1,5 @@
 'use client';
+import { Calendar } from 'lucide-react';
 import { useState } from 'react';
 
 type DropdownOption = {
@@ -55,11 +56,12 @@ export function FilterSelect({
           toggleDropdown();
           onClick?.(e);
         }}
-        className={`flex h-9 w-24 cursor-pointer items-center border-y border-zinc-100 bg-white px-7 text-sm text-zinc-700 shadow-sm transition-shadow duration-300 disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
+        className={`flex h-9 cursor-pointer items-center gap-2 border-y border-zinc-100 bg-white px-4 text-sm text-zinc-700 shadow-sm transition-shadow duration-300 disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
         {...props}
         aria-haspopup="menu"
         aria-expanded={isOpen}
       >
+        <Calendar className="h-4 w-4 shrink-0" />
         {selectedOption?.label}
       </button>
 

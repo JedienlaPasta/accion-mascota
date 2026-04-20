@@ -17,16 +17,16 @@ export default async function AtencionesPageAdmin(
   const id = searchParams?.visitId || '';
 
   return (
-    <div className="flex min-h-full flex-col space-y-8 bg-gray-50/50 p-6 lg:p-8">
+    <div className="flex min-h-full flex-col space-y-4 bg-gray-50/50 p-6 lg:p-8">
       {/* Visit Details Modal */}
       {id && <VisitRecordDetailModal id={id} visitRecords={historialClinico} />}
       {/* Header */}
-      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-baseline">
         <div>
-          <h1 className="text-foreground text-2xl font-bold">
+          <h2 className="text-foreground text-lg font-bold">
             Registro de Atenciones
-          </h1>
-          <p className="text-muted-foreground">
+          </h2>
+          <p className="text-muted-foreground text-sm">
             Administra los datos de las atenciones.
           </p>
         </div>

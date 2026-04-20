@@ -30,7 +30,7 @@ export default function PortalAdmin() {
   return (
     <div className="flex min-h-full flex-col space-y-4 bg-gray-50/50 p-6 lg:p-8">
       {/* Header */}
-      <div className="flex items-baseline justify-between gap-4">
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-baseline">
         <div>
           <h2 className="text-foreground text-lg font-bold">
             Tabla de resumen
