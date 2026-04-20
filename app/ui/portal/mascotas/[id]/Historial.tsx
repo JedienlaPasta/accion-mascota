@@ -1,11 +1,11 @@
 'use client';
+import { formatShortDate } from '@/app/(portal)/portal/mascotas/[id]/page';
 import {
-  formatShortDate,
+  HistorialClinico,
   tipoColors,
-  tipoIcons,
+  tipoIcon,
   tipoLabels,
-} from '@/app/(portal)/portal/mascotas/[id]/page';
-import { HistorialClinico } from '@/app/_lib/mock-data';
+} from '@/app/_lib/mock-data';
 import { Button } from '@/app/ui/components/Button';
 import { Calendar, ChevronDown, Stethoscope } from 'lucide-react';
 import Link from 'next/link';
@@ -26,7 +26,7 @@ export default function MascotaHistorial({
     <div className="space-y-3">
       {historial.length > 0 ? (
         displayedHistory.map((registro) => {
-          const TipoIcon = tipoIcons[registro.tipo] || Stethoscope;
+          const TipoIcon = tipoIcon[registro.tipo] || Stethoscope;
           const colors = tipoColors[registro.tipo] || tipoColors.consulta;
 
           return (

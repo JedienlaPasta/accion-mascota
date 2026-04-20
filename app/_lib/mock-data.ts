@@ -1,5 +1,80 @@
 // Datos simulados para el mockup de la veterinaria municipal
 
+import {
+  AlertCircle,
+  Cat,
+  CheckCircle,
+  Dog,
+  PawPrint,
+  Scissors,
+  Stethoscope,
+  Syringe,
+} from 'lucide-react';
+
+export const especieIcon: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
+  perro: Dog,
+  gato: Cat,
+  otro: PawPrint,
+};
+
+export const tipoIcon: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
+  consulta: Stethoscope,
+  vacuna: Syringe,
+  cirugia: Scissors,
+  control: CheckCircle,
+  emergencia: AlertCircle,
+};
+
+export const tipoLabels: Record<string, string> = {
+  consulta: 'Consulta',
+  vacuna: 'Vacunación',
+  cirugia: 'Cirugía',
+  control: 'Control',
+  emergencia: 'Emergencia',
+};
+
+export const tipoColors: Record<
+  string,
+  { bg: string; text: string; ring: string; dot: string }
+> = {
+  consulta: {
+    bg: 'bg-blue-50',
+    text: 'text-blue-600',
+    ring: 'ring-blue-100',
+    dot: 'bg-blue-500',
+  },
+  vacuna: {
+    bg: 'bg-green-50',
+    text: 'text-green-600',
+    ring: 'ring-green-100',
+    dot: 'bg-green-500',
+  },
+  cirugia: {
+    bg: 'bg-amber-50',
+    text: 'text-amber-600',
+    ring: 'ring-amber-100',
+    dot: 'bg-amber-500',
+  },
+  control: {
+    bg: 'bg-purple-50',
+    text: 'text-purple-600',
+    ring: 'ring-purple-100',
+    dot: 'bg-purple-500',
+  },
+  emergencia: {
+    bg: 'bg-red-50',
+    text: 'text-red-600',
+    ring: 'ring-red-100',
+    dot: 'bg-red-500',
+  },
+};
+
 export interface Usuario {
   id: string;
   nombre: string;
@@ -698,6 +773,7 @@ export const adminTodayAppointments: AdminTodayAppointment[] = [
 ];
 
 export type AdminVisitRegistry = {
+  id: string;
   registro: string;
   nombreMascota: string;
   especie: 'Perro' | 'Gato' | 'Otro';
@@ -710,6 +786,7 @@ export type AdminVisitRegistry = {
 // Dataset centralizado de atenciones para panel admin (VisitsTable)
 export const adminVisitRegistry: AdminVisitRegistry[] = [
   {
+    id: 'hist-001',
     registro: '2025-12-15',
     nombreMascota: 'Luna',
     especie: 'Perro',
@@ -719,6 +796,7 @@ export const adminVisitRegistry: AdminVisitRegistry[] = [
     microchip: '956000012345678',
   },
   {
+    id: 'hist-002',
     registro: '2025-10-01',
     nombreMascota: 'Luna',
     especie: 'Perro',
@@ -728,6 +806,7 @@ export const adminVisitRegistry: AdminVisitRegistry[] = [
     microchip: '956000012345678',
   },
   {
+    id: 'hist-003',
     registro: '2024-06-20',
     nombreMascota: 'Luna',
     especie: 'Perro',
@@ -737,6 +816,7 @@ export const adminVisitRegistry: AdminVisitRegistry[] = [
     microchip: '956000012345678',
   },
   {
+    id: 'hist-004',
     registro: '2025-11-10',
     nombreMascota: 'Michi',
     especie: 'Gato',
@@ -746,6 +826,7 @@ export const adminVisitRegistry: AdminVisitRegistry[] = [
     microchip: '956000012345679',
   },
   {
+    id: 'hist-005',
     registro: '2025-08-15',
     nombreMascota: 'Michi',
     especie: 'Gato',
@@ -755,6 +836,7 @@ export const adminVisitRegistry: AdminVisitRegistry[] = [
     microchip: '956000012345679',
   },
   {
+    id: 'hist-006',
     registro: '2025-09-05',
     nombreMascota: 'Rocky',
     especie: 'Perro',

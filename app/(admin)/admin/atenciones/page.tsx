@@ -1,12 +1,25 @@
+import { historialClinico } from '@/app/_lib/mock-data';
+import VisitRecordDetailModal from '@/app/ui/admin/atenciones/VisitRecordDetailModal';
 import VisitsTable from '@/app/ui/admin/atenciones/VisitsTable';
 import SummaryCard from '@/app/ui/admin/dashboard/SummaryCard';
 import TableWrapper from '@/app/ui/admin/TableWrapper';
 import { SecondaryButton } from '@/app/ui/components/Button';
 import { Plus } from 'lucide-react';
 
-export default function AtencionesPageAdmin() {
+type VisitsRecordsPageAdmin = {
+  searchParams?: Promise<{ visitId?: string }>;
+};
+
+export default async function AtencionesPageAdmin(
+  props: VisitsRecordsPageAdmin
+) {
+  const searchParams = await props.searchParams;
+  const id = searchParams?.visitId || '';
+
   return (
     <div className="flex min-h-full flex-col space-y-8 bg-gray-50/50 p-6 lg:p-8">
+      {/* Visit Details Modal */}
+      {id && <VisitRecordDetailModal id={id} visitRecords={historialClinico} />}
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>

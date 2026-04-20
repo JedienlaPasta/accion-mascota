@@ -1,9 +1,6 @@
 'use client';
-import {
-  calcularEdad,
-  especieIcons,
-} from '@/app/(portal)/portal/mascotas/page';
-import { mascotas } from '@/app/_lib/mock-data';
+import { calcularEdad } from '@/app/(portal)/portal/mascotas/page';
+import { especieIcon, mascotas } from '@/app/_lib/mock-data';
 import { capitalize } from '@/app/_lib/utils/format';
 import { Button } from '@/app/ui/components/Button';
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
@@ -185,7 +182,7 @@ function PetSelection({
       </div>
       <div className="grid grid-cols-2 gap-4">
         {mascotas.map((mascota) => {
-          const Icon = especieIcons[mascota.especie];
+          const Icon = especieIcon[mascota.especie];
           return (
             <div
               key={mascota.id}

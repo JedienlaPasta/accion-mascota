@@ -1,15 +1,11 @@
 import Link from 'next/link';
 import {
   ArrowLeft,
-  Dog,
-  Cat,
   PawPrint,
   Calendar,
   Syringe,
   Stethoscope,
   Scissors,
-  AlertCircle,
-  CheckCircle,
   Clock,
   Pencil,
   HeartPulse,
@@ -23,65 +19,15 @@ import {
   RedirectButton,
   SecondaryButton,
 } from '@/app/ui/components/Button';
-import { citas, historialClinico, mascotas } from '@/app/_lib/mock-data';
+import {
+  citas,
+  especieIcon,
+  historialClinico,
+  mascotas,
+} from '@/app/_lib/mock-data';
 import Badge from '@/app/ui/components/Badge';
 import MascotaHistorial from '@/app/ui/portal/mascotas/[id]/Historial';
 import { capitalize } from '@/app/_lib/utils/format';
-
-type IconComponent = React.ComponentType<{ className?: string }>;
-
-const especieIcons: Record<string, IconComponent> = {
-  perro: Dog,
-  gato: Cat,
-  otro: PawPrint,
-};
-
-export const tipoIcons: Record<string, IconComponent> = {
-  consulta: Stethoscope,
-  vacuna: Syringe,
-  cirugia: Scissors,
-  control: CheckCircle,
-  emergencia: AlertCircle,
-};
-
-export const tipoColors: Record<
-  string,
-  { bg: string; text: string; dot: string }
-> = {
-  consulta: {
-    bg: 'bg-blue-50 text-blue-600',
-    text: 'text-blue-600',
-    dot: 'bg-blue-500',
-  },
-  vacuna: {
-    bg: 'bg-green-50 text-green-600',
-    text: 'text-green-600',
-    dot: 'bg-green-500',
-  },
-  cirugia: {
-    bg: 'bg-rose-50 text-rose-600',
-    text: 'text-rose-600',
-    dot: 'bg-rose-500',
-  },
-  control: {
-    bg: 'bg-violet-50 text-violet-600',
-    text: 'text-violet-600',
-    dot: 'bg-violet-500',
-  },
-  emergencia: {
-    bg: 'bg-red-50 text-red-600',
-    text: 'text-red-600',
-    dot: 'bg-red-500',
-  },
-};
-
-export const tipoLabels: Record<string, string> = {
-  consulta: 'Consulta',
-  vacuna: 'Vacunación',
-  cirugia: 'Cirugía',
-  control: 'Control',
-  emergencia: 'Emergencia',
-};
 
 function calcularEdad(fechaNacimiento: string) {
   const nacimiento = new Date(fechaNacimiento);
@@ -137,7 +83,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
     );
   }
 
-  const EspecieIcon = especieIcons[mascota?.especie] || PawPrint;
+  const EspecieIcon = especieIcon[mascota?.especie] || PawPrint;
 
   const historial = historialClinico
     .filter((h) => h.mascotaId === mascota.id)

@@ -1,12 +1,11 @@
 'use client';
-import { citas, mascotas } from '@/app/_lib/mock-data';
+import { citas, especieIcon, mascotas } from '@/app/_lib/mock-data';
 import { capitalize } from '@/app/_lib/utils/format';
 import Badge from '@/app/ui/components/Badge';
 import { Button, SecondaryButton } from '@/app/ui/components/Button';
 import { Calendar, CheckCircle, Clock, Plus, Stethoscope } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { especieIcons } from '../mascotas/page';
 
 export default function Citas() {
   const [showHistory, setShowHistory] = useState(false);
@@ -77,7 +76,7 @@ export default function Citas() {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {pendingAppointments.map((cita) => {
               const especie = getPetEspecie(cita.mascotaId);
-              const Icon = especieIcons[especie || 'otro'];
+              const Icon = especieIcon[especie || 'otro'];
               return (
                 <div
                   key={cita.id}

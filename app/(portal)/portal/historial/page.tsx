@@ -1,82 +1,17 @@
 'use client';
-import { historialClinico, mascotas } from '@/app/_lib/mock-data';
 import {
-  AlertCircle,
-  Calendar,
-  Cat,
-  CheckCircle,
-  Dog,
-  Info,
-  PawPrint,
-  Scissors,
-  Stethoscope,
-  Syringe,
-} from 'lucide-react';
+  especieIcon,
+  historialClinico,
+  mascotas,
+  tipoColors,
+  tipoIcon,
+  tipoLabels,
+} from '@/app/_lib/mock-data';
+import { Calendar, Info } from 'lucide-react';
 import { capitalize } from '@/app/_lib/utils/format';
 import { useState } from 'react';
 import HistoryListItem from '@/app/ui/portal/historial/HistoryListItem';
 import HistoryDetail from '@/app/ui/portal/historial/HistoryDetail';
-
-const especieIcons: Record<
-  string,
-  React.ComponentType<{ className?: string }>
-> = {
-  perro: Dog,
-  gato: Cat,
-  otro: PawPrint,
-};
-
-const tipoIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  consulta: Stethoscope,
-  vacuna: Syringe,
-  cirugia: Scissors,
-  control: CheckCircle,
-  emergencia: AlertCircle,
-};
-
-const tipoColors: Record<
-  string,
-  { bg: string; text: string; ring: string; dot: string }
-> = {
-  consulta: {
-    bg: 'bg-blue-50',
-    text: 'text-blue-600',
-    ring: 'ring-blue-100',
-    dot: 'bg-blue-500',
-  },
-  vacuna: {
-    bg: 'bg-green-50',
-    text: 'text-green-600',
-    ring: 'ring-green-100',
-    dot: 'bg-green-500',
-  },
-  cirugia: {
-    bg: 'bg-amber-50',
-    text: 'text-amber-600',
-    ring: 'ring-amber-100',
-    dot: 'bg-amber-500',
-  },
-  control: {
-    bg: 'bg-purple-50',
-    text: 'text-purple-600',
-    ring: 'ring-purple-100',
-    dot: 'bg-purple-500',
-  },
-  emergencia: {
-    bg: 'bg-red-50',
-    text: 'text-red-600',
-    ring: 'ring-red-100',
-    dot: 'bg-red-500',
-  },
-};
-
-const tipoLabels: Record<string, string> = {
-  consulta: 'Consulta',
-  vacuna: 'Vacunación',
-  cirugia: 'Cirugía',
-  control: 'Control',
-  emergencia: 'Emergencia',
-};
 
 export const getPetName = (id: string) => {
   return mascotas.find((mascota) => mascota.id === id)?.nombre || 'Mascota';
@@ -133,7 +68,7 @@ export default function HistorialClinicMascotas() {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {mascotas.map((mascota) => {
               const especie = getPetEspecie(mascota.id);
-              const Icon = especieIcons[especie || 'otro'];
+              const Icon = especieIcon[especie || 'otro'];
               return (
                 <div
                   key={mascota.id}
@@ -245,10 +180,10 @@ export default function HistorialClinicMascotas() {
 
               <div className="grid gap-4">
                 {records.map((registro) => {
-                  const TipoIcon = tipoIcons[registro.tipo];
+                  const TipoIcon = tipoIcon[registro.tipo];
                   const colors = tipoColors[registro.tipo];
                   const Icon =
-                    especieIcons[
+                    especieIcon[
                       mascotas.find(
                         (mascota) => mascota.id === registro.mascotaId
                       )?.especie || 'otro'
@@ -285,12 +220,12 @@ export default function HistorialClinicMascotas() {
             registro={activeRecord}
             label={tipoLabels[activeRecord.tipo] || activeRecord.tipo}
             Icon={
-              especieIcons[
+              especieIcon[
                 mascotas.find((m) => m.id === activeRecord.mascotaId)
                   ?.especie || 'otro'
               ]
             }
-            TipoIcon={tipoIcons[activeRecord.tipo]}
+            TipoIcon={tipoIcon[activeRecord.tipo]}
             colors={tipoColors[activeRecord.tipo]}
             petName={getPetName(activeRecord.mascotaId)}
             closeModal={() => setActiveRecord(null)}

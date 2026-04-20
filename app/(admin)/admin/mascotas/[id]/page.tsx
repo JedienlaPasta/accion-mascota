@@ -1,87 +1,36 @@
 import Link from 'next/link';
 import {
   ArrowLeft,
-  Dog,
-  Cat,
   PawPrint,
   Calendar,
   Syringe,
   Stethoscope,
   Scissors,
-  AlertCircle,
-  CheckCircle,
   Clock,
   Pencil,
   HeartPulse,
-  Shield,
   Palette,
-  Cpu,
+  ChevronDown,
   ChevronRight,
+  Cpu,
+  Shield,
 } from 'lucide-react';
 import {
   Button,
   RedirectButton,
   SecondaryButton,
 } from '@/app/ui/components/Button';
-import { citas, historialClinico, mascotas } from '@/app/_lib/mock-data';
+import {
+  citas,
+  especieIcon,
+  historialClinico,
+  mascotas,
+  tipoColors,
+  tipoIcon,
+  tipoLabels,
+} from '@/app/_lib/mock-data';
 import Badge from '@/app/ui/components/Badge';
-import MascotaHistorial from '@/app/ui/portal/mascotas/[id]/Historial';
 import { capitalize } from '@/app/_lib/utils/format';
-
-type IconComponent = React.ComponentType<{ className?: string }>;
-
-const especieIcons: Record<string, IconComponent> = {
-  perro: Dog,
-  gato: Cat,
-  otro: PawPrint,
-};
-
-export const tipoIcons: Record<string, IconComponent> = {
-  consulta: Stethoscope,
-  vacuna: Syringe,
-  cirugia: Scissors,
-  control: CheckCircle,
-  emergencia: AlertCircle,
-};
-
-export const tipoColors: Record<
-  string,
-  { bg: string; text: string; dot: string }
-> = {
-  consulta: {
-    bg: 'bg-blue-50 text-blue-600',
-    text: 'text-blue-600',
-    dot: 'bg-blue-500',
-  },
-  vacuna: {
-    bg: 'bg-green-50 text-green-600',
-    text: 'text-green-600',
-    dot: 'bg-green-500',
-  },
-  cirugia: {
-    bg: 'bg-rose-50 text-rose-600',
-    text: 'text-rose-600',
-    dot: 'bg-rose-500',
-  },
-  control: {
-    bg: 'bg-violet-50 text-violet-600',
-    text: 'text-violet-600',
-    dot: 'bg-violet-500',
-  },
-  emergencia: {
-    bg: 'bg-red-50 text-red-600',
-    text: 'text-red-600',
-    dot: 'bg-red-500',
-  },
-};
-
-export const tipoLabels: Record<string, string> = {
-  consulta: 'Consulta',
-  vacuna: 'Vacunación',
-  cirugia: 'Cirugía',
-  control: 'Control',
-  emergencia: 'Emergencia',
-};
 
 function calcularEdad(fechaNacimiento: string) {
   const nacimiento = new Date(fechaNacimiento);
@@ -127,17 +76,17 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
           Mascota no encontrada
         </h2>
         <p className="text-muted-foreground mb-4">
-          No se encontro una mascota con el ID proporcionado.
+          No se encontró una mascota con el ID proporcionado.
         </p>
-        <RedirectButton to="/portal/mascotas" className="gap-2">
+        <RedirectButton to="/admin/mascotas" className="gap-2">
           <ArrowLeft className="h-4 w-4" />
-          Volver a mis mascotas
+          Volver a mascotas
         </RedirectButton>
       </div>
     );
   }
 
-  const EspecieIcon = especieIcons[mascota?.especie] || PawPrint;
+  const EspecieIcon = especieIcon[mascota?.especie] || PawPrint;
 
   const historial = historialClinico
     .filter((h) => h.mascotaId === mascota.id)
@@ -156,7 +105,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
   const totalCirugias = historial.filter((h) => h.tipo === 'cirugia').length;
 
   return (
-    <div className="h-full bg-gray-50/50 p-6 lg:p-8">
+    <div className="min-h-full bg-gray-50/50 p-6 lg:p-8">
       {/* Volver btn */}
       <Link
         href="/admin/mascotas"
@@ -181,7 +130,10 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
                     {mascota.nombre}
                   </h1>
                   <p className="text-muted-foreground">
-                    {mascota.raza} - {calcularEdad(mascota.fechaNacimiento)}
+                    {mascota.raza} · {calcularEdad(mascota.fechaNacimiento)} ·{' '}
+                    <span className="font-medium text-zinc-700">
+                      {mascota.propietarioNombre}
+                    </span>
                   </p>
                 </div>
                 <Button className="gap-2">
@@ -254,10 +206,8 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
                 <HeartPulse className="text-muted-foreground h-4 w-4" />
               </div>
               <div>
-                <p className="text-muted-foreground text-xs">Atenciones</p>
-                <p className="text-sm font-medium">
-                  {historial.length + ' registros'}
-                </p>
+                <p className="text-muted-foreground text-xs">Peso</p>
+                <p className="text-sm font-medium">{mascota.peso}</p>
               </div>
             </div>
           </div>
@@ -305,7 +255,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
         <div className="space-y-4 lg:col-span-2">
           {/* Tratamiento activo */}
           {tratamientoActivo && (
-            <div className="flex flex-col items-start gap-3 rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-all hover:shadow-md">
+            <div className="flex flex-col items-start gap-3 rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-shadow">
               <div className="pb-2">
                 <h3 className="text-lg font-bold text-gray-900">
                   Tratamiento Vigente
@@ -337,32 +287,119 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
           )}
 
           {/* Historial clínico (todos los registros) */}
-          <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md">
+          <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
             <div className="mb-4 flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-bold text-gray-900">
                   Historial Clínico
                 </h3>
                 <p className="text-sm text-gray-500">
-                  {'Registro de atenciones de ' + mascota.nombre}
+                  Registro de atenciones y procedimientos
                 </p>
               </div>
-              <Link href="/portal/historial">
+              <Link href="/admin/atenciones">
                 <SecondaryButton className="gap-1.5 px-3.5 text-xs text-gray-600 hover:bg-gray-50">
-                  Ver todo
+                  Ver atenciones
                   <ChevronRight className="h-3 w-3" />
                 </SecondaryButton>
               </Link>
             </div>
 
-            <MascotaHistorial historial={historial} mascotaId={mascota.id} />
+            <div className="space-y-3">
+              {historial.length > 0 ? (
+                historial.map((registro) => {
+                  const TipoIcon = tipoIcon[registro.tipo] || Stethoscope;
+                  const colors =
+                    tipoColors[registro.tipo] || tipoColors.consulta;
+
+                  return (
+                    <details
+                      key={registro.id}
+                      className="group overflow-hidden rounded-xl border border-gray-200/80 bg-white transition-colors hover:border-gray-200"
+                    >
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4">
+                        <div className="flex min-w-0 items-center gap-4">
+                          <div
+                            className={
+                              'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ' +
+                              colors.bg
+                            }
+                          >
+                            <TipoIcon className="h-5 w-5" />
+                          </div>
+                          <div className="min-w-0">
+                            <p className="truncate font-semibold text-gray-900">
+                              {registro.descripcion}
+                            </p>
+                            <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs">
+                              <span className="font-medium text-gray-500">
+                                {formatShortDate(registro.fecha)}
+                              </span>
+                              <span
+                                className={
+                                  'rounded-full px-2 py-0.5 font-medium ' +
+                                  colors.bg
+                                }
+                              >
+                                {tipoLabels[registro.tipo] || registro.tipo}
+                              </span>
+                              <span className="text-gray-400">·</span>
+                              <span className="font-medium text-gray-600">
+                                {registro.veterinario}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <ChevronDown className="h-4 w-4 shrink-0 text-gray-400 transition-transform group-open:rotate-180" />
+                      </summary>
+
+                      <div className="border-t border-gray-100 bg-gray-50/50 px-4 py-4 text-sm">
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          <div>
+                            <p className="text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                              Diagnóstico
+                            </p>
+                            <p className="mt-1 font-medium text-gray-900">
+                              {registro.diagnostico}
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                              Tratamiento
+                            </p>
+                            <p className="mt-1 text-gray-700">
+                              {registro.tratamiento ||
+                                'Sin tratamiento registrado'}
+                            </p>
+                          </div>
+                        </div>
+
+                        {registro.proximaVisita && (
+                          <div className="mt-4 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-emerald-700">
+                            <Calendar className="h-4 w-4" />
+                            <p className="text-sm font-semibold">
+                              Próximo control:{' '}
+                              {formatDate(registro.proximaVisita)}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </details>
+                  );
+                })
+              ) : (
+                <div className="py-6 text-center text-sm text-gray-500">
+                  Sin registros clínicos todavía
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
         {/* Sidebar */}
         <div className="space-y-4">
           {/* Proximas citas */}
-          <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md">
+          <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
             <h3 className="mb-4 text-lg font-bold text-gray-900">
               Próximas Citas
             </h3>
@@ -406,39 +443,39 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
                 Sin citas pendientes
               </div>
             )}
-            <Link href={'/portal/citas/nueva/' + mascota.id}>
+            <Link href="/admin/citas">
               <Button className="mt-4 w-full gap-2 bg-emerald-600 text-white hover:bg-emerald-700">
                 <Calendar className="h-4 w-4" />
-                Agendar Cita
+                Gestionar citas
               </Button>
             </Link>
           </div>
 
           {/* Acciones rapidas */}
-          <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md">
+          <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
             <h3 className="mb-4 text-lg font-bold text-gray-900">
               Acciones Rápidas
             </h3>
             <div className="flex flex-col space-y-2">
-              <Link href="/portal/historial">
+              <Link href="/admin/atenciones">
                 <SecondaryButton className="w-full justify-start gap-2 border-gray-200 px-3 hover:bg-gray-50 hover:text-gray-900">
                   <Stethoscope className="h-4 w-4 text-gray-500" />
-                  Historial completo
+                  Ver atenciones
                 </SecondaryButton>
               </Link>
               {!mascota.chip && (
-                <Link href="/campanas">
+                <Link href="/admin/propietarios">
                   <SecondaryButton className="w-full justify-start gap-2 border-gray-200 px-3 hover:bg-gray-50 hover:text-gray-900">
                     <Cpu className="h-4 w-4 text-gray-500" />
-                    Solicitar microchip
+                    Registrar microchip
                   </SecondaryButton>
                 </Link>
               )}
               {!mascota.esterilizado && (
-                <Link href="/campanas">
+                <Link href="/admin/citas">
                   <SecondaryButton className="w-full justify-start gap-2 border-gray-200 px-3 hover:bg-gray-50 hover:text-gray-900">
                     <Shield className="h-4 w-4 text-gray-500" />
-                    Campana esterilizacion
+                    Agendar esterilización
                   </SecondaryButton>
                 </Link>
               )}

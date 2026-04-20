@@ -94,6 +94,7 @@ export default function AppointmentDetailsModal({
 
   return (
     <>
+      {/* Overlay */}
       <div
         className="fixed inset-0 z-60 h-full bg-gray-800/70 transition-all"
         onClick={() => handleModalClose()}

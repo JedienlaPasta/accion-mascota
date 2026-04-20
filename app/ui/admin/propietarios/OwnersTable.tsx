@@ -2,7 +2,8 @@
 
 import { propietariosAdmin } from '@/app/_lib/mock-data';
 import { formatPhone, formatRUT } from '@/app/_lib/utils/format';
-import { Ellipsis } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function OwnersTable() {
   return (
@@ -68,6 +69,8 @@ function OwnerTableRow({
   const dv = rut.split('-')[1];
   const formattedRut = formatRUT(subrut, dv);
 
+  const id = '1';
+
   return (
     <tr className="grid cursor-pointer grid-cols-24 items-center gap-4 py-4 text-sm text-zinc-600 transition-colors hover:bg-zinc-50/80">
       <td className="col-span-5">
@@ -93,8 +96,9 @@ function OwnerTableRow({
         {registro}
       </td>
       <td className="relative col-span-2 flex justify-center">
-        <Ellipsis className="peer relative z-10 size-6 hover:text-zinc-800" />
-        <span className="absolute top-1/2 z-0 size-8 -translate-y-1/2 rounded-full bg-transparent transition-colors peer-hover:bg-zinc-200/80" />
+        <Link href={`/admin/propietarios/${id}`}>
+          <ArrowRight className="peer relative z-10 size-8 rounded-lg p-2 text-zinc-500/80 transition-colors hover:bg-zinc-200/40 hover:text-zinc-600/90" />
+        </Link>
       </td>
     </tr>
   );

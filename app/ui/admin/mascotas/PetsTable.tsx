@@ -2,7 +2,7 @@
 
 import { Mascota, propietariosAdmin } from '@/app/_lib/mock-data';
 import { formatPhone } from '@/app/_lib/utils/format';
-import { FileText } from 'lucide-react';
+import { ArrowRight, FileText } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
@@ -119,7 +119,7 @@ function PetTableRow({
       </td>
       <td className="relative col-span-2 flex justify-center">
         <Link href={`/admin/mascotas/${id}`}>
-          <FileText className="peer relative z-10 size-8 rounded-lg p-2 text-zinc-500/80 transition-colors hover:bg-zinc-200/40 hover:text-zinc-600/90" />
+          <ArrowRight className="peer relative z-10 size-8 rounded-lg p-2 text-zinc-500/80 transition-colors hover:bg-zinc-200/40 hover:text-zinc-600/90" />
         </Link>
       </td>
     </tr>

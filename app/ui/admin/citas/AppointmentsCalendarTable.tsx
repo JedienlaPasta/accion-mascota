@@ -114,7 +114,7 @@ export default function AppointmentsCalendarTable() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleClick = (id: string) => {
+  const openAppointmentModal = (id: string) => {
     if (!id) return;
     const params = new URLSearchParams(searchParams);
     params.set('appointmentId', id);
@@ -211,7 +211,7 @@ export default function AppointmentsCalendarTable() {
               .map((e) => (
                 <div
                   key={e.id}
-                  onClick={() => handleClick(e.id)}
+                  onClick={() => openAppointmentModal(e.id)}
                   role="button"
                   className="absolute right-2 left-2 flex cursor-pointer gap-2 rounded-2xl border border-zinc-200 bg-white p-3 text-xs shadow-sm"
                   style={{

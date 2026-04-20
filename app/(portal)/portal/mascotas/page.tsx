@@ -1,13 +1,9 @@
 'use client';
 
-import React from 'react';
-
 import Link from 'next/link';
 import {
   PawPrint,
   Plus,
-  Dog,
-  Cat,
   Calendar,
   CheckCircle,
   ChevronRight,
@@ -16,17 +12,13 @@ import {
 } from 'lucide-react';
 import { useAuth } from '@/app/_lib/AuthContext';
 import { Button, SecondaryButton } from '@/app/ui/components/Button';
-import { citas, historialClinico, mascotas } from '@/app/_lib/mock-data';
+import {
+  citas,
+  especieIcon,
+  historialClinico,
+  mascotas,
+} from '@/app/_lib/mock-data';
 import { capitalize } from '@/app/_lib/utils/format';
-
-export const especieIcons: Record<
-  string,
-  React.ComponentType<{ className?: string }>
-> = {
-  perro: Dog,
-  gato: Cat,
-  otro: PawPrint,
-};
 
 export function calcularEdad(fechaNacimiento: string) {
   const nacimiento = new Date(fechaNacimiento);
@@ -77,7 +69,7 @@ export default function MascotasPage() {
       {/* Pet Cards */}
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {mascotas.map((mascota) => {
-          const Icon = especieIcons[mascota.especie];
+          const Icon = especieIcon[mascota.especie];
           const citasPendientes = citas.filter(
             (c) =>
               c.mascotaId === mascota.id &&

@@ -12,11 +12,14 @@ export default function AdminLayout({
 }) {
   return (
     <AuthProvider>
-      <div className="flex max-h-screen flex-col">
+      <div className="flex min-h-dvh flex-col">
         <SessionHeader />
         <div className="flex flex-1 overflow-hidden">
           <AdminSidebar />
-          <main id="main-scroll" className="flex-1s w-full overflow-auto">
+          <main
+            id="main-scroll"
+            className="min-h-0 w-full flex-1 overflow-auto"
+          >
             {children}
           </main>
         </div>
