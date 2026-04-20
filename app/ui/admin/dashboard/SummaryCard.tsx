@@ -1,6 +1,15 @@
 'use client';
 
-import { Calendar, FileCheck, PawPrint, User, Cat, Dog } from 'lucide-react';
+import {
+  Calendar,
+  Cat,
+  ClipboardList,
+  Dog,
+  FileCheck,
+  MapPin,
+  PawPrint,
+  User,
+} from 'lucide-react';
 import type { ComponentType } from 'react';
 
 const cardIcons: Record<string, ComponentType<{ className?: string }>> = {
@@ -10,6 +19,8 @@ const cardIcons: Record<string, ComponentType<{ className?: string }>> = {
   month: FileCheck,
   cat: Cat,
   dog: Dog,
+  mapPin: MapPin,
+  report: ClipboardList,
 };
 
 type SummaryCardProps = {

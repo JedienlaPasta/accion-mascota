@@ -787,7 +787,7 @@ export type AdminVisitRegistry = {
 export const adminVisitRegistry: AdminVisitRegistry[] = [
   {
     id: 'hist-001',
-    registro: '2025-12-15',
+    registro: '2026-04-04',
     nombreMascota: 'Luna',
     especie: 'Perro',
     tipoAtencion: 'consulta',
@@ -797,7 +797,7 @@ export const adminVisitRegistry: AdminVisitRegistry[] = [
   },
   {
     id: 'hist-002',
-    registro: '2025-10-01',
+    registro: '2026-04-11',
     nombreMascota: 'Luna',
     especie: 'Perro',
     tipoAtencion: 'vacuna',
@@ -807,7 +807,7 @@ export const adminVisitRegistry: AdminVisitRegistry[] = [
   },
   {
     id: 'hist-003',
-    registro: '2024-06-20',
+    registro: '2026-04-16',
     nombreMascota: 'Luna',
     especie: 'Perro',
     tipoAtencion: 'cirugia',
@@ -817,7 +817,7 @@ export const adminVisitRegistry: AdminVisitRegistry[] = [
   },
   {
     id: 'hist-004',
-    registro: '2025-11-10',
+    registro: '2026-04-21',
     nombreMascota: 'Michi',
     especie: 'Gato',
     tipoAtencion: 'control',
@@ -827,7 +827,7 @@ export const adminVisitRegistry: AdminVisitRegistry[] = [
   },
   {
     id: 'hist-005',
-    registro: '2025-08-15',
+    registro: '2026-04-25',
     nombreMascota: 'Michi',
     especie: 'Gato',
     tipoAtencion: 'vacuna',
@@ -837,13 +837,90 @@ export const adminVisitRegistry: AdminVisitRegistry[] = [
   },
   {
     id: 'hist-006',
-    registro: '2025-09-05',
+    registro: '2026-04-28',
     nombreMascota: 'Rocky',
     especie: 'Perro',
     tipoAtencion: 'vacuna',
     diagnostico: 'Cachorro sano',
     veterinario: 'Dra. Ana Soto',
     microchip: 'Sin chip',
+  },
+];
+
+export type AdminOperationalCategory = 'operativo' | 'rescate' | 'educacion';
+
+export type AdminOperationalLog = {
+  id: string;
+  fecha: string;
+  categoria: AdminOperationalCategory;
+  sector: string;
+  descripcion: string;
+  mascotasAtendidas: number;
+  mascotasRescatadas: number;
+  funcionarios: string[];
+};
+
+export const adminOperationalLogs: AdminOperationalLog[] = [
+  {
+    id: 'op-001',
+    fecha: '2026-04-05',
+    categoria: 'operativo',
+    sector: 'Centro',
+    descripcion: 'Operativo de vacunación y desparasitación comunitaria.',
+    mascotasAtendidas: 22,
+    mascotasRescatadas: 0,
+    funcionarios: ['Dr. Carlos Muñoz', 'Dra. Ana Soto'],
+  },
+  {
+    id: 'op-002',
+    fecha: '2026-04-12',
+    categoria: 'educacion',
+    sector: 'El Yeco',
+    descripcion: 'Charla de tenencia responsable y entrega de material.',
+    mascotasAtendidas: 0,
+    mascotasRescatadas: 0,
+    funcionarios: ['Dra. Ana Soto'],
+  },
+  {
+    id: 'op-003',
+    fecha: '2026-04-18',
+    categoria: 'operativo',
+    sector: 'San Alfonso',
+    descripcion: 'Operativo de microchip y registro municipal.',
+    mascotasAtendidas: 15,
+    mascotasRescatadas: 0,
+    funcionarios: ['Dr. Carlos Muñoz'],
+  },
+  {
+    id: 'op-004',
+    fecha: '2026-04-22',
+    categoria: 'rescate',
+    sector: 'Aguas Marinas',
+    descripcion:
+      'Rescate y evaluación clínica inicial de animal en vía pública.',
+    mascotasAtendidas: 1,
+    mascotasRescatadas: 1,
+    funcionarios: ['Dr. Carlos Muñoz'],
+  },
+  {
+    id: 'op-005',
+    fecha: '2026-03-09',
+    categoria: 'operativo',
+    sector: 'Mirasol',
+    descripcion: 'Operativo en sede vecinal: controles generales y vacunas.',
+    mascotasAtendidas: 28,
+    mascotasRescatadas: 0,
+    funcionarios: ['Dra. Ana Soto'],
+  },
+  {
+    id: 'op-006',
+    fecha: '2026-02-20',
+    categoria: 'rescate',
+    sector: 'El Canelo',
+    descripcion: 'Retiro y traslado a hogar temporal por denuncia vecinal.',
+    mascotasAtendidas: 1,
+    mascotasRescatadas: 1,
+    funcionarios: ['Dra. Ana Soto'],
   },
 ];
 
