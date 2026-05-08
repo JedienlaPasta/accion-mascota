@@ -12,6 +12,7 @@ export default async function ListadoDeImagenesDeMascotas() {
     // Obtener lista de todos los objetos en el bucket 'mascotas'
     const listCommand = new ListObjectsV2Command({ Bucket: 'mascotas' });
     const { Contents } = await s3Client.send(listCommand);
+    console.log('length:', Contents?.length);
 
     // Si hay archivos, generar las URLs pre-firmadas
     if (Contents && Contents.length > 0) {
