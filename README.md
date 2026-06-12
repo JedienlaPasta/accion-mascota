@@ -5,7 +5,7 @@
 
 ## Requerimientos Funcionales
 
-### 👤 Ciudadano (Propietario)
+### Ciudadano (Propietario)
 | ID | Módulo | Descripción |
 | :--- | :--- | :--- |
 | **RF-CN-01** | Registro de cuenta | El sistema debe permitir a un ciudadano registrarse utilizando su RUT y correo electrónico, verificando previamente la inexistencia de duplicados en la base de datos. |
@@ -14,7 +14,7 @@
 | **RF-CN-04** | Agendamiento de citas | El ciudadano debe poder solicitar horas de atención para los servicios habilitados por la Veterinaria Municipal, cumpliendo con los requisitos estipulados. |
 | **RF-CN-05** | Adopción de mascotas | El ciudadano debe poder acceder al catálogo de mascotas disponibles para adopción, enviar un formulario de postulación y hacer seguimiento del estado de su solicitud. |
 
-### 🏢 Usuario Municipal (Base)
+### Usuario Municipal (Base)
 | ID | Módulo | Descripción |
 | :--- | :--- | :--- |
 | **RF-UM-01** | Registro de usuarios | El usuario debe poder registrar ciudadanos (propietarios) en el sistema. |
@@ -24,19 +24,19 @@
 | **RF-UM-05** | Gestión de adopciones | El usuario debe poder evaluar las solicitudes de adopción ingresadas por los ciudadanos, cambiando su estado (Aprobada, Rechazada, En Revisión) y emitiendo comentarios de retroalimentación. |
 | **RF-UM-06** | Dashboard y métricas | El usuario debe tener acceso a un panel para visualizar estadísticas globales de la plataforma (ej. total de mascotas registradas, adopciones concretadas, volumen de atenciones). |
 
-### 🩺 Veterinario (Usuario Municipal)
+### Veterinario (Usuario Municipal)
 | ID | Módulo | Descripción |
 | :--- | :--- | :--- |
 | **RF-VM-01** | Registro atención clínica | El veterinario debe poder generar registros de "Consulta Médica" asociados a una mascota, documentando variables clínicas como anamnesis, tratamiento, peso, diagnósticos, etc. |
 | **RF-VM-02** | Herencia operativa | El veterinario cuenta con todos los privilegios de un Usuario Municipal. |
 
-### 📁 Funcionario (Usuario Municipal)
+### Funcionario (Usuario Municipal)
 | ID | Módulo | Descripción |
 | :--- | :--- | :--- |
 | **RF-FM-01** | Generar reportes | El sistema debe permitir al funcionario generar y exportar reportes estadísticos mensuales sobre atenciones y métricas operativas para uso administrativo. |
 | **RF-FM-02** | Herencia operativa | El funcionario cuenta con todos los privilegios de un Usuario Municipal. |
 
-### 👑 Administrador (Jefatura)
+### Administrador (Jefatura)
 | ID | Módulo | Descripción |
 | :--- | :--- | :--- |
 | **RF-AM-01** | Gestión de personal | El administrador debe contar con privilegios para crear cuentas de acceso a nuevos funcionarios o veterinarios, así como inhabilitarlas cuando cesen sus funciones en la municipalidad. |
