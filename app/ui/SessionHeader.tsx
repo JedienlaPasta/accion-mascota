@@ -12,15 +12,15 @@ import {
   User,
   X,
 } from 'lucide-react';
-import { useAuth } from '../_lib/AuthContext';
 import { Button } from './components/Button';
 import Image from 'next/image';
+import { signOut, useSession } from 'next-auth/react';
 
 export function SessionHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
-  const { usuario, isLoggedIn, logout } = useAuth();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (!userMenuOpen) return;
@@ -46,7 +46,7 @@ export function SessionHeader() {
     };
   }, [userMenuOpen]);
 
-  const userName = usuario?.nombre.split(' ')[0] || 'Gestion Interna';
+  const userName = session?.user?.name?.split(' ')[0] || 'Gestion Interna';
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200/60 bg-white shadow-sm shadow-gray-200/40">
@@ -73,7 +73,7 @@ export function SessionHeader() {
           </Link>
 
           <div className="flex items-center gap-2">
-            {!isLoggedIn ? (
+            {status === 'authenticated' ? (
               <div className="relative" ref={userMenuRef}>
                 <button
                   type="button"
@@ -98,7 +98,7 @@ export function SessionHeader() {
                         {userName}
                       </p>
                       <p className="truncate text-xs text-zinc-500">
-                        {usuario?.email ||
+                        {session?.user?.email ||
                           `${userName.split(' ')[0].toLowerCase()}@example.com`}
                       </p>
                     </div>
@@ -123,9 +123,9 @@ export function SessionHeader() {
                         Mis Citas
                       </Link>
 
-                      {(usuario?.rol === 'funcionario' ||
-                        usuario?.rol === 'veterinario' ||
-                        usuario?.rol === 'admin') && (
+                      {(session?.user?.roles.includes('Funcionario') ||
+                        session?.user?.roles.includes('Veterinario') ||
+                        session?.user?.roles.includes('Administrador')) && (
                         <Link
                           role="menuitem"
                           href="/admin"
@@ -143,7 +143,7 @@ export function SessionHeader() {
                       role="menuitem"
                       onClick={() => {
                         setUserMenuOpen(false);
-                        logout();
+                        signOut();
                       }}
                       className="mb-2 flex w-full cursor-pointer items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-rose-600 transition-colors hover:bg-rose-50/60"
                     >

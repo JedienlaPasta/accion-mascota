@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { AuthProvider } from '../_lib/AuthContext';
 import { Header } from '../ui/Header';
 import { Footer } from '../ui/Footer';
+import { SessionProvider } from 'next-auth/react';
 
 export default function PublicLayout({
   children,
@@ -11,12 +11,12 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AuthProvider>
+    <SessionProvider>
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
       </div>
-    </AuthProvider>
+    </SessionProvider>
   );
 }

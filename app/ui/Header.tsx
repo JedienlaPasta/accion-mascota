@@ -3,10 +3,10 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X, User } from 'lucide-react';
-import { useAuth } from '../_lib/AuthContext';
 import { Button } from './components/Button';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 const navLinks = [
   { href: '/', label: 'Inicio' },
@@ -18,7 +18,7 @@ const navLinks = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { usuario, isLoggedIn, logout } = useAuth();
+  const { data: session, status } = useSession();
   const pathname = usePathname();
 
   return (

@@ -5,36 +5,32 @@ import React from 'react';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { PawPrint, LogIn, ArrowLeft, ShieldCheck } from 'lucide-react';
-import {
-  Button,
-  RoundMutedButton,
-  SecondaryButton,
-} from '../../ui/components/Button';
-import { useAuth } from '@/app/_lib/AuthContext';
+import { LogIn, ArrowLeft, ShieldCheck } from 'lucide-react';
+import { Button, SecondaryButton } from '../../ui/components/Button';
 import Input from '@/app/ui/components/Input';
 import Image from 'next/image';
+import { signIn, useSession } from 'next-auth/react';
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login } = useAuth();
   const [loading, setLoading] = useState(false);
+  const { data: session, status } = useSession();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     // Simulación de login
     setTimeout(() => {
-      login('ciudadano');
-      router.push('/portal/mascotas');
+      signIn('ciudadano');
+      // router.push('/portal/mascotas');
     }, 1000);
   };
 
   const handleAdminLogin = () => {
     setLoading(true);
     setTimeout(() => {
-      login('funcionario');
-      router.push('/admin');
+      signIn('keycloak');
+      // router.push('/admin');
     }, 1000);
   };
 

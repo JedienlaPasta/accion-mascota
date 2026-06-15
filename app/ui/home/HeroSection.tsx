@@ -1,25 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import {
-  Calendar,
-  Heart,
-  ArrowRight,
-  PawPrint,
-  Syringe,
-  Scissors,
-} from 'lucide-react';
-import { useAuth } from '@/app/_lib/AuthContext';
-import {
-  CTAButton,
-  MutedCTAButton,
-  RoundMutedButton,
-} from '../components/Button';
+import { Heart, PawPrint, Syringe, Scissors } from 'lucide-react';
+import { CTAButton, MutedCTAButton } from '../components/Button';
 import Image from 'next/image';
 import ImagenMascota from '../public/adopcion/ImagenMascota';
+import { useSession } from 'next-auth/react';
 
 export function HeroSection() {
-  const { isLoggedIn } = useAuth();
+  const { data: session, status } = useSession();
 
   return (
     <section className="bg-emerald-800/5s bg-secondary-backgrounds relative overflow-hidden bg-white">
@@ -85,7 +74,7 @@ export function HeroSection() {
             </p>
 
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
-              {isLoggedIn ? (
+              {status === 'authenticated' ? (
                 <Link href="/portal/citas/nueva">
                   <CTAButton>Agendar Cita</CTAButton>
                 </Link>

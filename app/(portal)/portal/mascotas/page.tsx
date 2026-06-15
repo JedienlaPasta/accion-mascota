@@ -10,7 +10,6 @@ import {
   AlarmClock,
   AlarmClockOff,
 } from 'lucide-react';
-import { useAuth } from '@/app/_lib/AuthContext';
 import { Button, SecondaryButton } from '@/app/ui/components/Button';
 import {
   citas,
@@ -19,6 +18,7 @@ import {
   mascotas,
 } from '@/app/_lib/mock-data';
 import { capitalize } from '@/app/_lib/utils/format';
+import { useSession } from 'next-auth/react';
 
 export function calcularEdad(fechaNacimiento: string) {
   const nacimiento = new Date(fechaNacimiento);
@@ -35,9 +35,13 @@ export function calcularEdad(fechaNacimiento: string) {
 }
 
 export default function MascotasPage() {
-  const { isLoggedIn } = useAuth();
+  const { data: session, status } = useSession();
 
-  if (isLoggedIn) {
+  if (status === 'loading') {
+    return <div className="p-8 text-center">Cargando Mascotas...</div>;
+  }
+
+  if (status === 'unauthenticated') {
     return (
       <div className="p-8 text-center">
         <p>Debes iniciar sesión para ver esta página.</p>

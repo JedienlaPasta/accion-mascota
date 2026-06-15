@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { AuthProvider } from '../_lib/AuthContext';
 // import { Footer } from '../ui/Footer';
 import { PortalSidebar } from '../ui/portal/PortalSidebar';
 import { SessionHeader } from '../ui/SessionHeader';
+import { SessionProvider } from 'next-auth/react';
 
 export default function PortalLayout({
   children,
@@ -12,7 +12,7 @@ export default function PortalLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AuthProvider>
+    <SessionProvider>
       <div className="flex min-h-screen flex-col">
         <SessionHeader />
         <div className="flex flex-1">
@@ -21,6 +21,6 @@ export default function PortalLayout({
         </div>
         {/* <Footer /> */}
       </div>
-    </AuthProvider>
+    </SessionProvider>
   );
 }

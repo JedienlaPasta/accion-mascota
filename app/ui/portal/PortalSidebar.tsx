@@ -10,8 +10,8 @@ import {
   Plus,
   Home,
 } from 'lucide-react';
-import { useAuth } from '@/app/_lib/AuthContext';
 import { Button } from '../components/Button';
+import { useSession } from 'next-auth/react';
 
 const navItems = [
   {
@@ -43,9 +43,10 @@ const navItems = [
 
 export function PortalSidebar() {
   const pathname = usePathname();
-  const { usuario, isLoggedIn } = useAuth();
 
-  if (isLoggedIn) {
+  const { data: session, status } = useSession();
+
+  if (status !== 'authenticated') {
     return null;
   }
 

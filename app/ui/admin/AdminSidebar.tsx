@@ -7,12 +7,11 @@ import {
   Calendar,
   ClipboardList,
   User,
-  Stethoscope,
   LayoutDashboard,
   Settings,
   Home,
 } from 'lucide-react';
-import { useAuth } from '@/app/_lib/AuthContext';
+import { useSession } from 'next-auth/react';
 
 const navItems = [
   {
@@ -49,9 +48,9 @@ const navItems = [
 
 export function AdminSidebar() {
   const pathname = usePathname();
-  const { usuario, isLoggedIn } = useAuth();
+  const { data: session, status } = useSession();
 
-  if (isLoggedIn) {
+  if (status !== 'authenticated') {
     return null;
   }
 

@@ -1,8 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { PawPrint, UserPlus, LogIn } from 'lucide-react';
-import { useAuth } from '../../_lib/AuthContext';
+import { PawPrint } from 'lucide-react';
 import {
   Button,
   CTAButton,
@@ -10,11 +9,12 @@ import {
   RoundMutedButton,
 } from '../components/Button';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 
 export function CTASection() {
-  const { isLoggedIn } = useAuth();
+  const { data: session, status } = useSession();
 
-  if (isLoggedIn) {
+  if (status === 'authenticated') {
     return (
       <section className="bg-secondary-background py-16 lg:py-36">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">

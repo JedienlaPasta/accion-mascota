@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { AuthProvider } from '../_lib/AuthContext';
 import { AdminSidebar } from '../ui/admin/AdminSidebar';
 import { SessionHeader } from '../ui/SessionHeader';
+import { SessionProvider } from 'next-auth/react';
 
 export default function AdminLayout({
   children,
@@ -11,7 +11,7 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AuthProvider>
+    <SessionProvider>
       <div className="flex min-h-dvh flex-col">
         <SessionHeader />
         <div className="flex flex-1 overflow-hidden">
@@ -24,6 +24,6 @@ export default function AdminLayout({
           </main>
         </div>
       </div>
-    </AuthProvider>
+    </SessionProvider>
   );
 }
