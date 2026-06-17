@@ -43,4 +43,4 @@
 | **RF-AM-02** | Herencia operativa | El administrador cuenta con todos los privilegios de un Funcionario/Veterinario, pudiendo intervenir en el agendamiento, registro y gestión de mascotas para apoyar operativamente al equipo. |
 
 ## Diagrama de Datos
-![Diagrama de Datos](./diagrama-datos.png)
+![Diagrama de Datos](./public/diagrama-datos.png)
