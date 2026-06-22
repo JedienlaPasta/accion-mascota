@@ -5,7 +5,7 @@ import Keycloak from 'next-auth/providers/keycloak';
 
 function buildKeycloakLogoutUrl(idToken: string): string {
   const issuer = process.env.AUTH_KEYCLOAK_ISSUER;
-  const postLogoutUri = encodeURIComponent(process.env.NEXTAUTH_URL!);
+  const postLogoutUri = encodeURIComponent(process.env.AUTH_URL!);
   return `${issuer}/protocol/openid-connect/logout?id_token_hint=${idToken}&post_logout_redirect_uri=${postLogoutUri}`;
 }
 
