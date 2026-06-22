@@ -1,13 +1,6 @@
 import Link from 'next/link';
 import { Card, CardDescription, CardTitle } from './Card';
-import {
-  Stethoscope,
-  Syringe,
-  Scissors,
-  Shield,
-  ArrowRight,
-} from 'lucide-react';
-import { RoundMutedButton } from '../components/Button';
+import { Stethoscope, Syringe, Scissors, Shield } from 'lucide-react';
 
 const serviciosDestacados = [
   {

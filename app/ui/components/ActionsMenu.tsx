@@ -1,5 +1,5 @@
 'use client';
-import { ChevronDown, Check, Ellipsis, Cog, Settings } from 'lucide-react';
+import { Check, Settings } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 type Option = {

@@ -2,7 +2,6 @@
 
 export const dynamic = 'force-dynamic';
 
-import Link from 'next/link';
 import {
   PawPrint,
   Plus,
@@ -12,7 +11,6 @@ import {
   AlarmClock,
   AlarmClockOff,
 } from 'lucide-react';
-import { Button, SecondaryButton } from '@/app/ui/components/Button';
 import {
   citas,
   especieIcon,

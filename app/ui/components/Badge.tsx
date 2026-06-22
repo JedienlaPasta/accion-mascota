@@ -19,13 +19,11 @@ export default function Badge({ className, children, ...props }: BadgeProps) {
 }
 
 type ToggleBadgeProps = {
-  className?: string;
   children: React.ReactNode;
   alternative: React.ReactNode;
 };
 
 export function ToggleBadge({
-  className,
   children,
   alternative,
   ...props

@@ -1,4 +1,3 @@
-import { SecondaryButton } from '@/app/ui/components/Button';
 import { BaseMutedLink } from '@/app/ui/components/Link';
 import AppointmentForm from '@/app/ui/portal/citas/nueva/[id]/AppointmentForm';
 import { ArrowLeft, X } from 'lucide-react';

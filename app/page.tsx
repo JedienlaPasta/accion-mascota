@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { CampaignsPreview } from './ui/home/CampaignsPreview';
 import { CTASection } from './ui/home/CTASection';
 import { Footer } from './ui/Footer';

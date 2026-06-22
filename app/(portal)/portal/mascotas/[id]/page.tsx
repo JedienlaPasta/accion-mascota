@@ -14,11 +14,7 @@ import {
   Cpu,
   ChevronRight,
 } from 'lucide-react';
-import {
-  Button,
-  RedirectButton,
-  SecondaryButton,
-} from '@/app/ui/components/Button';
+import { Button } from '@/app/ui/components/Button';
 import {
   citas,
   especieIcon,

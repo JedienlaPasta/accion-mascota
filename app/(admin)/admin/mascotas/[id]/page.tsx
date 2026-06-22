@@ -15,11 +15,7 @@ import {
   Cpu,
   Shield,
 } from 'lucide-react';
-import {
-  Button,
-  RedirectButton,
-  SecondaryButton,
-} from '@/app/ui/components/Button';
+import { Button, SecondaryButton } from '@/app/ui/components/Button';
 import {
   citas,
   especieIcon,

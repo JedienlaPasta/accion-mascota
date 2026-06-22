@@ -1,7 +1,6 @@
 import { campanas } from '@/app/_lib/mock-data';
 import { capitalize } from '@/app/_lib/utils/format';
 import Badge from '@/app/ui/components/Badge';
-import { Button } from '@/app/ui/components/Button';
 import { BaseLink } from '@/app/ui/components/Link';
 import { formatDate } from '@/app/ui/home/CampaignsPreview';
 import {
@@ -10,14 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/app/ui/home/Card';
-import {
-  CheckCheck,
-  Calendar,
-  FileUser,
-  Users,
-  CheckCircle,
-} from 'lucide-react';
-import Link from 'next/link';
+import { Calendar, FileUser, Users, CheckCircle } from 'lucide-react';
 
 export default function CampanasPage() {
   const campanasActivas = campanas.slice(0, 2);

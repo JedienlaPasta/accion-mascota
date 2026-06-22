@@ -3,7 +3,7 @@ import { citas, especieIcon, mascotas } from '@/app/_lib/mock-data';
 import { capitalize } from '@/app/_lib/utils/format';
 import Badge from '@/app/ui/components/Badge';
 import { SecondaryButton } from '@/app/ui/components/Button';
-import { BaseLink, BaseMutedLink } from '@/app/ui/components/Link';
+import { BaseLink } from '@/app/ui/components/Link';
 import { Calendar, CheckCircle, Clock, Plus, Stethoscope } from 'lucide-react';
 
 export default function Citas() {
