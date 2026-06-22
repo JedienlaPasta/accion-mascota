@@ -10,8 +10,8 @@ import {
   Plus,
   Home,
 } from 'lucide-react';
-import { Button } from '../components/Button';
 import { useSession } from 'next-auth/react';
+import { BaseLink } from '../components/Link';
 
 const navItems = [
   {
@@ -106,12 +106,10 @@ export function PortalSidebar() {
       </nav>
 
       <div className="border-t border-zinc-200/70 p-4">
-        <Link href="/portal/citas/nueva">
-          <Button className="flex w-full justify-center gap-2 rounded-xl">
-            <Plus className="h-4 w-4" />
-            Nueva Cita
-          </Button>
-        </Link>
+        <BaseLink href="/portal/citas/nueva">
+          <Plus className="h-4 w-4" />
+          Nueva Cita
+        </BaseLink>
       </div>
     </aside>
   );

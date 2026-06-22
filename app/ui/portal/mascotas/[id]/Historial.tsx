@@ -7,8 +7,8 @@ import {
   tipoLabels,
 } from '@/app/_lib/mock-data';
 import { Button } from '@/app/ui/components/Button';
+import { LargeMutedBorderLink } from '@/app/ui/components/Link';
 import { Calendar, ChevronDown, Stethoscope } from 'lucide-react';
-import Link from 'next/link';
 import { useState } from 'react';
 
 export default function MascotaHistorial({
@@ -24,7 +24,7 @@ export default function MascotaHistorial({
 
   return (
     <div className="space-y-3">
-      {historial.length > 0 ? (
+      {historial.length === 0 ? (
         displayedHistory.map((registro) => {
           const TipoIcon = tipoIcon[registro.tipo] || Stethoscope;
           const colors = tipoColors[registro.tipo] || tipoColors.consulta;
@@ -71,12 +71,13 @@ export default function MascotaHistorial({
         <div className="py-8 text-center text-gray-500">
           <Stethoscope className="mx-auto mb-4 h-12 w-12 opacity-50" />
           <p>No hay registros clinicos todavia</p>
-          <Link href={'/portal/citas/nueva?mascota=' + mascotaId}>
-            <Button className="mt-4 gap-2">
-              <Calendar className="h-4 w-4" />
-              Agendar primera cita
-            </Button>
-          </Link>
+          <LargeMutedBorderLink
+            href={'/portal/citas/nueva?mascota=' + mascotaId}
+            className="mx-auto mt-4 w-fit"
+          >
+            <Calendar className="h-4 w-4" />
+            Agendar primera cita
+          </LargeMutedBorderLink>
         </div>
       )}
 

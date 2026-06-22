@@ -3,6 +3,7 @@
 import { Button, SecondaryButton } from '@/app/ui/components/Button';
 import MascotaSelect from '@/app/ui/components/Dropdown';
 import Input, { SafeNumberInput } from '@/app/ui/components/Input';
+import { BaseMutedLink } from '@/app/ui/components/Link';
 import {
   ArrowLeft,
   Camera,
@@ -53,12 +54,10 @@ export default function NuevaMascotaPage() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <Link href="/portal/mascotas">
-            <SecondaryButton className="h-10 gap-2 border-gray-200 bg-white px-4 text-gray-700 hover:bg-gray-50 hover:text-gray-900">
-              <X className="h-4 w-4" />
-              Cancelar
-            </SecondaryButton>
-          </Link>
+          <BaseMutedLink href="/portal/mascotas">
+            <X className="h-4 w-4" />
+            Cancelar
+          </BaseMutedLink>
           <Button className="h-10 gap-2 bg-emerald-600 hover:bg-emerald-700">
             <Check className="h-4 w-4" />
             Guardar

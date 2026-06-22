@@ -2,6 +2,7 @@ import { campanas } from '@/app/_lib/mock-data';
 import { capitalize } from '@/app/_lib/utils/format';
 import Badge from '@/app/ui/components/Badge';
 import { Button } from '@/app/ui/components/Button';
+import { BaseLink } from '@/app/ui/components/Link';
 import { formatDate } from '@/app/ui/home/CampaignsPreview';
 import {
   Card,
@@ -87,11 +88,7 @@ export default function CampanasPage() {
                     </div>
                   </div>
 
-                  <Link href="/campanas">
-                    <Button className="w-full justify-center">
-                      Inscribirse
-                    </Button>
-                  </Link>
+                  <BaseLink href="/campanas">Inscribirse</BaseLink>
                 </div>
               </div>
             </Card>

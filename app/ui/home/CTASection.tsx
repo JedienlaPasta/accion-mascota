@@ -1,15 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import { PawPrint } from 'lucide-react';
-import {
-  Button,
-  CTAButton,
-  MutedCTAButton,
-  RoundMutedButton,
-} from '../components/Button';
+import { CTAButtonLogin, MutedCTAButtonLogin } from '../components/Button';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
+import { BaseRoundedLink, BaseRoundedMutedLink } from '../components/Link';
 
 export function CTASection() {
   const { data: session, status } = useSession();
@@ -29,17 +24,13 @@ export function CTASection() {
             citas y más.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href="/portal/mascotas">
-              <Button className="w-full gap-2 sm:w-auto">
-                <PawPrint className="h-5 w-5" />
-                Ver mis mascotas
-              </Button>
-            </Link>
-            <Link href="/portal/citas/nueva">
-              <RoundMutedButton className="w-full gap-2 bg-transparent sm:w-auto">
-                Agendar una cita
-              </RoundMutedButton>
-            </Link>
+            <BaseRoundedLink href="/portal/mascotas">
+              <PawPrint className="h-5 w-5" />
+              Ver mis mascotas
+            </BaseRoundedLink>
+            <BaseRoundedMutedLink href="/portal/citas/nueva">
+              Agendar una cita
+            </BaseRoundedMutedLink>
           </div>
         </div>
       </section>
@@ -68,26 +59,8 @@ export function CTASection() {
           un solo lugar.
         </p>
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          {/* <Link href="/registro">
-            <Button className="w-full gap-2 sm:w-auto">
-              <UserPlus className="h-5 w-5" />
-              Crear una cuenta
-            </Button>
-          </Link>
-          <Link href="/login">
-            <RoundMutedButton className="w-full gap-2 bg-transparent sm:w-auto">
-              <LogIn className="h-5 w-5" />
-              Ya tengo cuenta
-            </RoundMutedButton>
-          </Link> */}
-
-          <Link href="/login">
-            <CTAButton>Iniciar sesión</CTAButton>
-          </Link>
-
-          <Link href="/registro">
-            <MutedCTAButton>Crear cuenta</MutedCTAButton>
-          </Link>
+          <CTAButtonLogin>Iniciar sesión</CTAButtonLogin>
+          <MutedCTAButtonLogin>Crear cuenta</MutedCTAButtonLogin>
         </div>
       </div>
     </section>

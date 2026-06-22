@@ -1,4 +1,4 @@
-import { CTAButton } from '@/app/ui/components/Button';
+import { CTALink } from '@/app/ui/components/Link';
 import {
   Card,
   CardDescription,
@@ -291,11 +291,9 @@ export default function InformacionPage() {
                   </div>
                 </div>
 
-                <Link href="/adopcion" className="shrink-0">
-                  <CTAButton hasIcon={false}>
-                    Ver mascotas en adopción
-                  </CTAButton>
-                </Link>
+                <CTALink href="/adopcion" hasIcon={false}>
+                  Ver mascotas en adopción
+                </CTALink>
               </div>
             </div>
           </Card>

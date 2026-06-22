@@ -1,4 +1,4 @@
-import { SecondaryButton } from '@/app/ui/components/Button';
+import { BaseMutedLink } from '@/app/ui/components/Link';
 import AppointmentForm from '@/app/ui/portal/citas/nueva/[id]/AppointmentForm';
 import { ArrowLeft, X } from 'lucide-react';
 import Link from 'next/link';
@@ -7,7 +7,6 @@ type PageProps = {
   params: Promise<{ id: string }>;
 };
 
-// En esta pagina se agendará la cita para una mascota especificando su id.
 export default async function NuevaCitaPage({ params }: PageProps) {
   const { id } = await params;
   return (
@@ -30,12 +29,10 @@ export default async function NuevaCitaPage({ params }: PageProps) {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <Link href="/portal/mascotas">
-            <SecondaryButton className="h-10 gap-2 border-gray-200 bg-white px-4 text-gray-700 hover:bg-gray-50 hover:text-gray-900">
-              <X className="h-4 w-4" />
-              Cancelar
-            </SecondaryButton>
-          </Link>
+          <BaseMutedLink href="/portal/citas">
+            <X className="h-4 w-4" />
+            Cancelar
+          </BaseMutedLink>
         </div>
       </div>
 

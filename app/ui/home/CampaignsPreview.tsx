@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { Card, CardDescription, CardHeader, CardTitle } from './Card';
 import { campanas } from '../../_lib/mock-data';
-import { Calendar, Users, ArrowRight, Sparkles, FileUser } from 'lucide-react';
+import { Calendar, Users, Sparkles, FileUser } from 'lucide-react';
 import Badge from '../components/Badge';
-import { Button, RoundMutedButton } from '../components/Button';
 import { capitalize } from '../../_lib/utils/format';
+import { BaseLink } from '../components/Link';
 
 export function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString('es-CL', {
@@ -85,11 +85,7 @@ export function CampaignsPreview() {
                     </div>
                   </div>
 
-                  <Link href="/campanas">
-                    <Button className="w-full justify-center">
-                      Inscribirse
-                    </Button>
-                  </Link>
+                  <BaseLink href="/campanas">Inscribirse</BaseLink>
                 </div>
               </div>
             </Card>
@@ -98,10 +94,11 @@ export function CampaignsPreview() {
 
         {/* CTA */}
         <div className="mt-12 place-self-center">
-          <Link href="/campanas">
-            <button className="relative cursor-pointer rounded-2xl bg-gray-100 bg-linear-to-br px-6 py-4 text-lg font-black text-gray-600 shadow-lg ring-2 ring-gray-300/90 transition-all duration-300 hover:scale-103 active:scale-95 md:px-10">
-              <span>Ver todos los campañas</span>
-            </button>
+          <Link
+            href="/campanas"
+            className="relative cursor-pointer rounded-2xl bg-gray-100 bg-linear-to-br px-6 py-4 text-lg font-black text-gray-600 shadow-lg ring-2 ring-gray-300/90 transition-all duration-300 hover:scale-103 active:scale-95 md:px-10"
+          >
+            Ver todas los campañas
           </Link>
         </div>
       </div>

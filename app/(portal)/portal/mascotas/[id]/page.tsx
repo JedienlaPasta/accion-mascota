@@ -28,6 +28,11 @@ import {
 import Badge from '@/app/ui/components/Badge';
 import MascotaHistorial from '@/app/ui/portal/mascotas/[id]/Historial';
 import { capitalize } from '@/app/_lib/utils/format';
+import {
+  BaseLink,
+  BaseMutedLink,
+  SmallBaseMutedLink,
+} from '@/app/ui/components/Link';
 
 function calcularEdad(fechaNacimiento: string) {
   const nacimiento = new Date(fechaNacimiento);
@@ -67,18 +72,18 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
 
   if (!mascota) {
     return (
-      <div className="flex min-h-[50vh] flex-col items-center justify-center p-6 lg:p-8">
-        <PawPrint className="text-muted-foreground mb-4 h-16 w-16" />
+      <div className="flex h-full flex-col items-center justify-center">
+        <PawPrint className="text-muted-foreground -mt-40 mb-4 h-16 w-16" />
         <h2 className="text-foreground mb-2 text-xl font-semibold">
           Mascota no encontrada
         </h2>
         <p className="text-muted-foreground mb-4">
-          No se encontro una mascota con el ID proporcionado.
+          No se encontró una mascota con el ID proporcionado.
         </p>
-        <RedirectButton to="/portal/mascotas" className="gap-2">
+        <BaseLink href="/portal/mascotas">
           <ArrowLeft className="h-4 w-4" />
-          Volver a mis mascotas
-        </RedirectButton>
+          Volver a mascotas
+        </BaseLink>
       </div>
     );
   }
@@ -293,12 +298,10 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
                   {'Registro de atenciones de ' + mascota.nombre}
                 </p>
               </div>
-              <Link href="/portal/historial">
-                <SecondaryButton className="gap-1.5 px-3.5 text-xs text-gray-600 hover:bg-gray-50">
-                  Ver todo
-                  <ChevronRight className="h-3 w-3" />
-                </SecondaryButton>
-              </Link>
+              <SmallBaseMutedLink href="/portal/historial">
+                Ver todo
+                <ChevronRight className="h-3 w-3" />
+              </SmallBaseMutedLink>
             </div>
 
             <MascotaHistorial historial={historial} mascotaId={mascota.id} />
@@ -313,7 +316,7 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
               Próximas Citas
             </h3>
             {citasMascota.length > 0 ? (
-              <div className="space-y-3">
+              <div className="mb-4 space-y-3">
                 {citasMascota.map((cita) => (
                   <div
                     key={cita.id}
@@ -352,12 +355,10 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
                 Sin citas pendientes
               </div>
             )}
-            <Link href={'/portal/citas/nueva/' + mascota.id}>
-              <Button className="mt-4 w-full gap-2 bg-emerald-600 text-white hover:bg-emerald-700">
-                <Calendar className="h-4 w-4" />
-                Agendar Cita
-              </Button>
-            </Link>
+            <BaseLink href={'/portal/citas/nueva/' + mascota.id}>
+              <Calendar className="h-4 w-4" />
+              Agendar Cita
+            </BaseLink>
           </div>
 
           {/* Acciones rapidas */}
@@ -366,27 +367,21 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
               Acciones Rápidas
             </h3>
             <div className="flex flex-col space-y-2">
-              <Link href="/portal/historial">
-                <SecondaryButton className="w-full justify-start gap-2 border-gray-200 px-3 hover:bg-gray-50 hover:text-gray-900">
-                  <Stethoscope className="h-4 w-4 text-gray-500" />
-                  Historial completo
-                </SecondaryButton>
-              </Link>
+              <BaseMutedLink href="/portal/historial">
+                <Stethoscope className="h-4 w-4 text-gray-500" />
+                Historial completo
+              </BaseMutedLink>
               {!mascota.chip && (
-                <Link href="/campanas">
-                  <SecondaryButton className="w-full justify-start gap-2 border-gray-200 px-3 hover:bg-gray-50 hover:text-gray-900">
-                    <Cpu className="h-4 w-4 text-gray-500" />
-                    Solicitar microchip
-                  </SecondaryButton>
-                </Link>
+                <BaseMutedLink href="/campanas">
+                  <Cpu className="h-4 w-4 text-gray-500" />
+                  Solicitar microchip
+                </BaseMutedLink>
               )}
               {!mascota.esterilizado && (
-                <Link href="/campanas">
-                  <SecondaryButton className="w-full justify-start gap-2 border-gray-200 px-3 hover:bg-gray-50 hover:text-gray-900">
-                    <Shield className="h-4 w-4 text-gray-500" />
-                    Campana esterilizacion
-                  </SecondaryButton>
-                </Link>
+                <BaseMutedLink href="/campanas">
+                  <Shield className="h-4 w-4 text-gray-500" />
+                  Campana esterilizacion
+                </BaseMutedLink>
               )}
             </div>
           </div>

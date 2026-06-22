@@ -92,10 +92,11 @@ export function ServicesPreview() {
 
         {/* CTA */}
         <div className="mt-12 place-self-center">
-          <Link href="/servicios">
-            <button className="relative cursor-pointer rounded-2xl bg-gray-100 bg-linear-to-br px-6 py-4 text-lg font-black text-gray-600 shadow-lg ring-2 ring-gray-300/90 transition-all duration-300 hover:scale-103 active:scale-95 md:px-10">
-              <span>Ver todos los servicios</span>
-            </button>
+          <Link
+            href="/servicios"
+            className="relative cursor-pointer rounded-2xl bg-gray-100 bg-linear-to-br px-6 py-4 text-lg font-black text-gray-600 shadow-lg ring-2 ring-gray-300/90 transition-all duration-300 hover:scale-103 active:scale-95 md:px-10"
+          >
+            Ver todos los servicios
           </Link>
         </div>
       </div>

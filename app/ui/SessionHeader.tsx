@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import { Button } from './components/Button';
 import Image from 'next/image';
-import { signOut, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 export function SessionHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -82,7 +82,7 @@ export function SessionHeader() {
                   aria-expanded={userMenuOpen}
                   onClick={() => setUserMenuOpen((prev) => !prev)}
                 >
-                  <span className="flex size-10 items-center justify-center rounded-full bg-emerald-800/80 text-xl font-bold text-zinc-50">
+                  <span className="flex size-10 items-center justify-center rounded-full bg-emerald-800/80 text-xl font-bold text-zinc-50 uppercase">
                     {userName.charAt(0)}
                   </span>
                   <ChevronDown className="size-4 text-zinc-400" />
@@ -95,7 +95,7 @@ export function SessionHeader() {
                   >
                     <div className="mb-1 border-b border-zinc-200 px-2 py-3">
                       <p className="truncate text-sm font-semibold text-zinc-900">
-                        {userName}
+                        {session?.user?.name}
                       </p>
                       <p className="truncate text-xs text-zinc-500">
                         {session?.user?.email ||
@@ -143,7 +143,7 @@ export function SessionHeader() {
                       role="menuitem"
                       onClick={() => {
                         setUserMenuOpen(false);
-                        signOut();
+                        signOut({ redirectTo: '/' });
                       }}
                       className="mb-2 flex w-full cursor-pointer items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-rose-600 transition-colors hover:bg-rose-50/60"
                     >
@@ -154,12 +154,15 @@ export function SessionHeader() {
                 )}
               </div>
             ) : (
-              <Link href="/login">
-                <Button className="gap-2">
-                  <User className="h-4 w-4" />
-                  <span className="hidden sm:inline">Iniciar Sesión</span>
-                </Button>
-              </Link>
+              <Button
+                className="gap-2"
+                onClick={() =>
+                  signIn('keycloak', { callbackUrl: '/portal/mascotas' })
+                }
+              >
+                <User className="h-4 w-4" />
+                <span className="hidden sm:inline">Iniciar Sesión</span>
+              </Button>
             )}
 
             <Button

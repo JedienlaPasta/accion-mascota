@@ -1,21 +1,12 @@
-import Link from 'next/link';
-import {
-  Card,
-  // CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from './Card';
+import { Card, CardDescription, CardHeader, CardTitle } from './Card';
 import {
   BookOpen,
   AlertTriangle,
-  Phone,
   ArrowRight,
   HeartHandshake,
 } from 'lucide-react';
-import { Button } from '../components/Button';
-import { Fragment } from 'react/jsx-runtime';
 import InfoCardsContactBanner from './InfoCardsContactBanner';
+import { BaseLink } from '../components/Link';
 
 const infoCards = [
   {
@@ -77,17 +68,18 @@ export function InfoCards() {
                 </div>
                 <CardTitle className="text-xl">{card.titulo}</CardTitle>
               </CardHeader>
-              <Fragment>
-                <CardDescription className="mb-6 px-6 text-sm leading-relaxed">
+              <div className="px-6">
+                <CardDescription className="mb-6 text-sm leading-relaxed">
                   {card.descripcion}
                 </CardDescription>
-                <Link href={card.link} className="mx-4 w-fit rounded-full">
-                  <Button className="gap-2">
-                    {card.linkText}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </Fragment>
+                <BaseLink
+                  href={card.link}
+                  className="w-fit min-w-52 justify-start"
+                >
+                  {card.linkText}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </BaseLink>
+              </div>
             </Card>
           ))}
         </div>

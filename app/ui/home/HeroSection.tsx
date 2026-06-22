@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import { Heart, PawPrint, Syringe, Scissors } from 'lucide-react';
-import { CTAButton, MutedCTAButton } from '../components/Button';
+import { CTAButtonLogin } from '../components/Button';
 import Image from 'next/image';
 import ImagenMascota from '../public/adopcion/ImagenMascota';
 import { useSession } from 'next-auth/react';
+import { CTALink, MutedCTALink } from '../components/Link';
 
 export function HeroSection() {
   const { data: session, status } = useSession();
@@ -75,25 +75,11 @@ export function HeroSection() {
 
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
               {status === 'authenticated' ? (
-                <Link href="/portal/citas/nueva">
-                  <CTAButton>Agendar Cita</CTAButton>
-                </Link>
+                <CTALink href="/portal/citas/nueva">Agendar Cita</CTALink>
               ) : (
-                <Link href="/login">
-                  <CTAButton>Agendar Cita</CTAButton>
-                </Link>
+                <CTAButtonLogin>Agendar Cita</CTAButtonLogin>
               )}
-
-              <Link href="/servicios">
-                <MutedCTAButton>Ver Servicios</MutedCTAButton>
-              </Link>
-
-              {/* <Link href="/servicios">
-                <RoundMutedButton className="w-full gap-2 bg-transparent sm:w-auto">
-                  Ver Servicios
-                  <ArrowRight className="h-4 w-4" />
-                </RoundMutedButton>
-              </Link> */}
+              <MutedCTALink href="/servicios">Ver Servicios</MutedCTALink>
             </div>
 
             {/* Stats */}
@@ -131,6 +117,7 @@ export function HeroSection() {
               <ImagenMascota
                 src="/dog_cat_01.jpg"
                 alt="Mascota"
+                priority
                 className="overflow-hidden rounded-4xl bg-gray-100!"
               />
 

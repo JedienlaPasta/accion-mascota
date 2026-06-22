@@ -1,8 +1,8 @@
 import { mascotasAdopcion } from '@/app/_lib/mock-data';
-import { ArrowRight, Heart, UserPlus } from 'lucide-react';
+import { ArrowRight, Heart } from 'lucide-react';
 import Link from 'next/link';
 import ImagenMascota from '../public/adopcion/ImagenMascota';
-import { Button, MutedButton } from '../components/Button';
+import { BaseLink, LargeMutedBorderLink } from '../components/Link';
 
 export default function AdoptionSection() {
   // Solo las primeras 4 mascotas para el grid
@@ -29,18 +29,11 @@ export default function AdoptionSection() {
               Municipal para asegurar el bienestar de todos.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
-              <Link href="/adopcion">
-                <Button className="font-semibold">
-                  Ver mascotas en adopción
-                </Button>
-              </Link>
-
-              <Link href="/adopcion/proceso">
-                <MutedButton className="gap-2">
-                  Conoce el proceso
-                  <ArrowRight className="h-4 w-4" />
-                </MutedButton>
-              </Link>
+              <BaseLink href="/adopcion">Ver mascotas en adopción</BaseLink>
+              <LargeMutedBorderLink href="/adopcion/proceso">
+                Conoce el proceso
+                <ArrowRight className="h-4 w-4" />
+              </LargeMutedBorderLink>
             </div>
           </div>
 

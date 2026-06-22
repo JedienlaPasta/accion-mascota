@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, User } from 'lucide-react';
-import { Button } from './components/Button';
+import { Menu, X } from 'lucide-react';
+import { Button, LoginButton } from './components/Button';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -114,13 +114,7 @@ export function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : ( */}
-            <Link href="/login">
-              <Button className="gap-2">
-                <User className="h-4 w-4" />
-                <span className="hidden sm:inline">Iniciar Sesión</span>
-              </Button>
-            </Link>
-            {/* )} */}
+            <LoginButton>Iniciar Sesión</LoginButton>
 
             {/* Mobile Menu Button */}
             <Button

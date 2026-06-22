@@ -2,14 +2,11 @@
 import { citas, especieIcon, mascotas } from '@/app/_lib/mock-data';
 import { capitalize } from '@/app/_lib/utils/format';
 import Badge from '@/app/ui/components/Badge';
-import { Button, SecondaryButton } from '@/app/ui/components/Button';
+import { SecondaryButton } from '@/app/ui/components/Button';
+import { BaseLink, BaseMutedLink } from '@/app/ui/components/Link';
 import { Calendar, CheckCircle, Clock, Plus, Stethoscope } from 'lucide-react';
-import Link from 'next/link';
-import { useState } from 'react';
 
 export default function Citas() {
-  const [showHistory, setShowHistory] = useState(false);
-
   // Filter and sort appointments
   const pendingAppointments = citas
     .filter((c) => c.estado === 'pendiente' || c.estado === 'confirmada')
@@ -57,12 +54,10 @@ export default function Citas() {
             Revisa tus próximas visitas y el historial de atenciones.
           </p>
         </div>
-        <Link href="/portal/citas/nueva">
-          <Button className="gap-2">
-            <Plus className="h-4 w-4" />
-            Nueva Cita
-          </Button>
-        </Link>
+        <BaseLink href="/portal/citas/nueva">
+          <Plus className="size-4" />
+          Nueva Cita
+        </BaseLink>
       </div>
 
       {/* Upcoming Appointments */}
@@ -156,10 +151,10 @@ export default function Citas() {
                   </div>
 
                   <div className="mt-6 flex gap-3 border-t border-gray-100 pt-4">
-                    <SecondaryButton className="w-full justify-center border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                    <SecondaryButton className="w-full justify-center border-gray-200 text-gray-600 hover:border-zinc-200/50">
                       Cancelar
                     </SecondaryButton>
-                    <SecondaryButton className="w-full justify-center !border-gray-700 bg-black text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900">
+                    <SecondaryButton className="w-full justify-center border-gray-700! bg-gray-950 text-white hover:bg-gray-900">
                       Reagendar
                     </SecondaryButton>
                   </div>

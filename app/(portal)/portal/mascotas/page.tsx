@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import Link from 'next/link';
 import {
   PawPrint,
@@ -19,6 +21,7 @@ import {
 } from '@/app/_lib/mock-data';
 import { capitalize } from '@/app/_lib/utils/format';
 import { useSession } from 'next-auth/react';
+import { BaseLink, BaseMutedLink } from '@/app/ui/components/Link';
 
 export function calcularEdad(fechaNacimiento: string) {
   const nacimiento = new Date(fechaNacimiento);
@@ -35,22 +38,7 @@ export function calcularEdad(fechaNacimiento: string) {
 }
 
 export default function MascotasPage() {
-  const { data: session, status } = useSession();
-
-  if (status === 'loading') {
-    return <div className="p-8 text-center">Cargando Mascotas...</div>;
-  }
-
-  if (status === 'unauthenticated') {
-    return (
-      <div className="p-8 text-center">
-        <p>Debes iniciar sesión para ver esta página.</p>
-        <Link href="/login">
-          <Button className="mt-4">Iniciar Sesión</Button>
-        </Link>
-      </div>
-    );
-  }
+  const { data: session } = useSession();
 
   return (
     <div className="h-full space-y-6 bg-gray-50/50 p-6 lg:p-8">
@@ -62,12 +50,10 @@ export default function MascotasPage() {
             Gestiona el perfil de tus mascotas registradas
           </p>
         </div>
-        <Link href="/portal/mascotas/registro">
-          <Button className="gap-2">
-            <Plus className="h-4 w-4" />
-            Registrar Mascota
-          </Button>
-        </Link>
+        <BaseLink href="/portal/mascotas/registro">
+          <Plus className="h-4 w-4" />
+          Registrar Mascota
+        </BaseLink>
       </div>
 
       {/* Pet Cards */}
@@ -226,20 +212,17 @@ export default function MascotasPage() {
 
                 {/* Actions */}
                 <div className="flex gap-2">
-                  <Link
+                  <BaseMutedLink
                     href={`/portal/mascotas/${mascota.id}`}
-                    className="flex-1"
+                    className="w-full"
                   >
-                    <SecondaryButton className="w-full gap-2">
-                      Ver perfil
-                      <ChevronRight className="h-4 w-4" />
-                    </SecondaryButton>
-                  </Link>
-                  <Link href={`/portal/citas/nueva/${mascota.id}`}>
-                    <SecondaryButton className="aspect-square">
-                      <Calendar className="h-4 w-4" />
-                    </SecondaryButton>
-                  </Link>
+                    Ver perfil
+                    <ChevronRight className="h-4 w-4" />
+                  </BaseMutedLink>
+
+                  <BaseMutedLink href={`/portal/citas/nueva/${mascota.id}`}>
+                    <Calendar className="h-4 w-4" />
+                  </BaseMutedLink>
                 </div>
               </div>
             </div>
@@ -261,12 +244,11 @@ export default function MascotasPage() {
             Registra a tu primera mascota para comenzar a gestionar sus citas y
             historial médico.
           </p>
-          <Link href="/portal/mascotas/registro">
-            <Button className="gap-2">
-              <Plus className="h-4 w-4" />
-              Registrar mi primera mascota
-            </Button>
-          </Link>
+
+          <BaseLink href="/portal/mascotas/registro">
+            <Plus className="h-4 w-4" />
+            Registrar mi primera cita
+          </BaseLink>
         </div>
       )}
     </div>

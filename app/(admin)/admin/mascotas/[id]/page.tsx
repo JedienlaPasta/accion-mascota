@@ -31,6 +31,7 @@ import {
 } from '@/app/_lib/mock-data';
 import Badge from '@/app/ui/components/Badge';
 import { capitalize } from '@/app/_lib/utils/format';
+import { BaseLink } from '@/app/ui/components/Link';
 
 function calcularEdad(fechaNacimiento: string) {
   const nacimiento = new Date(fechaNacimiento);
@@ -70,18 +71,18 @@ export default async function MascotaDetallePage(props: MascotaDetalleProps) {
 
   if (!mascota) {
     return (
-      <div className="flex flex-col items-center justify-center p-6 lg:p-8">
-        <PawPrint className="text-muted-foreground mb-4 h-16 w-16" />
+      <div className="flex h-full flex-col items-center justify-center">
+        <PawPrint className="text-muted-foreground -mt-40 mb-4 h-16 w-16" />
         <h2 className="text-foreground mb-2 text-xl font-semibold">
           Mascota no encontrada
         </h2>
         <p className="text-muted-foreground mb-4">
           No se encontró una mascota con el ID proporcionado.
         </p>
-        <RedirectButton to="/admin/mascotas" className="gap-2">
+        <BaseLink href="/admin/mascotas">
           <ArrowLeft className="h-4 w-4" />
           Volver a mascotas
-        </RedirectButton>
+        </BaseLink>
       </div>
     );
   }
