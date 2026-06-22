@@ -27,7 +27,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           realm_access?: { roles: string[] };
         };
         token.roles = keycloakProfile.realm_access?.roles || [];
-        console.log('roles:', token.roles);
       }
       if (!token.roles) {
         token.roles = [];
