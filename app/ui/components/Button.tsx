@@ -11,7 +11,7 @@ export function LoginButton({ ...props }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = React.useState(false);
   const handleClick = () => {
     setIsLoading(true);
-    signIn('keycloak', { callbackUrl: '/portal/mascotas' });
+    signIn('keycloak', { callbackUrl: '/admin/mascotas' });
   };
 
   return (
@@ -41,7 +41,7 @@ export function LoginButton({ ...props }: { children: React.ReactNode }) {
 export function CTAButtonLogin({ ...props }: { children: React.ReactNode }) {
   return (
     <button
-      onClick={() => signIn('keycloak', { callbackUrl: '/portal/mascotas' })}
+      onClick={() => signIn('keycloak', { callbackUrl: '/admin/mascotas' })}
       className="group shover:shadow-emerald-900/15 relative cursor-pointer overflow-hidden rounded-2xl bg-linear-to-br from-emerald-600 via-emerald-700 to-emerald-800 px-6 py-4 text-lg font-black text-white shadow-lg transition-all duration-300 hover:scale-102 active:scale-95 md:px-10"
     >
       {/* Overlay gradiente para hover con transición suave */}
@@ -74,7 +74,7 @@ export function MutedCTAButtonLogin({
 }) {
   return (
     <button
-      onClick={() => signIn('keycloak', { callbackUrl: '/portal/mascotas' })}
+      onClick={() => signIn('keycloak', { callbackUrl: '/admin/mascotas' })}
       className="relative cursor-pointer rounded-2xl bg-gray-100 px-6 py-4 text-lg font-black text-gray-600 shadow-lg ring-2 ring-gray-300/90 transition-all duration-300 hover:scale-103 active:scale-95 md:px-10"
     >
       <span>{props.children}</span>

@@ -1,13 +1,5 @@
 import NextAuth from 'next-auth';
-import { AdapterSession } from 'next-auth/adapters';
-import { JWT } from 'next-auth/jwt';
 import Keycloak from 'next-auth/providers/keycloak';
-
-function buildKeycloakLogoutUrl(idToken: string): string {
-  const issuer = process.env.AUTH_KEYCLOAK_ISSUER;
-  const postLogoutUri = encodeURIComponent(process.env.AUTH_URL!);
-  return `${issuer}/protocol/openid-connect/logout?id_token_hint=${idToken}&post_logout_redirect_uri=${postLogoutUri}`;
-}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -20,9 +12,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async jwt({ token, account, profile }) {
       if (account) {
-        token.idToken = account.id_token;
+        // Omitido el id_token para evitar superar el limite de tamaño de la cookie de sesion en Node.js.
+        // Utilizado el refresh_token para cerrar la sesion en Keycloak.
+        token.refreshToken = account.refresh_token;
       }
       if (profile) {
+        // Para que los roles lleguen aqui es necesario configurar un Mapper en Keycloak.
+        // Keycloak > accion-mascota realm > Clients > accion-mascota-admin > Client scopes > accion-mascota-admin-dedicated > Add mapper > By configuration > User Realm Role
+        // Token Claim Name: "realm_access.roles", Claim JSON Type: string, Add to ID Token: On, Add to access token: On, Add to userinfo: On.
         const keycloakProfile = profile as {
           realm_access?: { roles: string[] };
         };
@@ -34,23 +31,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
     },
     async session({ session, token }) {
+      // Pasados los datos custom del token al objeto session, para que esten disponibles en los client components y layouts.
       if (session.user) {
-        session.user.roles = token.roles;
+        session.user.roles = token.roles as string[];
       }
+      session.refreshToken = token.refreshToken as string;
       return session;
-    },
-  },
-  events: {
-    async signOut(
-      message:
-        | { session: void | AdapterSession | null | undefined }
-        | { token: JWT | null }
-    ) {
-      const idToken = 'token' in message ? message.token?.idToken : undefined;
-      if (idToken) {
-        const logoutUrl = buildKeycloakLogoutUrl(idToken);
-        await fetch(logoutUrl);
-      }
     },
   },
   session: {

@@ -14,7 +14,8 @@ import {
 } from 'lucide-react';
 import { Button } from './components/Button';
 import Image from 'next/image';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
+import { logout } from '../_lib/actions/auth';
 
 export function SessionHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -141,9 +142,9 @@ export function SessionHeader() {
                     <button
                       type="button"
                       role="menuitem"
-                      onClick={() => {
+                      onClick={async () => {
                         setUserMenuOpen(false);
-                        signOut({ redirectTo: '/' });
+                        await logout();
                       }}
                       className="mb-2 flex w-full cursor-pointer items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-rose-600 transition-colors hover:bg-rose-50/60"
                     >
@@ -157,7 +158,7 @@ export function SessionHeader() {
               <Button
                 className="gap-2"
                 onClick={() =>
-                  signIn('keycloak', { callbackUrl: '/portal/mascotas' })
+                  signIn('keycloak', { callbackUrl: '/admin/mascotas' })
                 }
               >
                 <User className="h-4 w-4" />
