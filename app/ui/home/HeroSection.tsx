@@ -38,7 +38,7 @@ export function HeroSection() {
               </div>
             </div>
 
-            <h1 className="text-foreground text-4xl leading-tight font-bold text-balance sm:text-5xl lg:text-6xl">
+            <h1 className="text-foreground text-4xl leading-tight font-extrabold text-balance sm:text-5xl lg:text-6xl">
               Cuidamos la salud de{' '}
               <span className="relative text-emerald-800">
                 tus mascotas

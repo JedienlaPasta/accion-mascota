@@ -4,7 +4,7 @@ import { Button } from '../components/Button';
 
 export default function InfoCardsContactBanner() {
   return (
-    <div className="from-primary to-primary/80 mt-12 rounded-2xl bg-gradient-to-r p-8 text-white">
+    <div className="from-primary to-primary/80 mt-12 rounded-2xl bg-linear-to-r p-8 text-white">
       <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
         <div className="flex items-center gap-4">
           <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/20">

@@ -1,6 +1,6 @@
 'use server';
 
-import { auth, signOut } from '@/auth';
+import { auth } from '@/auth';
 
 export async function logout() {
   const session = await auth();
@@ -46,7 +46,4 @@ export async function logout() {
   } else {
     console.log('Sesión o refresh token no encontrado en NextAuth');
   }
-
-  // Cerrar la sesion en NextAuth (sesion del navegador)
-  await signOut({ redirectTo: '/' });
 }

@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Button, LoginButton } from './components/Button';
+import { ChevronDown } from 'lucide-react';
+import { LoginButton, RegisterButton } from './components/Button';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import SessionMenu from './components/SessionMenu';
 
 const navLinks = [
   { href: '/', label: 'Inicio' },
@@ -51,7 +52,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors outline-none ${pathname === link.href ? 'bg-gray-100 text-gray-800' : 'text-gray-600/90'}`}
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors outline-none ${pathname === link.href ? 'bg-slate-50 text-emerald-700' : 'text-gray-600'}`}
               >
                 <p>{link.label}</p>
               </Link>
@@ -60,93 +61,22 @@ export function Header() {
 
           {/* Auth Buttons */}
           <div className="flex items-center gap-2">
-            {/* {isLoggedIn ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button className="gap-2 bg-transparent">
-                    <User className="h-4 w-4" />
-                    <span className="hidden sm:inline">
-                      {usuario?.nombre.split(' ')[0]}
-                    </span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <div className="px-2 py-1.5">
-                    <p className="text-sm font-medium">{usuario?.nombre}</p>
-                    <p className="text-muted-foreground text-xs">
-                      {usuario?.email}
-                    </p>
-                  </div>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <Link href="/portal/mascotas" className="cursor-pointer">
-                      <PawPrint className="mr-2 h-4 w-4" />
-                      Mis Mascotas
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/portal/citas" className="cursor-pointer">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      Mis Citas
-                    </Link>
-                  </DropdownMenuItem>
-                  {(usuario?.rol === 'funcionario' ||
-                    usuario?.rol === 'veterinario' ||
-                    usuario?.rol === 'admin') && (
-                    <>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem asChild>
-                        <Link href="/admin" className="cursor-pointer">
-                          <Settings className="mr-2 h-4 w-4" />
-                          Panel Administrativo
-                        </Link>
-                      </DropdownMenuItem>
-                    </>
-                  )}
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    onClick={logout}
-                    className="text-destructive cursor-pointer"
-                  >
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Cerrar Sesión
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : ( */}
-            <LoginButton>Iniciar Sesión</LoginButton>
-
-            {/* Mobile Menu Button */}
-            <Button
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? (
-                <X className="h-5 w-5" />
+            <div className="hidden md:block">
+              {status !== 'authenticated' ? (
+                <div className="flex gap-2">
+                  <RegisterButton>Registrarse</RegisterButton>
+                  <LoginButton>Iniciar Sesión</LoginButton>
+                </div>
               ) : (
-                <Menu className="h-5 w-5" />
+                <SessionMenu
+                  navLinks={navLinks}
+                  mobileMenuOpen={mobileMenuOpen}
+                  setMobileMenuOpen={setMobileMenuOpen}
+                />
               )}
-            </Button>
+            </div>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <nav className="border-border border-t py-4 md:hidden">
-            <div className="flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-foreground hover:bg-secondary rounded-md px-3 py-2 text-sm font-medium transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </nav>
-        )}
       </div>
     </header>
   );
