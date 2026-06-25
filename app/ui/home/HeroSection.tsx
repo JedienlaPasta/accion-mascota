@@ -11,12 +11,12 @@ export function HeroSection() {
   const { data: session, status } = useSession();
 
   return (
-    <section className="bg-emerald-800/5s bg-secondary-backgrounds relative overflow-hidden bg-white">
+    <section className="bg-emerald-800/5s relative overflow-hidden bg-white">
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="-mt-10 grid items-center gap-12 sm:-mt-4 lg:grid-cols-2">
           {/* Content */}
           <div className="text-center lg:text-left">
-            <div className="mb-6 flex items-center justify-start gap-4 sm:gap-10">
+            <div className="mb-4 flex flex-col items-center justify-start gap-4 sm:mb-6 sm:flex-row sm:gap-10">
               <Image
                 src="/escudo.png"
                 alt="HeroLogo"
@@ -26,13 +26,13 @@ export function HeroSection() {
                 className="h-10 w-auto shrink-0"
               />
 
-              <div className="relative size-6">
+              <div className="relative hidden size-6 sm:block">
                 <PawPrint className="absolute -top-4 -left-4 h-6 w-6 -rotate-65 text-emerald-600/60" />
                 <PawPrint className="absolute -top-1 left-4 h-6 w-6 rotate-0 text-rose-500/60" />
                 <PawPrint className="absolute top-5 -left-2 h-6 w-6 -rotate-65 text-amber-500/60" />
               </div>
 
-              <div className="inline-flex shrink-0 items-center gap-2 rounded-full bg-emerald-800/80 px-3 py-1 text-sm font-medium text-emerald-50">
+              <div className="inline-flex shrink-0 items-center gap-2 rounded-full bg-emerald-600/10 px-3 py-1 text-sm font-medium text-emerald-800">
                 <Heart className="h-4 w-4" />
                 Tenencia Responsable
               </div>
@@ -40,14 +40,7 @@ export function HeroSection() {
 
             <h1 className="text-foreground text-4xl leading-tight font-extrabold text-balance sm:text-5xl lg:text-6xl">
               Cuidamos la salud de{' '}
-              <span className="relative text-emerald-800">
-                tus mascotas
-                {/* <div className="absolute top-7 -right-16 size-6">
-                  <PawPrint className="absolute -top-4 -left-4 h-6 w-6 -rotate-65 text-emerald-600/60" />
-                  <PawPrint className="absolute -top-1 left-4 h-6 w-6 rotate-0 text-rose-500/60" />
-                  <PawPrint className="absolute top-5 -left-2 h-6 w-6 -rotate-65 text-yellow-500/60" />
-                </div> */}
-              </span>
+              <span className="relative text-emerald-800">tus mascotas</span>
             </h1>
 
             <p className="text-muted-foreground mx-auto mt-6 max-w-xl text-lg leading-relaxed text-pretty lg:mx-0">
@@ -75,11 +68,20 @@ export function HeroSection() {
 
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
               {status === 'authenticated' ? (
-                <CTALink href="/portal/citas/nueva">Agendar Cita</CTALink>
+                <>
+                  <CTALink href="/portal/citas/nueva">Agendar Cita</CTALink>
+                  <MutedCTALink href="/portal/mascotas">
+                    Mis Mascotas
+                  </MutedCTALink>
+                </>
               ) : (
-                <CTAButtonLogin>Agendar Cita</CTAButtonLogin>
+                <>
+                  <CTAButtonLogin>Agendar Cita</CTAButtonLogin>
+                  <MutedCTALink href="/portal/mascotas">
+                    Ver Servicios
+                  </MutedCTALink>
+                </>
               )}
-              <MutedCTALink href="/servicios">Ver Servicios</MutedCTALink>
             </div>
 
             {/* Stats */}

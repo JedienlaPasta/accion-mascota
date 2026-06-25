@@ -18,7 +18,7 @@ export function LoginButton({ ...props }: { children: React.ReactNode }) {
     <button
       onClick={handleClick}
       disabled={isLoading}
-      className={`group relative flex h-12 min-w-48 cursor-pointer items-center justify-center overflow-hidden rounded-xl font-semibold text-white shadow-lg transition-all duration-300 ${isLoading ? 'cursor-not-allowed bg-emerald-900/50' : 'bg-emerald-800/90 hover:bg-emerald-700'}`}
+      className={`group relative flex h-12 min-w-48 cursor-pointer items-center justify-center overflow-hidden rounded-xl font-semibold text-white shadow-lg shadow-gray-200 transition-all duration-300 ${isLoading ? 'cursor-not-allowed bg-emerald-900/50' : 'bg-emerald-800/90 hover:bg-emerald-700'}`}
     >
       {/* Overlay gradiente para hover */}
       {!isLoading && (
@@ -53,9 +53,9 @@ export function RegisterButton({ ...props }: { children: React.ReactNode }) {
     <button
       onClick={handleClick}
       disabled={isLoading}
-      className={`group relative flex h-12 min-w-48 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-gray-100 font-bold shadow-lg ring-2 ring-gray-300/90 transition-all duration-300 md:px-10 ${isLoading ? 'cursor-not-allowed text-gray-400' : 'text-gray-600 hover:text-gray-700 hover:ring-gray-400/40'}`}
+      className={`group relative flex h-12 min-w-48 cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-gray-200/80 bg-white font-semibold text-gray-700 shadow-lg shadow-gray-200/50 transition-all duration-300 hover:border-gray-300/60 hover:bg-gray-50 ${isLoading ? 'cursor-not-allowed opacity-60' : ''}`}
     >
-      {/* Overlay gradiente para hover */}
+      {/* Overlay para hover */}
       {!isLoading && (
         <div className="absolute inset-0 rounded-xl bg-gray-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       )}
@@ -63,7 +63,7 @@ export function RegisterButton({ ...props }: { children: React.ReactNode }) {
         {/* Spinner reemplaza el texto cuando carga */}
         {isLoading ? (
           <div className="flex items-center justify-center">
-            <div className="size-5 animate-spin rounded-full border-4 border-white/80 border-t-gray-800/60" />
+            <div className="size-5 animate-spin rounded-full border-4 border-gray-200 border-t-gray-600" />
           </div>
         ) : (
           props.children

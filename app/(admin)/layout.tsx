@@ -1,8 +1,8 @@
 import { auth } from '@/auth';
 import { AdminSidebar } from '../ui/admin/AdminSidebar';
-import { SessionHeader } from '../ui/SessionHeader';
 // import { SessionProvider } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import { Header } from '../ui/Header';
 
 export default async function AdminLayout({
   children,
@@ -22,7 +22,7 @@ export default async function AdminLayout({
 
   return (
     <div className="flex min-h-dvh flex-col bg-gray-100">
-      <SessionHeader />
+      <Header />
       <div className="flex flex-1 overflow-hidden">
         <AdminSidebar />
         <main id="main-scroll" className="min-h-0 w-full flex-1 overflow-auto">

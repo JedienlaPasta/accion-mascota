@@ -1,13 +1,8 @@
 import type { Metadata } from 'next';
-import { Geist } from 'next/font/google';
 import './globals.css';
 import { SessionProvider } from 'next-auth/react';
 import { auth } from '@/auth';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
+import { outfit } from './ui/fonts';
 
 export const metadata: Metadata = {
   title: 'Acción Mascota - Municipalidad de Algarrobo',
@@ -40,7 +35,7 @@ export default async function RootLayout({
   const session = await auth();
   return (
     <html lang="es">
-      <body className={`${geistSans.variable} font-sans antialiased`}>
+      <body className={`${outfit.className} font-sans antialiased`}>
         <SessionProvider session={session}>{children}</SessionProvider>
       </body>
     </html>
