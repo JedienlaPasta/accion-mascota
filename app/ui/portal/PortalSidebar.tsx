@@ -2,14 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import {
-  PawPrint,
-  Calendar,
-  ClipboardList,
-  User,
-  Plus,
-  Home,
-} from 'lucide-react';
+import { PawPrint, Calendar, Mails, User, Plus, Hospital } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { BaseLink } from '../components/Link';
 
@@ -27,12 +20,12 @@ const navItems = [
   {
     href: '/portal/historial',
     label: 'Historial Clínico',
-    icon: ClipboardList,
+    icon: Hospital,
   },
   {
     href: '/portal/solicitudes',
     label: 'Mis Solicitudes',
-    icon: ClipboardList,
+    icon: Mails,
   },
   {
     href: '/portal/perfil',
@@ -54,21 +47,9 @@ export function PortalSidebar() {
     <aside className="sticky top-0 hidden min-h-fit w-72 flex-col border-r border-zinc-200/70 bg-white lg:flex">
       <nav className="flex-1 p-3">
         <ul className="space-y-1">
-          <li>
-            <Link
-              href="/"
-              className="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
-            >
-              <span className="flex size-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-600 transition-colors group-hover:bg-zinc-200/70">
-                <Home className="h-4 w-4" />
-              </span>
-              Volver al inicio
-            </Link>
-          </li>
-
-          <li className="pt-4">
-            <p className="mb-2 px-3 text-xs font-semibold tracking-wider text-zinc-400 uppercase">
-              Gestión
+          <li className="pt-2">
+            <p className="mb-2 px-3 text-xs font-semibold tracking-wide text-zinc-400 uppercase">
+              Mi Portal
             </p>
           </li>
 

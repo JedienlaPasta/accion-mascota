@@ -10,12 +10,15 @@ import SessionMenu from './components/SessionMenu';
 import {
   PawPrint,
   Calendar,
-  ClipboardList,
   User,
   LayoutDashboard,
   Home,
   X,
   Menu,
+  Hospital,
+  Mails,
+  Ambulance,
+  Library,
 } from 'lucide-react';
 import MobileNavMenu from './components/MobileNavMenu';
 import { logout } from '../_lib/actions/auth';
@@ -35,12 +38,12 @@ export const publicNavLinks = [
   {
     href: '/campanas',
     label: 'Campañas',
-    icon: <ClipboardList className="h-4 w-4" />,
+    icon: <Ambulance className="h-4 w-4" />,
   },
   {
     href: '/informacion',
     label: 'Información',
-    icon: <ClipboardList className="h-4 w-4" />,
+    icon: <Library className="h-4 w-4" />,
   },
 ];
 
@@ -58,12 +61,12 @@ const authenticatedNavLinks = [
   {
     href: '/portal/historial',
     label: 'Historial Clínico',
-    icon: <ClipboardList className="h-4 w-4" />,
+    icon: <Hospital className="h-4 w-4" />,
   },
   {
     href: '/portal/solicitudes',
     label: 'Mis Solicitudes',
-    icon: <ClipboardList className="h-4 w-4" />,
+    icon: <Mails className="h-4 w-4" />,
   },
   {
     href: '/portal/perfil',
