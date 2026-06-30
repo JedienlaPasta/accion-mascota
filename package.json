@@ -9,8 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1018.0",
-    "@aws-sdk/s3-request-presigner": "^3.1018.0",
+    "@aws-sdk/client-s3": "^3.1075.0",
+    "@aws-sdk/s3-request-presigner": "^3.1075.0",
     "lucide-react": "^0.563.0",
     "next": "16.2.6",
     "next-auth": "5.0.0-beta.31",
@@ -20,15 +20,15 @@
     "use-debounce": "^10.1.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9.39.3",
+    "@tailwindcss/postcss": "^4.3.2",
+    "@types/node": "^20.19.43",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.4",
     "eslint-config-next": "16.2.6",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "prettier-plugin-tailwindcss": "^0.7.4",
+    "tailwindcss": "^4.3.2",
+    "typescript": "^5.9.3"
   },
   "pnpm": {
     "ignoredBuiltDependencies": [
