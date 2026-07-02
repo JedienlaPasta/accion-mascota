@@ -87,16 +87,15 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200/60 bg-white sm:shadow-sm sm:shadow-gray-200/40">
-      <div className="max-w-7xls mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+      <div className="mx-auto flex h-20 w-full items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-1.5 sm:gap-2.5">
             <Image
               src="/logo.png"
               alt="Acción Mascota - Municipalidad de Algarrobo"
               width={140}
-              height={60}
-              className="h-16 w-auto sm:h-24"
+              height={140}
+              className="size-16 sm:size-24"
               priority
             />
             <div className="flex flex-col leading-tight">
@@ -149,7 +148,7 @@ export function Header() {
 
           {/* (Movil) Boton toggle de navegacion */}
           <div className="flex items-center gap-4 md:hidden">
-            {!pathname.includes('portal') && (
+            {!pathname.includes('portal') && status === 'authenticated' && (
               <Link
                 href="/portal/mascotas"
                 className="rounded-lg px-3 py-2 text-sm text-slate-600 transition-colors outline-none hover:text-emerald-700"
@@ -179,7 +178,6 @@ export function Header() {
             />
           )}
         </div>
-      </div>
     </header>
   );
 }
