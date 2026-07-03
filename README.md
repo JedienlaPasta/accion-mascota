@@ -1,10 +1,10 @@
-# Accion Mascota
+# Acción Mascota
 
 ## Descripción
 Acción Mascota es una plataforma web de gestión municipal diseñada para centralizar, digitalizar y optimizar los procesos relacionados con la tenencia responsable de animales y los servicios de salud veterinaria pública. El sistema opera como un ecosistema unificado que conecta directamente a los residentes locales con el personal operativo, médico y administrativo de la Unidad de Acción Mascota de la Municipalidad.
 
 La plataforma está estructurada en torno a tres pilares fundamentales:
-1. Gestión del Registro Animal y Ficha Clínica: Centralización de la identidad animal (con o sin microchip), vinculando mascotas a sus propietarios (ciudadanos) o categorizándolas como animales comunitarios/rescatados para el seguimiento continuo de su estado de salud, diagnósticos y tratamientos clínicos. El sistema permite gestionar tanto mascotas con propietario identificado como animales comunitarios y rescatados, proporcionando un registro clínico unificado independiente de su condición.
+1. Gestión del Registro Animal y Ficha Clínica: Centralización de la identidad de cada animal mediante un registro único (con o sin microchip), asociado opcionalmente a un propietario o clasificado como animal comunitario o rescatado. Sobre este registro se mantiene un historial clínico unificado que consolida consultas, diagnósticos, tratamientos y demás antecedentes médicos, permitiendo dar continuidad a la atención veterinaria del animal.
 
 2. Logística Operativa y Atención Municipal: Automatización del agendamiento de citas para la Veterinaria Municipal, optimización de la agenda diaria del personal técnico y provisión de herramientas de reporte de estadísticas mensuales, para el respaldo y presentación de documentos administrativos.
 
@@ -27,11 +27,11 @@ Acción Mascota nace con el objetivo de reemplazar procesos manuales y registros
 ### Roles
 | ROL | Función |
 | :--- | :--- |
-| Ciudadano | Gestiona sus mascotas, agenda horas y postula a adopciones |
-| Usuario Municipal | Registra mascotas, propietarios y administra la operación diaria |
-| Veterinario | Registra consultas clínicas y tratamientos |
-| Funcionario | Genera reportes e indicadores administrativos |
-| Administrador | Administra usuarios y posee acceso completo administrativo al sistema |
+| Ciudadano | Gestiona sus mascotas, agenda horas y postula a adopciones. |
+| Usuario Municipal | Registra mascotas, propietarios y administra la operación diaria. |
+| Veterinario | Registra consultas clínicas y tratamientos. |
+| Funcionario | Genera reportes e indicadores administrativos. |
+| Administrador | Administra usuarios y posee acceso completo administrativo al sistema. |
 
 ### Jerarquía de permisos
 
@@ -39,7 +39,9 @@ Acción Mascota nace con el objetivo de reemplazar procesos manuales y registros
 Usuario Municipal
 ├── Veterinario
 ├── Funcionario
-│   └── Administrador
+└── Administrador
+    ├── Hereda privilegios de Veterinario
+    └── Hereda privilegios de Funcionario
 
 Ciudadano (rol independiente)
 ```
@@ -89,7 +91,7 @@ La plataforma está dividida en cuatro grandes componentes:
 
 - Portal ciudadano.
 - Plataforma de gestión municipal.
-- Base de datos relacional centralizada.
+- Base de datos PostgreSQL.
 - Almacenamiento de archivos compatible con S3.
 
 ## Diagrama de Datos
@@ -97,24 +99,24 @@ La plataforma está dividida en cuatro grandes componentes:
 
 ## Tecnologías
 
-Frontend
+**Frontend**
 - Next.js
 - React
 - Tailwind CSS
 
-Backend
+**Backend**
 - Next.js API
 - TypeScript
 
-Base de datos y almacenamiento
+**Base de datos y almacenamiento**
 - PostgreSQL
-- Seaweedfs
+- SeaweedFS
 
-Autenticación
+**Autenticación**
 - NextAuth
 - Keycloak
 
-Infraestructura
+**Infraestructura**
 - Docker
 - Nginx
 - Cloudflare Tunnel
