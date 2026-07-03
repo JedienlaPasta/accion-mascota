@@ -1,7 +1,48 @@
 # Accion Mascota
 
 ## Descripción
-(pendiente)
+Acción Mascota es una plataforma web de gestión municipal diseñada para centralizar, digitalizar y optimizar los procesos relacionados con la tenencia responsable de animales y los servicios de salud veterinaria pública. El sistema opera como un ecosistema unificado que conecta directamente a los residentes locales con el personal operativo, médico y administrativo de la Unidad de Acción Mascota de la Municipalidad.
+
+La plataforma está estructurada en torno a tres pilares fundamentales:
+1. Gestión del Registro Animal y Ficha Clínica: Centralización de la identidad animal (con o sin microchip), vinculando mascotas a sus propietarios (ciudadanos) o categorizándolas como animales comunitarios/rescatados para el seguimiento continuo de su estado de salud, diagnósticos y tratamientos clínicos. El sistema permite gestionar tanto mascotas con propietario identificado como animales comunitarios y rescatados, proporcionando un registro clínico unificado independiente de su condición.
+
+2. Logística Operativa y Atención Municipal: Automatización del agendamiento de citas para la Veterinaria Municipal, optimización de la agenda diaria del personal técnico y provisión de herramientas de reporte de estadísticas mensuales, para el respaldo y presentación de documentos administrativos.
+
+3. Bienestar Animal y Vinculación Comunitaria: Gestión transparente del ciclo de adopciones, que abarca desde la publicación de un catálogo digital de animales rescatados hasta el seguimiento del estado de las solicitudes ingresadas por la comunidad y su evaluación formal.
+
+## Objetivo
+Acción Mascota nace con el objetivo de reemplazar procesos manuales y registros dispersos utilizados por la Unidad de Acción Mascota, centralizando en una única plataforma la gestión clínica, administrativa y comunitaria relacionada con la tenencia responsable de animales. El sistema busca mejorar la trazabilidad de la información, optimizar los tiempos de atención y facilitar procesos administrativos mediante la entrega de indicadores y reportes automatizados.
+
+## Características principales
+
+- Registro de propietarios y mascotas.
+- Gestión de ficha clínica veterinaria.
+- Registro de animales comunitarios y rescatados.
+- Agenda de atención veterinaria.
+- Solicitudes de adopción.
+- Gestión de usuarios municipales.
+- Estadísticas y reportes administrativos.
+- Dashboard de indicadores.
+
+### Roles
+| ROL | Función |
+| :--- | :--- |
+| Ciudadano | Gestiona sus mascotas, agenda horas y postula a adopciones |
+| Usuario Municipal | Registra mascotas, propietarios y administra la operación diaria |
+| Veterinario | Registra consultas clínicas y tratamientos |
+| Funcionario | Genera reportes e indicadores administrativos |
+| Administrador | Administra usuarios y posee acceso completo administrativo al sistema |
+
+### Jerarquía de permisos
+
+```text
+Usuario Municipal
+├── Veterinario
+├── Funcionario
+│   └── Administrador
+
+Ciudadano (rol independiente)
+```
 
 ## Requerimientos Funcionales
 
@@ -22,7 +63,7 @@
 | **RF-UM-03** | Gestión de agenda | El usuario debe poder visualizar y gestionar citas médicas. |
 | **RF-UM-04** | Actualización ficha animal | El usuario debe poder modificar los datos del registro de una mascota, haciendo énfasis en la actualización del estado vital y el número de microchip. |
 | **RF-UM-05** | Gestión de adopciones | El usuario debe poder evaluar las solicitudes de adopción ingresadas por los ciudadanos, cambiando su estado (Aprobada, Rechazada, En Revisión) y emitiendo comentarios de retroalimentación. |
-| **RF-UM-06** | Dashboard y métricas | El usuario debe tener acceso a un panel para visualizar estadísticas globales de la plataforma (ej. total de mascotas registradas, adopciones concretadas, volumen de atenciones). |
+| **RF-UM-06** | Dashboard de indicadores | El usuario debe tener acceso a un panel para visualizar estadísticas globales de la plataforma (ej. total de mascotas registradas, adopciones concretadas, volumen de atenciones). |
 
 ### Veterinario (Usuario Municipal)
 | ID | Módulo | Descripción |
@@ -42,5 +83,44 @@
 | **RF-AM-01** | Gestión de personal | El administrador debe contar con privilegios para crear cuentas de acceso a nuevos funcionarios o veterinarios, así como inhabilitarlas cuando cesen sus funciones en la municipalidad. |
 | **RF-AM-02** | Herencia operativa | El administrador cuenta con todos los privilegios de un Funcionario/Veterinario, pudiendo intervenir en el agendamiento, registro y gestión de mascotas para apoyar operativamente al equipo. |
 
+## Arquitectura
+
+La plataforma está dividida en cuatro grandes componentes:
+
+- Portal ciudadano.
+- Plataforma de gestión municipal.
+- Base de datos relacional centralizada.
+- Almacenamiento de archivos compatible con S3.
+
 ## Diagrama de Datos
 ![Diagrama de Datos](./public/diagrama-datos.png)
+
+## Tecnologías
+
+Frontend
+- Next.js
+- React
+- Tailwind CSS
+
+Backend
+- Next.js API
+- TypeScript
+
+Base de datos y almacenamiento
+- PostgreSQL
+- Seaweedfs
+
+Autenticación
+- NextAuth
+- Keycloak
+
+Infraestructura
+- Docker
+- Nginx
+- Cloudflare Tunnel
+
+## Estado del proyecto
+
+🚧 En desarrollo activo.
+
+Este proyecto se encuentra en desarrollo activo para la Unidad de Acción Mascota de la Municipalidad de Algarrobo. Las funcionalidades, el modelo de datos y la arquitectura pueden evolucionar conforme avancen los requerimientos institucionales.
